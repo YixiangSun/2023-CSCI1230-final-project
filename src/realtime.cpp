@@ -516,23 +516,6 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-// gets the projection vector to a plane, given the vector, a point on the plane and the normal of the plane.
-
-glm::vec3 projectOntoPlane(const glm::vec3& V, const glm::vec3& P0, const glm::vec3& N) {
-    glm::vec3 projection = V - glm::dot(V, N) * N;
-    return projection;
-}
-
-// gets the rotatino axis.
-glm::vec3 getRotAxis(const glm::vec3& V, const glm::vec3& P0, const glm::vec3& N) {
-    // Calculate the projection of V onto the plane
-    glm::vec3 projection = glm::dot(V - P0, N) * N;
-
-    // Subtract the projection from the original vector to get a parallel vector to the plane
-    glm::vec3 parallelVector = V - projection;
-
-    return parallelVector;
-}
 
 void Realtime::timerEvent(QTimerEvent *event) {
     int elapsedms   = m_elapsedTimer.elapsed();
@@ -606,79 +589,6 @@ void Realtime::timerEvent(QTimerEvent *event) {
     camera.updateData(cData);
     update(); // asks for a PaintGL() call to occur
 }
-
-//void Realtime::timerEvent(QTimerEvent *event) {
-//    int elapsedms   = m_elapsedTimer.elapsed();
-//    float deltaTime = elapsedms * 0.001f;
-//    m_elapsedTimer.restart();
-//    SceneCameraData cData = camera.getData();
-//    glm::mat4 ctm = ball.getCTM();
-
-//    // Use deltaTime and m_keyMap here to move around
-//    glm::vec3 look = glm::vec3(glm::normalize(cData.look));
-//    glm::vec3 up = glm::vec3(glm::normalize(cData.up));
-//    glm::vec3 left = glm::normalize(glm::cross(up, look));
-//    float dist = 7.0f * deltaTime;
-
-//    // project the moving direction to the plane. This is the simple version, subjecting to change.
-//    glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
-//    glm::vec3 forward = look - glm::dot(look, n) * n;
-//    left = left - glm::dot(left, n) * n;
-
-//    if (m_keyMap[Qt::Key_W]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), forward * dist);
-//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, left), -realPos);
-//        ctm = rot * ctm;
-//    }
-
-//    if (m_keyMap[Qt::Key_S]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), -forward * dist);
-//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -left), -realPos);
-//        ctm = rot * ctm;
-//    }
-
-//    if (m_keyMap[Qt::Key_A]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), left * dist);
-//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -forward), -realPos);
-//        ctm = rot * ctm;
-//    }
-
-//    if (m_keyMap[Qt::Key_D]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), -left * dist);
-//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, forward), -realPos);
-//        ctm = rot * ctm;
-//    }
-
-//    if (m_keyMap[Qt::Key_Control]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
-//        cData.pos = trans * cData.pos;
-//    }
-
-//    if (m_keyMap[Qt::Key_Space]) {
-//        glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
-//        cData.pos = trans * cData.pos;
-//    }
-
-//    ball.updateCTM(ctm);
-//    camera.updateData(cData);
-//    update(); // asks for a PaintGL() call to occur
-//}
 
 // DO NOT EDIT
 void Realtime::saveViewportImage(std::string filePath) {
