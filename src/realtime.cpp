@@ -188,6 +188,13 @@ void Realtime::drawFire(){
     for (int h = 0; h < height; h ++){
         for (int r = 0; r < width - h; r ++){
             for (int c = 0; c < width - h; c ++){
+                if (h < 2 && std::abs(r - width/2) < 1 && std::abs(c - width/2) < 1){
+                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 200.f/255.f, 0.0, 1.0));
+                }else if(h < 3 && std::abs(r - width/2) < 2 && std::abs(c - width/2) < 2){
+                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 100.f/255.f, 0.0, 1.0));
+                }else{
+                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+                }
                 RenderShapeData fire_particle;
                 glm::mat4 translate = glm::mat4{
                     1.0, 0.0, 0.0, 0.0,
