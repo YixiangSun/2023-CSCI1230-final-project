@@ -13,6 +13,7 @@
 #include <QOpenGLWidget>
 #include <QTime>
 #include <QTimer>
+#include "fire.h"
 
 class Realtime : public QOpenGLWidget
 {
@@ -78,6 +79,8 @@ private:
     GLint m_defaultFBO = 2;
 
     bool initialized = false;
+    FireProps m_Fire;
+    Fire m_FireSystem;
 
     void draw(RenderShapeData shape, bool ifBall);
     void getVaos();
@@ -85,6 +88,7 @@ private:
     void getFullScreenVao();
     void makeFBO();
     void paintTexture(GLuint texture, bool perPixel, bool kernel);
+    void drawFire();
 
     glm::mat3 getRotationMatrix(float theta, glm::vec3 axis);
 };

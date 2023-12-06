@@ -14,6 +14,7 @@
 #include "shapes/Cube.h"
 #include "shapes/Cylinder.h"
 #include "shapes/Sphere.h"
+#include "fire.h"
 
 // ================== Project 5: Lights, Camera
 
@@ -133,6 +134,9 @@ void Realtime::initializeGL() {
     glEnable(GL_DEPTH_TEST);
     // Tells OpenGL to only draw the front face
     glEnable(GL_CULL_FACE);
+    glEnable(GL_BLEND);
+    glEnable(GL_SRC_ALPHA);
+    glEnable(GL_ONE_MINUS_SRC_ALPHA);
     // Tells OpenGL how big the screen is
     glViewport(0, 0, size().width() * m_devicePixelRatio, size().height() * m_devicePixelRatio);
 
@@ -147,8 +151,60 @@ void Realtime::initializeGL() {
     Realtime::makeFBO();
 
     initialized = true;
-}
+    // initialize fire system
+    m_FireSystem = Fire();
+    // initialize fire
+    m_Fire.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
+    m_Fire.ColorEnd = {0.5f, 0.5f, 0.0f, 1.0f};
+    m_Fire.SizeBegin = 0.3f;
+    m_Fire.SizeVariation = 0.1f;
+    m_Fire.SizeEnd = 0.2f;
+    m_Fire.LifeTime = 1.0f;
+    m_Fire.Velocity = {0.0f, 0.2f, 0.0f};
+    m_Fire.Position = {0.0f, 3.0f, 0.0f};
 
+    m_FireSystem.Emit(m_Fire);
+
+//    int height = 7;
+//    int width = 5;
+//    for (int h = 0; h < height; h ++){
+//        for (int r = 0; r < width; r ++){
+//            for (int c = 0; c < width; c ++){
+//                m_Fire.Position = {3.0f + r * 0.1f, 0.05f + h * 0.1f, 3.0f + c * 0.1f};
+//                m_FireSystem.Emit(m_Fire);
+//            }
+//        }
+//    }
+}
+void Realtime::drawFire(){
+    int width = 5;
+    int height = 7;
+    SceneMaterial fireMaterial{
+        .cAmbient = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0)),
+        .cDiffuse = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0)),
+        .cSpecular = SceneColor(glm::vec4(0.5, 0.5, 0.5, 1.0)),
+        .shininess = 20.0
+    };
+    for (int h = 0; h < height; h ++){
+        for (int r = 0; r < width - h; r ++){
+            for (int c = 0; c < width - h; c ++){
+                RenderShapeData fire_particle;
+                glm::mat4 translate = glm::mat4{
+                    1.0, 0.0, 0.0, 0.0,
+                    0.0, 1.0, 0.0, 0.0,
+                    0.0, 0.0, 1.0, 0.0,
+                    3.0 + (r + h/2) * 0.3, 0.15 + h * 0.3, 3.0 + (c + h/2) * 0.3, 1.0
+                };
+                fire_particle.ctm = glm::scale(glm::rotate(translate, 0.9f, glm::vec3(0.f, 1.f, 0.f)), glm::vec3(0.2, 0.2, 0.003));
+                fire_particle.primitive = ScenePrimitive{
+                    .type = PrimitiveType::PRIMITIVE_CUBE,
+                    .material = fireMaterial
+                };
+                sceneData.shapes.push_back(fire_particle);
+            }
+        }
+    }
+}
 void Realtime::getFullScreenVao() {
 
     glActiveTexture(GL_TEXTURE0);
@@ -404,7 +460,7 @@ void Realtime::paintGL() {
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    m_FireSystem.Emit(m_Fire);
     paintTexture(m_fbo_texture, settings.perPixelFilter, settings.kernelBasedFilter);
 }
 
@@ -448,6 +504,7 @@ void Realtime::sceneChanged() {
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
+    drawFire();
 }
 
 void Realtime::settingsChanged() {

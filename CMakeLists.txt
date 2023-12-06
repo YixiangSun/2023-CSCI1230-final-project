@@ -58,6 +58,9 @@ add_executable(${PROJECT_NAME}
     src/utils/sceneparser.h
     src/utils/shaderloader.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
+    src/fire.h src/fire.cpp
+    src/random.h src/random.cpp
+
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
@@ -86,6 +89,14 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/phong.vert
         resources/shaders/texture.frag
         resources/shaders/texture.vert
+	resources/shaders/fire.frag
+    	resources/shaders/fire.vert
+)
+
+target_sources(projects_realtime_other_files
+  PRIVATE
+    resources/shaders/fire.frag
+    resources/shaders/fire.vert
 )
 
 # GLEW: this provides support for Windows (including 64-bit)
