@@ -1,0 +1,130 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "glm",
+					"jsonFile" : "directory-glm-Debug-2bef2a2728e6bac3f360.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "glm"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "projects_realtime",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "StaticGLEW::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-StaticGLEW-Debug-5ed4f70b343b5d31a7fd.json",
+					"name" : "StaticGLEW",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "StaticGLEW_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-StaticGLEW_autogen-Debug-aff33d0d0a788f232874.json",
+					"name" : "StaticGLEW_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "StaticGLEW_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-StaticGLEW_autogen_timestamp_deps-Debug-08c02c42274995c49993.json",
+					"name" : "StaticGLEW_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "projects_realtime::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-projects_realtime-Debug-6986e3a86c6f4eeaa65e.json",
+					"name" : "projects_realtime",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "projects_realtime_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-projects_realtime_autogen-Debug-e5b75a902b9aac95f610.json",
+					"name" : "projects_realtime_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "projects_realtime_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-projects_realtime_autogen_timestamp_deps-Debug-ca7f686f735ebcb89991.json",
+					"name" : "projects_realtime_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "projects_realtime_other_files::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-projects_realtime_other_files-Debug-32fab364633f313300ec.json",
+					"name" : "projects_realtime_other_files",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/yixiangsun/Brown/fall2023/CSCI1230/projects/projects-realtime-YixiangSun/build/build-projects-realtime-YixiangSun-Qt_6_2_4_for_macOS-Debug",
+		"source" : "/Users/yixiangsun/Brown/fall2023/CSCI1230/projects/projects-realtime-YixiangSun"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
