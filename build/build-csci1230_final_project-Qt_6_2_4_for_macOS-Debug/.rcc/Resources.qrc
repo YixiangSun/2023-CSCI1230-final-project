@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="resources/shaders/phong.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/csci1230_final_project/resources/shaders/phong.frag</file>
+    <file alias="resources/shaders/phong.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/csci1230_final_project/resources/shaders/phong.vert</file>
+    <file alias="resources/shaders/texture.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/csci1230_final_project/resources/shaders/texture.frag</file>
+    <file alias="resources/shaders/texture.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/csci1230_final_project/resources/shaders/texture.vert</file>
+  </qresource>
+</RCC>
+

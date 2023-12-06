@@ -33,7 +33,7 @@ glm::mat4 Camera::getViewMatrix()  {
 
 glm::mat4 Camera::getProjMatrix()  {
     // Optional TODO: implement the getter or make your own design
-    float c = -settings.nearPlane / settings.farPlane;
+    float c = -0.1f / 100.0f;
     glm::mat4 unhingingMap = glm::mat4(
         glm::vec4(1.f, 0.f, 0.f, 0.f),
         glm::vec4(0.f, 1.f, 0.f, 0.f),
@@ -42,9 +42,9 @@ glm::mat4 Camera::getProjMatrix()  {
     );
     float theta_h = cameraData.heightAngle;
     glm::mat4 scalingMap = glm::mat4(
-        glm::vec4(1.f/(settings.farPlane * tan(theta_h/2)*width/height), 0.f, 0.f, 0.f),
-        glm::vec4(0.f, 1.f/(settings.farPlane * tan(theta_h/2)), 0.f, 0.f),
-        glm::vec4(0.f, 0.f, 1.f/settings.farPlane, 0.f),
+        glm::vec4(1.f/(100.0f * tan(theta_h/2)*width/height), 0.f, 0.f, 0.f),
+        glm::vec4(0.f, 1.f/(100.0f * tan(theta_h/2)), 0.f, 0.f),
+        glm::vec4(0.f, 0.f, 1.f/100.0f, 0.f),
         glm::vec4(0.f, 0.f, 0.f, 1.f)
     );
     glm::mat4 translationMap = glm::mat4(

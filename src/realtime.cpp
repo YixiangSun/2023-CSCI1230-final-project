@@ -48,6 +48,7 @@ Realtime::Realtime(QWidget *parent)
     m_keyMap[Qt::Key_D]       = false;
     m_keyMap[Qt::Key_Control] = false;
     m_keyMap[Qt::Key_Space]   = false;
+    m_keyMap[Qt::Key_Shift]   = false;
 
     // If you must use this function, do not edit anything above this
 }
@@ -456,22 +457,7 @@ void Realtime::settingsChanged() {
     }
 }
 
-// ================== Project 6: Action!
-
-glm::mat3 Realtime::getRotationMatrix(float theta, glm::vec3 u) {
-    float co = glm::cos(theta);
-    float si = glm::sin(theta);
-    return glm::mat3(glm::vec3(co + u.x * u.x * (1 - co),
-                               u.x * u.y * (1 - co) + u.z * si,
-                               u.x * u.z * (1 - co) - u.y * si),
-                     glm::vec3(u.x * u.y * (1 - co) - u.z * si,
-                               co + u.y * u.y * (1 - co),
-                               u.y * u.z * (1 - co) + u.x * si),
-                     glm::vec3(u.x * u.z * (1 - co) + u.y * si,
-                               u.y * u.z * (1 - co) - u.x * si,
-                               co + u.z * u.z * (1 - co)));
-
-}
+// ================== Action!
 
 void Realtime::keyPressEvent(QKeyEvent *event) {
     m_keyMap[Qt::Key(event->key())] = true;
@@ -559,75 +545,140 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::vec3 look = glm::vec3(glm::normalize(cData.look));
     glm::vec3 up = glm::vec3(glm::normalize(cData.up));
     glm::vec3 left = glm::normalize(glm::cross(up, look));
-    float dist = 7.0f * deltaTime;
+    float speed;
+    speed = m_keyMap[Qt::Key_Shift]? 10.0f : 3.0f;
+    float dist = speed * deltaTime;
 
     // project the moving direction to the plane. This is the simple version, subjecting to change.
     glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
     glm::vec3 forward = look - glm::dot(look, n) * n;
     left = left - glm::dot(left, n) * n;
 
+    glm::vec3 dir = glm::vec3(0.0);
+    glm::vec3 rotAxis = glm::vec3(0.0);
+
     if (m_keyMap[Qt::Key_W]) {
-        glm::mat4 trans = glm::translate(glm::mat4(1.0), forward * dist);
-        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-        cData.pos = trans * cData.pos;
-        ctm = trans * ctm;
-        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, left), -realPos);
-        ctm = rot * ctm;
+        dir += forward;
+        rotAxis += left;
     }
 
     if (m_keyMap[Qt::Key_S]) {
-        glm::mat4 trans = glm::translate(glm::mat4(1.0), -forward * dist);
-        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-        cData.pos = trans * cData.pos;
-        ctm = trans * ctm;
-        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -left), -realPos);
-        ctm = rot * ctm;
+        dir -= forward;
+        rotAxis -= left;
     }
 
     if (m_keyMap[Qt::Key_A]) {
-        glm::mat4 trans = glm::translate(glm::mat4(1.0), left * dist);
-        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
-        cData.pos = trans * cData.pos;
-        ctm = trans * ctm;
-        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -forward), -realPos);
-        ctm = rot * ctm;
+        dir += left;
+        rotAxis -= forward;
     }
 
     if (m_keyMap[Qt::Key_D]) {
-        glm::mat4 trans = glm::translate(glm::mat4(1.0), -left * dist);
-        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
+        dir -= left;
+        rotAxis += forward;
+    }
+
+    if (m_keyMap[Qt::Key_Control]) {
+        if (glm::length(ball.getPos()-cData.pos) >= 0.1) {
+            glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
+            cData.pos = trans * cData.pos;
+        }
+    }
+
+    if (m_keyMap[Qt::Key_Space]) {
+        glm::mat4 trans = glm::translate(glm::mat4(1.0), -look * dist);
+        cData.pos = trans * cData.pos;
+    }
+
+    if (dir != glm::vec3(0.0) && rotAxis != glm::vec3(0.0)) {
+        dir = glm::normalize(dir);
+        rotAxis = glm::normalize(rotAxis);
+
+        glm::mat4 trans = glm::translate(glm::mat4(1.0), dir * dist);
+        float theta = glm::length(dir * dist) / ball.getRadius();
         cData.pos = trans * cData.pos;
         ctm = trans * ctm;
         glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
-        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, forward), -realPos);
+        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, rotAxis), -realPos);
         ctm = rot * ctm;
     }
-
-//    if (m_keyMap[Qt::Key_Control]) {
-//        glm::mat4 trans = glm::mat4(glm::vec4(1.f, 0.f, 0.f, 0.f),
-//                              glm::vec4(0.f, 1.f, 0.f, 0.f),
-//                              glm::vec4(0.f, 0.f, 1.f, 0.f),
-//                              glm::vec4(0.0f, -dist, 0.0f, 1.0f));
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//    }
-
-//    if (m_keyMap[Qt::Key_Space]) {
-//        glm::mat4 trans = glm::mat4(glm::vec4(1.f, 0.f, 0.f, 0.f),
-//                              glm::vec4(0.f, 1.f, 0.f, 0.f),
-//                              glm::vec4(0.f, 0.f, 1.f, 0.f),
-//                              glm::vec4(0.0f, dist, 0.0f, 1.0f));
-//        cData.pos = trans * cData.pos;
-//        ctm = trans * ctm;
-//    }
 
     ball.updateCTM(ctm);
     camera.updateData(cData);
     update(); // asks for a PaintGL() call to occur
 }
+
+//void Realtime::timerEvent(QTimerEvent *event) {
+//    int elapsedms   = m_elapsedTimer.elapsed();
+//    float deltaTime = elapsedms * 0.001f;
+//    m_elapsedTimer.restart();
+//    SceneCameraData cData = camera.getData();
+//    glm::mat4 ctm = ball.getCTM();
+
+//    // Use deltaTime and m_keyMap here to move around
+//    glm::vec3 look = glm::vec3(glm::normalize(cData.look));
+//    glm::vec3 up = glm::vec3(glm::normalize(cData.up));
+//    glm::vec3 left = glm::normalize(glm::cross(up, look));
+//    float dist = 7.0f * deltaTime;
+
+//    // project the moving direction to the plane. This is the simple version, subjecting to change.
+//    glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
+//    glm::vec3 forward = look - glm::dot(look, n) * n;
+//    left = left - glm::dot(left, n) * n;
+
+//    if (m_keyMap[Qt::Key_W]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), forward * dist);
+//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
+//        cData.pos = trans * cData.pos;
+//        ctm = trans * ctm;
+//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
+//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, left), -realPos);
+//        ctm = rot * ctm;
+//    }
+
+//    if (m_keyMap[Qt::Key_S]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), -forward * dist);
+//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
+//        cData.pos = trans * cData.pos;
+//        ctm = trans * ctm;
+//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
+//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -left), -realPos);
+//        ctm = rot * ctm;
+//    }
+
+//    if (m_keyMap[Qt::Key_A]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), left * dist);
+//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
+//        cData.pos = trans * cData.pos;
+//        ctm = trans * ctm;
+//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
+//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, -forward), -realPos);
+//        ctm = rot * ctm;
+//    }
+
+//    if (m_keyMap[Qt::Key_D]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), -left * dist);
+//        float theta = glm::length(forward * dist) / (1.5f * M_PI * ball.getRadius());
+//        cData.pos = trans * cData.pos;
+//        ctm = trans * ctm;
+//        glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
+//        glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, forward), -realPos);
+//        ctm = rot * ctm;
+//    }
+
+//    if (m_keyMap[Qt::Key_Control]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
+//        cData.pos = trans * cData.pos;
+//    }
+
+//    if (m_keyMap[Qt::Key_Space]) {
+//        glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
+//        cData.pos = trans * cData.pos;
+//    }
+
+//    ball.updateCTM(ctm);
+//    camera.updateData(cData);
+//    update(); // asks for a PaintGL() call to occur
+//}
 
 // DO NOT EDIT
 void Realtime::saveViewportImage(std::string filePath) {
