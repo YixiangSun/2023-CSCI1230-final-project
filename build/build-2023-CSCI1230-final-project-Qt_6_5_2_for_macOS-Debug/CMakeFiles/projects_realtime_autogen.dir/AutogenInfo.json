@@ -1,18 +1,114 @@
 {
-	"BUILD_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen",
-	"CMAKE_BINARY_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project",
+	"BUILD_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project",
 	"CMAKE_EXECUTABLE" : "/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/bin/cmake",
 	"CMAKE_LIST_FILES" : 
 	[
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/CMakeLists.txt",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.qtc/package-manager/auto-setup.cmake",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeSystem.cmake",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/CMakeLists.txt",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.qtc/package-manager/auto-setup.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineSystem.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystem.cmake.in",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeSystem.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeNinjaFindMake.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin-Initialize.cmake",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCXXCompiler.cmake",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin-Determine-CXX.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCompilerIdDetection.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/HP-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/NVHPC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/XL-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeFindBinUtils.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXCompiler.cmake.in",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCXXCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCompilerIdDetection.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Bruce-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Compaq-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/HP-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/LCC-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/NVHPC-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/SDCC-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/SunPro-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/XL-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/XLClang-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/zOS-C-DetermineCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeFindBinUtils.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCCompiler.cmake.in",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeGenericSystem.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake",
@@ -29,6 +125,18 @@
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-CXX.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCXXCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompilerABI.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseLibraryArchitecture.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompileFeatures.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Internal/FeatureTesting.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXCompiler.cmake.in",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCXXCompiler.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCInformation.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-C.cmake",
@@ -37,6 +145,18 @@
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-C.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang.cmake",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCCompiler.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompilerABI.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeParseLibraryArchitecture.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCCompilerABI.c",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeDetermineCompileFeatures.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Internal/FeatureTesting.cmake",
+		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCCompiler.cmake.in",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/cmake/Qt6/Qt6Config.cmake",
@@ -391,129 +511,129 @@
 		"/Users/juliafu/Qt/6.5.2/macos/lib/cmake/Qt6Xml/Qt6XmlVersionlessTargets.cmake",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
 	],
-	"CMAKE_SOURCE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project",
-	"DEP_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/deps",
+	"CMAKE_SOURCE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project",
+	"DEP_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "projects_realtime_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/ball.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/ball.h",
 			"MU",
 			"UVLADIE3JM/moc_ball.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/camera.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/camera.h",
 			"MU",
 			"UVLADIE3JM/moc_camera.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/fire.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/fire.h",
 			"MU",
 			"UVLADIE3JM/moc_fire.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/mainwindow.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.h",
 			"MU",
 			"UVLADIE3JM/moc_mainwindow.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/random.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/random.h",
 			"MU",
 			"UVLADIE3JM/moc_random.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/realtime.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/realtime.h",
 			"MU",
 			"UVLADIE3JM/moc_realtime.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/settings.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/settings.h",
 			"MU",
 			"UVLADIE3JM/moc_settings.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shaderloader.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shaderloader.h",
 			"MU",
 			"UVLADIE3JM/moc_shaderloader.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cone.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cone.h",
 			"MU",
 			"2S5AI7NIVA/moc_Cone.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cube.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cube.h",
 			"MU",
 			"2S5AI7NIVA/moc_Cube.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cylinder.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cylinder.h",
 			"MU",
 			"2S5AI7NIVA/moc_Cylinder.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Sphere.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Sphere.h",
 			"MU",
 			"2S5AI7NIVA/moc_Sphere.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Tet.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Tet.h",
 			"MU",
 			"2S5AI7NIVA/moc_Tet.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Triangle.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Triangle.h",
 			"MU",
 			"2S5AI7NIVA/moc_Triangle.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp",
 			"MU",
 			"OWQMYEJWPR/moc_aspectratiowidget.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/scenedata.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenedata.h",
 			"MU",
 			"VSCBVMNR7M/moc_scenedata.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/scenefilereader.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.h",
 			"MU",
 			"VSCBVMNR7M/moc_scenefilereader.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/sceneparser.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/sceneparser.h",
 			"MU",
 			"VSCBVMNR7M/moc_sceneparser.cpp",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/shaderloader.h",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/shaderloader.h",
 			"MU",
 			"VSCBVMNR7M/moc_shaderloader.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/include",
-	"MOC_COMPILATION_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/include",
+	"MOC_COMPILATION_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CORE_LIB",
@@ -532,12 +652,12 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/projects_realtime",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/PRIVATE",
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/glew/include",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/projects_realtime",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/PRIVATE",
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/glew/include",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/QtCore.framework/Headers",
 		"/Users/juliafu/Qt/6.5.2/macos/lib/QtCore.framework",
 		"/Users/juliafu/Qt/6.5.2/macos/mkspecs/macx-clang",
@@ -575,99 +695,99 @@
 		"-c",
 		"/Users/juliafu/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp"
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 10,
-	"PARSE_CACHE_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/projects_realtime_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/projects_realtime_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/Users/juliafu/Qt/6.5.2/macos/./libexec/moc",
 	"QT_UIC_EXECUTABLE" : "/Users/juliafu/Qt/6.5.2/macos/./libexec/uic",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 5,
-	"SETTINGS_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/projects_realtime_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/CMakeFiles/projects_realtime_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/ball.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/ball.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/camera.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/camera.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/fire.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/fire.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/main.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/mainwindow.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/random.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/random.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/realtime.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/realtime.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/settings.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/settings.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cone.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cone.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cube.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cube.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Cylinder.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cylinder.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Sphere.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Sphere.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Tet.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Tet.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/shapes/Triangle.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Triangle.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/scenefilereader.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/sceneparser.cpp",
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/sceneparser.cpp",
 			"MU",
 			null
 		]
@@ -676,7 +796,7 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp"
+		"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

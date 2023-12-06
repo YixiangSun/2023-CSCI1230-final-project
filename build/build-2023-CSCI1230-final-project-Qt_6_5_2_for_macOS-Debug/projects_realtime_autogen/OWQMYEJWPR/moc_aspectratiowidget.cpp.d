@@ -1,5 +1,5 @@
-/Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/OWQMYEJWPR/moc_aspectratiowidget.cpp: /Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp \
-  /Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/moc_predefs.h \
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/OWQMYEJWPR/moc_aspectratiowidget.cpp: /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp \
+  /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/moc_predefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityMacros.h \

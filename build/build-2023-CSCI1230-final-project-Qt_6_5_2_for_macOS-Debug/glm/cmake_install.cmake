@@ -1,4 +1,4 @@
-# Install script for directory: /Users/juliafu/06_Brown/fall_2023/cs_1230/2023-CSCI1230-final-project/glm
+# Install script for directory: /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/glm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
