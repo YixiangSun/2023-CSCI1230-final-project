@@ -331,7 +331,7 @@ void Realtime::makeFBO(){
 
 }
 
-void Realtime::draw(RenderShapeData shape, bool ifBall) {
+void Realtime::draw(RenderShapeData& shape, bool ifBall) {
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
@@ -345,28 +345,21 @@ void Realtime::draw(RenderShapeData shape, bool ifBall) {
     glm::vec4 cDiffuse = shape.primitive.material.cDiffuse;
     glm::vec4 cSpecular = shape.primitive.material.cSpecular;
     float shininess = shape.primitive.material.shininess;
-    glm::mat4 fire_rise = glm::mat4{
-        1.0, 0.0, 0.0, 0.0,
-        0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 1.0, 0.0,
-        0.01, 0.1, 0.01, 1.0
-    };
-    glm::mat4 fire_reuse = glm::mat4{
-        1.0, 0.0, 0.0, 0.0,
-        0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 1.0, 0.0,
-        -0.05, -0.5, -0.05, 1.0
-    };
+    glm::vec3 fire_rise = glm::vec3(0.001, 0.005, 0.001);
     if (shape.isFire){
         shape.riseCount += 1;
-        if (shape.riseCount <= 5){
+        if (shape.riseCount <= 150){
             std::cout<<1<<std::endl;
-            ctm = fire_rise * ctm;
+            shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), fire_rise);
+            shape.primitive.material.cAmbient[1] += 0.003f;
         }else{
-            ctm = fire_reuse * ctm;
+            shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), glm::vec3(-0.001 * shape.riseCount, -0.005 * shape.riseCount, -0.001 * shape.riseCount));
+
+            shape.primitive.material.cAmbient[1] -= 0.45f;
             shape.riseCount = 0;
         }
     }
+
 
     if (ifBall) {
         vao = vaos[4];
@@ -375,7 +368,7 @@ void Realtime::draw(RenderShapeData shape, bool ifBall) {
         cDiffuse = ballMaterial.cDiffuse;
         cSpecular = ballMaterial.cSpecular;
         shininess = ballMaterial.shininess;
-        ctm = ball.getCTM();
+        shape.ctm = ball.getCTM();
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
@@ -399,7 +392,7 @@ void Realtime::draw(RenderShapeData shape, bool ifBall) {
     glUseProgram(m_shader);
 
     GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
-    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &ctm[0][0]);
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &shape.ctm[0][0]);
 
 
     uniformLocation = glGetUniformLocation(m_shader, "viewmatrix");
@@ -480,8 +473,11 @@ void Realtime::paintGL() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if (sceneLoaded) Realtime::draw(sceneData.shapes[0], true);  // draw the ball
-    for (RenderShapeData shape : sceneData.shapes) {
+    if (sceneLoaded) {
+        RenderShapeData ball = sceneData.shapes[0];
+        Realtime::draw(ball, true);  // draw the ball
+    }
+    for (RenderShapeData &shape : sceneData.shapes) {
         Realtime::draw(shape, false);
     }
 

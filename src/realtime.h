@@ -82,7 +82,7 @@ private:
     FireProps m_Fire;
     Fire m_FireSystem;
 
-    void draw(RenderShapeData shape, bool ifBall);
+    void draw(RenderShapeData& shape, bool ifBall);
     void getVaos();
     void extractInfo(std::string filepath, RenderData &renderData);
     void getFullScreenVao();

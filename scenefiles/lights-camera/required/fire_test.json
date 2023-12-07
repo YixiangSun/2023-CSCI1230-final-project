@@ -172,7 +172,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -232,7 +232,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -247,7 +247,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -262,7 +262,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -322,7 +322,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -457,7 +457,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -472,7 +472,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -517,7 +517,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -532,7 +532,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -577,7 +577,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -592,7 +592,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
@@ -652,7 +652,7 @@
             "primitives": [
               {
                 "type": "cube",
-		"ambient": [1.0, 0.79, 0.0],
+		"ambient": [1.0, 0.59, 0.0],
                 "diffuse": [1.0, 0.0, 0.0],
 		"specular": [0.5, 0.5, 0.5],
 		"shininess": 20.0,
