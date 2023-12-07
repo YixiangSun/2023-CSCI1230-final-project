@@ -345,6 +345,28 @@ void Realtime::draw(RenderShapeData shape, bool ifBall) {
     glm::vec4 cDiffuse = shape.primitive.material.cDiffuse;
     glm::vec4 cSpecular = shape.primitive.material.cSpecular;
     float shininess = shape.primitive.material.shininess;
+    glm::mat4 fire_rise = glm::mat4{
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.01, 0.1, 0.01, 1.0
+    };
+    glm::mat4 fire_reuse = glm::mat4{
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        -0.05, -0.5, -0.05, 1.0
+    };
+    if (shape.isFire){
+        shape.riseCount += 1;
+        if (shape.riseCount <= 5){
+            std::cout<<1<<std::endl;
+            ctm = fire_rise * ctm;
+        }else{
+            ctm = fire_reuse * ctm;
+            shape.riseCount = 0;
+        }
+    }
 
     if (ifBall) {
         vao = vaos[4];
@@ -511,7 +533,7 @@ void Realtime::sceneChanged() {
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
-    drawFire();
+    // drawFire();
 }
 
 void Realtime::settingsChanged() {

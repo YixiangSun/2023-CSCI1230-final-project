@@ -808,7 +808,7 @@ bool ScenefileReader::parsePrimitive(const QJsonObject &prim, SceneNode *node) {
     QStringList requiredFields = {"type"};
     QStringList optionalFields = {
         "meshFile", "ambient", "diffuse", "specular", "reflective", "transparent", "shininess", "ior",
-        "blend", "textureFile", "textureU", "textureV", "bumpMapFile", "bumpMapU", "bumpMapV"};
+        "blend", "textureFile", "textureU", "textureV", "bumpMapFile", "bumpMapU", "bumpMapV", "isFire"};
 
     QStringList allFields = requiredFields + optionalFields;
     for (auto field : prim.keys()) {
@@ -982,6 +982,14 @@ bool ScenefileReader::parsePrimitive(const QJsonObject &prim, SceneNode *node) {
         mat.shininess = (float) prim["shininess"].toDouble();
     }
 
+    if (prim.contains("isFire")) {
+//        if (!prim["isFire"].isDouble()) {
+//            std::cout << "primitive shininess must be of type float" << std::endl;
+//            return false;
+//        }
+
+        primitive->isFire = prim["isFire"].toBool();
+    }
     if (prim.contains("ior")) {
         if (!prim["ior"].isDouble()) {
             std::cout << "primitive ior must be of type float" << std::endl;
