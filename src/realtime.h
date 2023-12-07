@@ -91,13 +91,11 @@ private:
     void paintTexture(GLuint texture, bool perPixel, bool kernel);
     void drawFire();
 
-    glm::mat3 getRotationMatrix(float theta, glm::vec3 axis);
-
     // water
     Water water;
     GLuint m_water_vao;
     GLuint m_water_vbo;
     std::vector<float> m_waterData;
-    void updateWater();
+    void updateWater(bool initialized);
 };
 

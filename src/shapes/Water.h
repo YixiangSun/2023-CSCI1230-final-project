@@ -6,7 +6,7 @@
 class Water
 {
 public:
-    void updateParams(int rowCount, int colCount, float height, float timeWave);
+    void updateParams(int rowCount, int colCount, float height, float timeWave, bool initialized);
     //    std::vector<float> generateShape() { return m_vertexData; }
     std::vector<float> generateShape() { return m_vertexData; }
 
@@ -35,4 +35,5 @@ private:
     int m_colCount;
     float m_height;
     float m_wavetime;
+    std::vector<float> m_timeOffsets;
 };

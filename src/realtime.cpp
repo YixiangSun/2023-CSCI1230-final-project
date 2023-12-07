@@ -166,7 +166,7 @@ void Realtime::initializeGL() {
     glGenVertexArrays(1, &m_water_vao);
     m_accumulatedTime = 0.f;
     Realtime::getVaos();
-    updateWater();
+    updateWater(false);
     Realtime::getFullScreenVao();
     Realtime::makeFBO();
 
@@ -175,10 +175,10 @@ void Realtime::initializeGL() {
     m_FireSystem.Emit(m_Fire);
 }
 
-void Realtime::updateWater() {
+void Realtime::updateWater(bool initialized) {
 
     //    // ================= PrimitiveType::PRIMITIVE_WATER ================= //
-    water.updateParams(15, 15, 0.f, m_accumulatedTime);
+    water.updateParams(15, 15, 0.f, m_accumulatedTime, initialized);
     m_waterData = water.generateShape();
 
     glBindBuffer(GL_ARRAY_BUFFER, m_water_vbo);
@@ -627,7 +627,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     m_elapsedTimer.restart();
 
     m_accumulatedTime += elapsedms * 0.0005f; // adjust
-    updateWater();
+    updateWater(true);
 
     SceneCameraData cData = camera.getData();
     glm::mat4 ctm = ball.getCTM();

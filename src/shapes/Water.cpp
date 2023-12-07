@@ -1,16 +1,28 @@
 #include "Water.h"
+#include <iostream>
+#include <random>
 
-void Water::updateParams(int rowCount, int colCount, float height, float timeWave) {
+// Generate time offset list
+
+void Water::updateParams(int rowCount, int colCount, float height, float timeWave, bool initialized) {
     m_vertexData = std::vector<float>();
     m_rowCount = rowCount;
     m_colCount = colCount;
     m_height = height;
     m_wavetime = timeWave;
+    if (!initialized) {
+        for (int i = 0; i < (rowCount+1) * (colCount+1); i++) {
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<double> distribution(0, 2.0*M_PI);
+            m_timeOffsets.push_back(distribution(gen));
+        }
+    }
     setVertexData();
 }
 
 const float waveLength = 4.0;
-const float waveAmplitude = 0.2; // 0.2
+const float waveAmplitude = 0.2;
 
 glm::vec3 calcNormal(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2) {
     glm::vec3 tangent = vertex1 - vertex0;
@@ -25,9 +37,7 @@ float generateOffset(float x, float z, float val1, float val2, float waveTime) {
 }
 
 glm::vec3 applyDistortion(glm::vec3 vertex, float waveTime) {
-    //    float xDistortion = generateOffset(vertex.x, vertex.z, 0.2, 0.1, waveTime);
     float yDistortion = generateOffset(vertex.x, vertex.z, 0.1, 0.3, waveTime);
-    //    float zDistortion = generateOffset(vertex.x, vertex.z, 0.15, 0.2, waveTime);
     //    return vertex + glm::vec3(xDistortion, yDistortion, zDistortion);
     return vertex + glm::vec3(vertex.x, yDistortion, vertex.z);
 }
@@ -36,7 +46,6 @@ void Water::makeWaterTile(glm::vec3 topLeft,
                           glm::vec3 topRight,
                           glm::vec3 bottomLeft,
                           glm::vec3 bottomRight) {
-    // Task 5: Implement the makeTile() function for a Sphere
 
     glm::vec3 Ex1 = calcNormal(topLeft, bottomLeft, bottomRight);
     // Triangle 1 (top-left, bottom-left, bottom-right)
@@ -67,20 +76,24 @@ void Water::makeFace(glm::vec3 topLeft,
                      glm::vec3 bottomRight) {
 
     glm::vec3 stepX = (topRight - topLeft) / float(m_rowCount);
-    glm::vec3 stepY = (bottomLeft - topLeft) / float(m_colCount);
+    glm::vec3 stepZ = (bottomLeft - topLeft) / float(m_colCount);
 
     for (int row = 0; row < m_rowCount; row++) {
         for (int col = 0; col < m_colCount; col++) {
             // Calculate the corner points for each tile without using glm::mix
-            glm::vec3 tileTopLeft = topLeft + stepX * (float) row + stepY * (float) col;
+            glm::vec3 tileTopLeft = topLeft + stepX * (float) row + stepZ * (float) col;
+            float timeOffset1 = m_timeOffsets[row * (m_colCount+1) + col];
             glm::vec3 tileTopRight = tileTopLeft + stepX;
-            glm::vec3 tileBottomLeft = tileTopLeft + stepY;
-            glm::vec3 tileBottomRight = tileTopLeft + stepX + stepY;
+            float timeOffset2 = m_timeOffsets[row * (m_colCount+1) + col + (m_colCount + 1)];
+            glm::vec3 tileBottomLeft = tileTopLeft + stepZ;
+            float timeOffset3 = m_timeOffsets[row * (m_colCount+1) + col + 1];
+            glm::vec3 tileBottomRight = tileTopLeft + stepX + stepZ;
+            float timeOffset4 = m_timeOffsets[row * (m_colCount+1) + col + (m_colCount + 1) + 1];
 
-            tileTopLeft = applyDistortion(tileTopLeft, m_wavetime);
-            tileTopRight = applyDistortion(tileTopRight, m_wavetime);
-            tileBottomLeft = applyDistortion(tileBottomLeft, m_wavetime);
-            tileBottomRight = applyDistortion(tileBottomRight, m_wavetime);
+            tileTopLeft = applyDistortion(tileTopLeft, m_wavetime + timeOffset1);
+            tileTopRight = applyDistortion(tileTopRight, m_wavetime + timeOffset2);
+            tileBottomLeft = applyDistortion(tileBottomLeft, m_wavetime + timeOffset3);
+            tileBottomRight = applyDistortion(tileBottomRight, m_wavetime + timeOffset4);
 
             // Create a tile for the current position
             makeWaterTile(tileTopLeft, tileTopRight, tileBottomLeft, tileBottomRight);
