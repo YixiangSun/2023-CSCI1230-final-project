@@ -60,6 +60,17 @@ void Realtime::extractInfo(std::string filepath, RenderData &renderData) {
     m_ka = sceneData.globalData.ka;
     m_kd = sceneData.globalData.kd;
     m_ks = sceneData.globalData.ks;
+    // initialize fire system
+    m_FireSystem = Fire();
+    // initialize fire
+    m_Fire.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
+    m_Fire.ColorEnd = {0.5f, 0.5f, 0.0f, 1.0f};
+    m_Fire.SizeBegin = 0.3f;
+    m_Fire.SizeVariation = 0.1f;
+    m_Fire.SizeEnd = 0.2f;
+    m_Fire.LifeTime = 1.0f;
+    m_Fire.Velocity = {0.0f, 0.2f, 0.0f};
+    m_Fire.Position = {0.0f, 3.0f, 0.0f};
     lightTypes.clear();
     lightDirs.clear();
     lightColors.clear();
@@ -160,30 +171,8 @@ void Realtime::initializeGL() {
     Realtime::makeFBO();
 
     initialized = true;
-    // initialize fire system
-    m_FireSystem = Fire();
-    // initialize fire
-    m_Fire.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-    m_Fire.ColorEnd = {0.5f, 0.5f, 0.0f, 1.0f};
-    m_Fire.SizeBegin = 0.3f;
-    m_Fire.SizeVariation = 0.1f;
-    m_Fire.SizeEnd = 0.2f;
-    m_Fire.LifeTime = 1.0f;
-    m_Fire.Velocity = {0.0f, 0.2f, 0.0f};
-    m_Fire.Position = {0.0f, 3.0f, 0.0f};
 
     m_FireSystem.Emit(m_Fire);
-
-//    int height = 7;
-//    int width = 5;
-//    for (int h = 0; h < height; h ++){
-//        for (int r = 0; r < width; r ++){
-//            for (int c = 0; c < width; c ++){
-//                m_Fire.Position = {3.0f + r * 0.1f, 0.05f + h * 0.1f, 3.0f + c * 0.1f};
-//                m_FireSystem.Emit(m_Fire);
-//            }
-//        }
-//    }
 }
 
 void Realtime::updateWater() {
