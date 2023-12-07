@@ -4,8 +4,8 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <iostream>
-#include "ball.h"
-#include "camera.h"
+#include "ball/ball.h"
+#include "camera/camera.h"
 #include "glm/ext/matrix_transform.hpp"
 #include "settings.h"
 #include "GLPrep.h"
@@ -14,7 +14,7 @@
 #include "shapes/Cube.h"
 #include "shapes/Cylinder.h"
 #include "shapes/Sphere.h"
-#include "fire.h"
+#include "fire/fire.h"
 
 // ================== Project 5: Lights, Camera
 
@@ -34,6 +34,7 @@ Camera camera(sceneData.cameraData, 0, 0);
 Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, ballMaterial);
 std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
+float m_accumulatedTime;
 
 
 Realtime::Realtime(QWidget *parent)
@@ -112,6 +113,9 @@ void Realtime::finish() {
     glDeleteRenderbuffers(1, &m_fbo_renderbuffer);
     glDeleteFramebuffers(1, &m_fbo);
 
+    glDeleteBuffers(1, &m_water_vbo);
+    glDeleteVertexArrays(1, &m_water_vao);
+
     this->doneCurrent();
 }
 
@@ -146,7 +150,12 @@ void Realtime::initializeGL() {
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
+
+    glGenBuffers(1, &m_water_vbo);
+    glGenVertexArrays(1, &m_water_vao);
+    m_accumulatedTime = 0.f;
     Realtime::getVaos();
+    updateWater();
     Realtime::getFullScreenVao();
     Realtime::makeFBO();
 
@@ -176,6 +185,26 @@ void Realtime::initializeGL() {
 //        }
 //    }
 }
+
+void Realtime::updateWater() {
+
+    //    // ================= PrimitiveType::PRIMITIVE_WATER ================= //
+    water.updateParams(15, 15, 0.f, m_accumulatedTime);
+    m_waterData = water.generateShape();
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_water_vbo);
+    glBufferData(GL_ARRAY_BUFFER, m_waterData.size() * sizeof(float), m_waterData.data(), GL_STATIC_DRAW);
+
+    glBindVertexArray(m_water_vao);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(0));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+}
+
 void Realtime::drawFire(){
     int width = 5;
     int height = 7;
@@ -383,9 +412,13 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
         vao = vaos[2];
         verts = vertsList[2];
     }
-    else {
+    else if (type == PrimitiveType::PRIMITIVE_SPHERE){
         vao = vaos[3];
         verts = vertsList[3];
+    }
+    else {
+        vao = m_water_vao;
+        verts = m_waterData;
     }
 
     glBindVertexArray(vao);
@@ -603,6 +636,10 @@ void Realtime::timerEvent(QTimerEvent *event) {
     int elapsedms   = m_elapsedTimer.elapsed();
     float deltaTime = elapsedms * 0.001f;
     m_elapsedTimer.restart();
+
+    m_accumulatedTime += elapsedms * 0.0005f; // adjust
+    updateWater();
+
     SceneCameraData cData = camera.getData();
     glm::mat4 ctm = ball.getCTM();
 

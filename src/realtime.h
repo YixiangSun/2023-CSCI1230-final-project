@@ -1,6 +1,7 @@
 #pragma once
 
 // Defined before including GLEW to suppress deprecation messages on macOS
+#include "shapes/Water.h"
 #include "utils/sceneparser.h"
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -13,7 +14,7 @@
 #include <QOpenGLWidget>
 #include <QTime>
 #include <QTimer>
-#include "fire.h"
+#include "fire/fire.h"
 
 class Realtime : public QOpenGLWidget
 {
@@ -50,7 +51,7 @@ private:
     std::unordered_map<Qt::Key, bool> m_keyMap;         // Stores whether keys are pressed or not
 
     // Device Correction Variables
-    int m_devicePixelRatio;
+    float m_devicePixelRatio;
 
     int m_width;
     int m_height;
@@ -91,5 +92,12 @@ private:
     void drawFire();
 
     glm::mat3 getRotationMatrix(float theta, glm::vec3 axis);
+
+    // water
+    Water water;
+    GLuint m_water_vao;
+    GLuint m_water_vbo;
+    std::vector<float> m_waterData;
+    void updateWater();
 };
 

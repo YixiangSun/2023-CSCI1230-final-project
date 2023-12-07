@@ -849,6 +849,8 @@ bool ScenefileReader::parsePrimitive(const QJsonObject &prim, SceneNode *node) {
         primitive->type = PrimitiveType::PRIMITIVE_CYLINDER;
     else if (primType == "cone")
         primitive->type = PrimitiveType::PRIMITIVE_CONE;
+    else if (primType == "water")
+        primitive->type = PrimitiveType::PRIMITIVE_WATER;
     else if (primType == "mesh") {
         primitive->type = PrimitiveType::PRIMITIVE_MESH;
         if (!prim.contains("meshFile")) {
