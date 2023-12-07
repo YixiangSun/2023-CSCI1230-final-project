@@ -20,18 +20,17 @@
 
 // Global variables
 
-SceneMaterial ballMaterial {
-    .cAmbient =  SceneColor(glm::vec4(1, 1, 1, 1)),  // Ambient term
-    .cDiffuse = SceneColor(glm::vec4(1, 1, 1, 1)),  // Diffuse term
-    .cSpecular = SceneColor(glm::vec4(0, 0, 0, 0)), // Specular term
-    .shininess = 0,      // Specular exponent
-    .cReflective = SceneColor(glm::vec4(0, 0, 0, 0)), // Used to weight contribution of reflected ray lighting (via multiplication)
+SceneMaterial goldBall {
+    .cAmbient =  SceneColor(glm::vec4(0.3, 0.25, 0.15, 1)),  // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(1.0, 0.8, 0.2, 1)),  // Diffuse term
+    .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
+    .shininess = 50,      // Specular exponent
     .blend = 0.5
 };
 
 RenderData sceneData;
 Camera camera(sceneData.cameraData, 0, 0);
-Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, ballMaterial);
+Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, goldBall);
 std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
@@ -382,10 +381,10 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     if (ifBall) {
         vao = vaos[4];
         verts = vertsList[4];
-        cAmbient = ballMaterial.cAmbient;
-        cDiffuse = ballMaterial.cDiffuse;
-        cSpecular = ballMaterial.cSpecular;
-        shininess = ballMaterial.shininess;
+        cAmbient = goldBall.cAmbient;
+        cDiffuse = goldBall.cDiffuse;
+        cSpecular = goldBall.cSpecular;
+        shininess = goldBall.shininess;
         shape.ctm = ball.getCTM();
     }
 
