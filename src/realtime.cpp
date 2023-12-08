@@ -158,12 +158,20 @@ void Realtime::extractInfo(std::string filepath) {
             penumbras.push_back(light.penumbra);
         }
     }
+    for (auto shape : sceneData.shapes) {
+        if (shape.primitive.type == PrimitiveType::PRIMITIVE_WATER) {
+            glm::mat4 ctm = shape.ctm;
+            m_topLeft = ctm * glm::vec4(-0.5, 0.0, 0.5, 1.0);
+            m_topRight = ctm * glm::vec4(0.5, 0.0, 0.5, 1.0);
+            m_bottomRight = ctm * glm::vec4(0.5, 0.0, -0.5, 1.0);
+        }
+    }
 }
 
 void Realtime::updateWater(bool initialized) {
 
     // ================= PrimitiveType::PRIMITIVE_WATER ================= //
-    water.updateParams(15, 15, 0.f, m_accumulatedTime, initialized);
+    water.updateParams(20, 20, 0.f, m_accumulatedTime, initialized);
     m_waterData = water.generateShape();
 
     glBindBuffer(GL_ARRAY_BUFFER, m_water_vbo);
@@ -270,11 +278,11 @@ void Realtime::getVaos() {
     std::vector<float> cylinderVerts = cylinder.generateShape();
 
     Sphere sphere{};
-    sphere.updateParams(settings.shapeParameter1, settings.shapeParameter2, 0.5);
+    sphere.updateParams(5, 5, 0.5);
     std::vector<float> sphereVerts = sphere.generateShape();
 
     Sphere ballShape{};
-    ballShape.updateParams(settings.shapeParameter1, settings.shapeParameter2, ball.getRadius());
+    ballShape.updateParams(7, 7, ball.getRadius());
     std::vector<float> ballVerts = ballShape.generateShape();
 
     vertsList = {cubeVerts, coneVerts, cylinderVerts, sphereVerts, ballVerts};
@@ -572,6 +580,7 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+// get the moving direction
 glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 
     SceneCameraData cData = camera.getData();
@@ -580,7 +589,7 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     glm::vec3 left = glm::normalize(glm::cross(up, look));
     glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
     glm::vec3 forward = look - glm::dot(look, n) * n;
-    if (ball.getPos().x > 10 || ball.getPos().z > 10) forward = look;
+    if (ball.getPos().x > m_bound || ball.getPos().z > m_bound) forward = look;
     left = left - glm::dot(left, n) * n;
     glm::vec3 desiredDir = glm::vec3(0.0f);
 
@@ -636,13 +645,13 @@ void Realtime::timerEvent(QTimerEvent *event) {
 
     if (m_keyMap[Qt::Key_Control]) {
         if (glm::length(ball.getPos()-cData.pos) >= 0.1) {
-            glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist);
+            glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist * 3.0f);
             cData.pos = trans * cData.pos;
         }
     }
 
     if (m_keyMap[Qt::Key_Space]) {
-        glm::mat4 trans = glm::translate(glm::mat4(1.0), -look * dist);
+        glm::mat4 trans = glm::translate(glm::mat4(1.0), -look * dist * 3.0f);
         cData.pos = trans * cData.pos;
     }
 

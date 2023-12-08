@@ -95,11 +95,15 @@ private:
     GLuint m_water_vbo;
     std::vector<float> m_waterData;
     void updateWater(bool initialized);
+    glm::vec4 m_topLeft;
+    glm::vec4 m_topRight;
+    glm::vec4 m_bottomRight;
 
     // ball
     SceneMaterial m_ballMaterial;
     Texture m_ballTexture;
     glm::vec3 getDir(bool w, bool s, bool a, bool d);
+    float m_bound = 75.0;
 
     // fire
     float m_fire_radius = 1.0f;

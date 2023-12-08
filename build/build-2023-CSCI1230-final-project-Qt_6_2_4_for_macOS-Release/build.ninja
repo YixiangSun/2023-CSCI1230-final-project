@@ -399,7 +399,7 @@ build StaticGLEW_autogen/timestamp StaticGLEW_autogen/mocs_compilation.cpp | ${c
 #############################################
 # Phony custom command for CMakeFiles/projects_realtime_autogen_timestamp_deps
 
-build CMakeFiles/projects_realtime_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/projects_realtime_autogen_timestamp_deps: phony libStaticGLEW.a /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a
+build CMakeFiles/projects_realtime_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/projects_realtime_autogen_timestamp_deps: phony /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic libStaticGLEW.a || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a
 
 
 #############################################
