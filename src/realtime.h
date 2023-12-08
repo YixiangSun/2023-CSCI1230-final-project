@@ -106,9 +106,11 @@ private:
     glm::vec3 getDir(bool w, bool s, bool a, bool d);
     float m_bound = 75.0;
     bool isInWater();
-    bool onFire;
+    glm::vec3 getWaterNormal();
+    float m_rim_width = 0.8;
 
     // fire
-    float m_fire_radius = 0.8f;
+    float m_fire_radius = 1.2f;
+    glm::vec3 m_fire_pos;
 };
 

@@ -14,7 +14,7 @@
 #include "shapes/Cylinder.h"
 #include "shapes/Sphere.h"
 
-// ================== Project 5: Lights, Camera
+// Lights, Camera
 
 // Global variables
 
@@ -25,6 +25,7 @@ SceneMaterial goldBall {
     .shininess = 50,      // Specular exponent
     .blend = 0.5
 };
+
 
 RenderData sceneData;
 Camera camera(sceneData.cameraData, 0, 0);
@@ -158,15 +159,26 @@ void Realtime::extractInfo(std::string filepath) {
             penumbras.push_back(light.penumbra);
         }
     }
+    int c = 0;
+    m_fire_pos = glm::vec3(0.0);
     for (auto shape : sceneData.shapes) {
         if (shape.primitive.type == PrimitiveType::PRIMITIVE_WATER) {
             glm::mat4 ctm = shape.ctm;
-            m_topLeft = ctm * glm::vec4(-0.5, 0.0, 0.5, 1.0);
-            m_topRight = ctm * glm::vec4(0.5, 0.0, 0.5, 1.0);
-            m_bottomRight = ctm * glm::vec4(0.5, 0.0, -0.5, 1.0);
-            m_bottomLeft = ctm * glm::vec4(-0.5, 0.0, -0.5, 1.0);
+            m_topLeft = ctm * glm::vec4(-1, 0.0, 1, 1.0);
+            m_topRight = ctm * glm::vec4(1, 0.0, 1, 1.0);
+            m_bottomRight = ctm * glm::vec4(1, 0.0, -1, 1.0);
+            m_bottomLeft = ctm * glm::vec4(-1, 0.0, -1, 1.0);
+        }
+        else if (shape.isFire) {
+            m_fire_pos += glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0));
+            c += 1;
         }
     }
+//    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
+    m_fire_pos = m_fire_pos * (1.0f/float(c));
+
+//    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
+
 }
 
 void Realtime::updateWater(bool initialized) {
@@ -334,18 +346,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
-//        if (shape.isFire){
-//            shape.riseCount += 1;
-//            if (shape.riseCount <= 150){
-//                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), fire_rise);
-//                shape.primitive.material.cAmbient[1] += 0.003f;
-//            }else{
-//                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), glm::vec3(-0.001 * shape.riseCount, -0.005 * shape.riseCount, -0.001 * shape.riseCount));
-
-//                shape.primitive.material.cAmbient[1] -= 0.45f;
-//                shape.riseCount = 0;
-//            }
-//        }
         vao = vaos[0];
         verts = vertsList[0];
     }
@@ -591,14 +591,38 @@ bool Realtime::isInWater() {
 
     glm::vec3 n = {0.0, 1.0, 0.0};
 
-    std::cout << glm::dot(n, glm::cross(v1, v5)) << " " << glm::dot(n, glm::cross(v2, v5)) << std::endl;
-    std::cout << glm::dot(n, glm::cross(v3, v6)) << " " << glm::dot(n, glm::cross(v4, v6)) << std::endl;
+//    std::cout << glm::dot(n, glm::cross(v1, v5)) << " " << glm::dot(n, glm::cross(v2, v5)) << std::endl;
+//    std::cout << glm::dot(n, glm::cross(v3, v6)) << " " << glm::dot(n, glm::cross(v4, v6)) << std::endl;
 
 
-    return glm::dot(n, glm::cross(v1, v5)) > 0 && glm::dot(n, glm::cross(v2, v5)) > 0 &&
-           glm::dot(n, glm::cross(v3, v6)) > 0 && glm::dot(n, glm::cross(v4, v6)) > 0;
+//    return glm::dot(n, glm::cross(v1, v5)) > 0 && glm::dot(n, glm::cross(v2, v5)) > 0 &&
+//           glm::dot(n, glm::cross(v3, v6)) > 0 && glm::dot(n, glm::cross(v4, v6)) > 0;
+
+
+    return ballPos.x >= m_topLeft.x && ballPos.z <= m_topLeft.z && ballPos.x <= m_bottomRight.x && ballPos.z >= m_bottomRight.z;
 }
 
+glm::vec3 Realtime::getWaterNormal() {
+
+    glm::vec3 ballPos = ball.getPos();
+
+    glm::vec3 n = {0.0, 0.0, 0.0};
+
+    if (ballPos.x <= m_topLeft.x + m_rim_width) {
+        n += glm::vec3{1, 2, 0};
+    }
+    if (ballPos.z >= m_topLeft.z - m_rim_width) {
+        n += glm::vec3{0, 2, -1};
+    }
+    if (ballPos.x >= m_bottomRight.x - m_rim_width) {
+        n += glm::vec3{-1, 2, 0};
+    }
+    if (ballPos.z <= m_bottomRight.z + m_rim_width) {
+        n += glm::vec3{0, 2, 1};
+    }
+    if (n == glm::vec3{0.0, 0.0, 0.0}) return glm::vec3(0.0, 1.0, 0.0);
+    return glm::normalize(n);
+}
 
 // get the moving direction
 glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
@@ -610,7 +634,7 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
     glm::vec3 forward = look - glm::dot(look, n) * n;
     glm::vec3 ballPos = glm::vec3(ball.getPos());
-    if (ball.getPos().x > m_bound || ball.getPos().z > m_bound || ball.getPos().x < -m_bound || ball.getPos().z < -m_bound) forward = look;
+    if (ballPos.x > m_bound || ballPos.z > m_bound || ballPos.x < -m_bound || ballPos.z < -m_bound) forward = look; // rocket!
     left = left - glm::dot(left, n) * n;
     glm::vec3 desiredDir = glm::vec3(0.0f);
 
@@ -622,13 +646,21 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
 
     if (isInWater()) {
-        glm::vec3 shapePos = (m_topLeft + m_bottomRight) / 2.0f;
-        if ((glm::dot(desiredDir, shapePos - ballPos) > 0.0f && ballPos.y < ball.getRadius()) ||
-            (glm::dot(desiredDir, shapePos - ballPos) <= 0.0f && ballPos.y > ball.getRadius() - 0.2)) {
-            n = glm::vec3(shapePos.x, 1, shapePos.z) - ballPos;
-        }
+        n = getWaterNormal();
         desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
         return desiredDir;
+    }
+
+    if (glm::distance(m_fire_pos, ballPos) <= ball.getRadius() + m_fire_radius && glm::distance(m_fire_pos, ballPos) > m_fire_radius) {
+        if ((glm::dot(desiredDir, ballPos - m_fire_pos) > 0.0f && ballPos.y > ball.getRadius()) ||
+            (glm::dot(desiredDir, ballPos - m_fire_pos) <= 0.0f && ballPos.y < ball.getRadius()+0.4)) {
+            n = ballPos - m_fire_pos;
+            n.y = 0;
+            n = glm::normalize(glm::vec3(0, 0.5, 0) + glm::normalize(n));
+            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+            return desiredDir;
+        }
+
     }
 
     for (auto shape : sceneData.shapes) {
@@ -636,21 +668,8 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
         glm::vec3 ballPos = glm::vec3(ball.getPos());
         glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
         float dist = glm::distance(glm::vec2(shapePos.x, shapePos.z), glm::vec2(ballPos.x, ballPos.z));
-        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2.5) {
+        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2.5 || shape.isFire) {
             continue;
-        }
-        else if (shape.isFire && dist > ball.getRadius() + m_fire_radius) { // will change in the future when the position of the fire is stored
-            onFire = false;
-        }
-        else if (shape.isFire && dist <= ball.getRadius() + m_fire_radius) {
-            // In the case of fire
-            onFire = true;
-            if ((glm::dot(desiredDir, ballPos - shapePos) > 0.0f && ballPos.y > ball.getRadius()) ||
-                (glm::dot(desiredDir, ballPos - shapePos) <= 0.0f && ballPos.y < ball.getRadius()+0.2)) {
-                n = (ballPos - glm::vec3(shapePos.x, -0.1, shapePos.z));
-                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
-                return desiredDir;
-            }
         }
         else {
             continue; // other objects, implement later.
@@ -661,6 +680,7 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 
 
 void Realtime::timerEvent(QTimerEvent *event) {
+//    onFire = false; // initialize as false, may become true when looping through the objects to get normal.
     int elapsedms   = m_elapsedTimer.elapsed();
     float deltaTime = elapsedms * 0.001f;
     m_elapsedTimer.restart();
@@ -675,7 +695,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::vec3 up = glm::vec3(glm::normalize(cData.up));
     float speed;
     speed = m_keyMap[Qt::Key_Shift]? 10.0f : 3.0f;
-    if (ball.getPos().y < ball.getRadius() - 0.19) speed *= 0.5;
+    if (ball.getPos().y < ball.getRadius()/2) speed *= 0.5;
     float dist = speed * deltaTime;
 
     glm::vec3 dir = getDir(m_keyMap[Qt::Key_W], m_keyMap[Qt::Key_S], m_keyMap[Qt::Key_A], m_keyMap[Qt::Key_D]);
@@ -695,7 +715,6 @@ void Realtime::timerEvent(QTimerEvent *event) {
 
     if (dir != glm::vec3(0.0) && rotAxis != glm::vec3(0.0)) {
         rotAxis = glm::normalize(rotAxis);
-
         glm::mat4 trans = glm::translate(glm::mat4(1.0), dir * dist);
         float theta = glm::length(dir * dist) / ball.getRadius();
         cData.pos = trans * cData.pos;
@@ -705,10 +724,14 @@ void Realtime::timerEvent(QTimerEvent *event) {
         ctm = rot * ctm;
     }
 
-    // drop down on the ground
-    float groundHeight = ball.getRadius();
-    if (isInWater()) groundHeight -= 0.02;
+    bool onFire = false;
+    if (glm::distance(m_fire_pos, glm::vec3(ball.getPos())) <= m_fire_radius + ball.getRadius()) {
+        onFire = true;
+    }       // Used for later texture change
 
+    // drop down to the ground
+    float groundHeight = ball.getRadius();
+    if (isInWater()) groundHeight -= 0.05;
     if (ball.getPos().x < m_bound && ball.getPos().z < m_bound &&
         ball.getPos().x > -m_bound && ball.getPos().z > -m_bound &&
         ball.getPos().y > groundHeight && !onFire) {
