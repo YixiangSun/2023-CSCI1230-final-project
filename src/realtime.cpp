@@ -571,6 +571,44 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
+
+    SceneCameraData cData = camera.getData();
+    glm::vec3 look = glm::vec3(glm::normalize(cData.look));
+    glm::vec3 up = glm::vec3(glm::normalize(cData.up));
+    glm::vec3 left = glm::normalize(glm::cross(up, look));
+    glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 forward = look - glm::dot(look, n) * n;
+    if (ball.getPos().x > 10 || ball.getPos().z > 10) forward = look;
+    left = left - glm::dot(left, n) * n;
+    glm::vec3 desiredDir = glm::vec3(0.0f);
+
+    if (w) desiredDir += forward;
+    if (s) desiredDir += -forward;
+    if (a) desiredDir += left;
+    if (d) desiredDir += -left;
+
+    if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
+
+    for (auto shape : sceneData.shapes) {
+        auto type = shape.primitive.type;
+        glm::vec3 ballPos = glm::vec3(ball.getPos());
+//        glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
+        glm::vec3 shapePos = glm::vec4(3.5, 0.0, 3.5, 1.0f);
+        float dist = glm::distance(glm::vec2(shapePos.x, shapePos.z), glm::vec2(ballPos.x, ballPos.z));
+        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2) {
+            continue;
+        }
+        else if (shape.isFire && dist <= ball.getRadius() + m_fire_radius && dist >= m_fire_radius - ball.getRadius()) {
+            float a = (dist - m_fire_radius) / (2.0f*ball.getRadius()) + 0.5f;
+            n = a * (ballPos - glm::vec3(shapePos.x, 0.0, shapePos.z)) + (1-a) * glm::vec3(0.0, 1.0, 0.0);
+            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+            return desiredDir;
+        }
+    }
+    return desiredDir;
+}
+
 
 void Realtime::timerEvent(QTimerEvent *event) {
     int elapsedms   = m_elapsedTimer.elapsed();
@@ -578,46 +616,19 @@ void Realtime::timerEvent(QTimerEvent *event) {
     m_elapsedTimer.restart();
 
     m_accumulatedTime += elapsedms * 0.0005f; // adjust
+
     updateWater(true);
 
     SceneCameraData cData = camera.getData();
     glm::mat4 ctm = ball.getCTM();
-
-    // Use deltaTime and m_keyMap here to move around
     glm::vec3 look = glm::vec3(glm::normalize(cData.look));
     glm::vec3 up = glm::vec3(glm::normalize(cData.up));
-    glm::vec3 left = glm::normalize(glm::cross(up, look));
     float speed;
     speed = m_keyMap[Qt::Key_Shift]? 10.0f : 3.0f;
     float dist = speed * deltaTime;
 
-    // project the moving direction to the plane. This is the simple version, subjecting to change.
-    glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
-    glm::vec3 forward = look - glm::dot(look, n) * n;
-    left = left - glm::dot(left, n) * n;
-
-    glm::vec3 dir = glm::vec3(0.0);
-    glm::vec3 rotAxis = glm::vec3(0.0);
-
-    if (m_keyMap[Qt::Key_W]) {
-        dir += forward;
-        rotAxis += left;
-    }
-
-    if (m_keyMap[Qt::Key_S]) {
-        dir -= forward;
-        rotAxis -= left;
-    }
-
-    if (m_keyMap[Qt::Key_A]) {
-        dir += left;
-        rotAxis -= forward;
-    }
-
-    if (m_keyMap[Qt::Key_D]) {
-        dir -= left;
-        rotAxis += forward;
-    }
+    glm::vec3 dir = getDir(m_keyMap[Qt::Key_W], m_keyMap[Qt::Key_S], m_keyMap[Qt::Key_A], m_keyMap[Qt::Key_D]);
+    glm::vec3 rotAxis = glm::normalize(glm::cross(up, dir));
 
     if (m_keyMap[Qt::Key_Control]) {
         if (glm::length(ball.getPos()-cData.pos) >= 0.1) {
@@ -632,7 +643,6 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (dir != glm::vec3(0.0) && rotAxis != glm::vec3(0.0)) {
-        dir = glm::normalize(dir);
         rotAxis = glm::normalize(rotAxis);
 
         glm::mat4 trans = glm::translate(glm::mat4(1.0), dir * dist);

@@ -99,5 +99,9 @@ private:
     // ball
     SceneMaterial m_ballMaterial;
     Texture m_ballTexture;
+    glm::vec3 getDir(bool w, bool s, bool a, bool d);
+
+    // fire
+    float m_fire_radius = 1.0f;
 };
 
