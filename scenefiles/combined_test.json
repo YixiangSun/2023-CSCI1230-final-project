@@ -490,6 +490,51 @@
    		  "isFire": true
                      }
                  ]
+            },
+	     {   
+     		 "translate": [0.6, 0.005, 0.0],
+                 "scale": [0.09, 0.09, 0.06],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.6, 0.005, 0.2],
+                 "scale": [0.09, 0.09, 0.06],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.6, 0.005, 0.4],
+                 "scale": [0.09, 0.09, 0.06],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
             }
         ]
        }

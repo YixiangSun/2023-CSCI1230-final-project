@@ -29,3 +29,9 @@
 946	2282	1702011729255541936	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	b508a98b08d504a2
 1408	2454	1702011729428487318	CMakeFiles/projects_realtime.dir/src/utils/scenefilereader.cpp.o	2df2888c04fbb135
 2454	2599	1702011729576225754	projects_realtime	29231fac36ff6898
+7	39	1702012438953035581	projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+7	39	1702012438953035581	projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+7	39	1702012438953035581	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+7	39	1702012438953035581	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+43	1107	1702012440015286709	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	b508a98b08d504a2
+1107	1252	1702012440163103625	projects_realtime	29231fac36ff6898

@@ -337,18 +337,18 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
-        if (shape.isFire){
-            shape.riseCount += 1;
-            if (shape.riseCount <= 150){
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), fire_rise);
-                shape.primitive.material.cAmbient[1] += 0.003f;
-            }else{
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), glm::vec3(-0.001 * shape.riseCount, -0.005 * shape.riseCount, -0.001 * shape.riseCount));
+//        if (shape.isFire){
+//            shape.riseCount += 1;
+//            if (shape.riseCount <= 150){
+//                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), fire_rise);
+//                shape.primitive.material.cAmbient[1] += 0.003f;
+//            }else{
+//                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), glm::vec3(-0.001 * shape.riseCount, -0.005 * shape.riseCount, -0.001 * shape.riseCount));
 
-                shape.primitive.material.cAmbient[1] -= 0.45f;
-                shape.riseCount = 0;
-            }
-        }
+//                shape.primitive.material.cAmbient[1] -= 0.45f;
+//                shape.riseCount = 0;
+//            }
+//        }
         vao = vaos[0];
         verts = vertsList[0];
     }
