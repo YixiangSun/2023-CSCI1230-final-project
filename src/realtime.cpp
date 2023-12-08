@@ -164,6 +164,7 @@ void Realtime::extractInfo(std::string filepath) {
             m_topLeft = ctm * glm::vec4(-0.5, 0.0, 0.5, 1.0);
             m_topRight = ctm * glm::vec4(0.5, 0.0, 0.5, 1.0);
             m_bottomRight = ctm * glm::vec4(0.5, 0.0, -0.5, 1.0);
+            m_bottomLeft = ctm * glm::vec4(-0.5, 0.0, -0.5, 1.0);
         }
     }
 }
@@ -234,7 +235,7 @@ void Realtime::getFullScreenVao() {
 
 
 void Realtime::makeFBO(){
-    // Task 19: Generate and bind an empty texture, set its min/mag filter interpolation, then unbind
+
     glGenTextures(1, &m_fbo_texture);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_fbo_texture);
@@ -244,21 +245,17 @@ void Realtime::makeFBO(){
     glBindTexture(GL_TEXTURE_2D, 0);
 
 
-    // Task 20: Generate and bind a renderbuffer of the right size, set its format, then unbind
     glGenRenderbuffers(1, &m_fbo_renderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_fbo_renderbuffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
-    // Task 18: Generate and bind an FBO
     glGenFramebuffers(1, &m_fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
-    // Task 21: Add our texture as a color attachment, and our renderbuffer as a depth+stencil attachment, to our FBO
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_fbo_texture, 0);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_fbo_renderbuffer);
 
-    // Task 22: Unbind the FBO
     glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
 
 }
@@ -506,10 +503,10 @@ void Realtime::sceneChanged() {
     sceneLoaded = true;
     update(); // asks for a PaintGL() call to occur
     extractInfo(settings.sceneFilePath);
+    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, m_ballMaterial);
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
-    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, m_ballMaterial);
     // drawFire();
 }
 
@@ -580,6 +577,27 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+bool Realtime::isInWater() {
+    glm::vec4 ballPos = ball.getPos();
+
+    glm::vec3 v1 = m_topLeft - m_topRight;
+    glm::vec3 v2 = m_bottomLeft - m_topLeft;
+    glm::vec3 v3 = m_bottomRight - m_bottomLeft;
+    glm::vec3 v4 = m_topRight - m_bottomRight;
+
+    glm::vec3 v5 = ballPos - m_topLeft;
+    glm::vec3 v6 = ballPos - m_bottomRight;
+
+    glm::vec3 n = {0.0, 1.0, 0.0};
+
+    std::cout << m_topLeft.x << m_topRight.x << std::endl;
+
+
+    return glm::dot(n, glm::cross(v1, v5)) > 0 && glm::dot(n, glm::cross(v2, v5)) > 0 &&
+           glm::dot(n, glm::cross(v3, v6)) > 0 && glm::dot(n, glm::cross(v4, v6)) > 0;
+}
+
+
 // get the moving direction
 glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 
@@ -589,7 +607,8 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     glm::vec3 left = glm::normalize(glm::cross(up, look));
     glm::vec3 n = glm::vec3(0.0f, 1.0f, 0.0f);
     glm::vec3 forward = look - glm::dot(look, n) * n;
-    if (ball.getPos().x > m_bound || ball.getPos().z > m_bound) forward = look;
+    glm::vec3 ballPos = glm::vec3(ball.getPos());
+    if (ball.getPos().x > m_bound || ball.getPos().z > m_bound || ball.getPos().x < -m_bound || ball.getPos().z < -m_bound) forward = look;
     left = left - glm::dot(left, n) * n;
     glm::vec3 desiredDir = glm::vec3(0.0f);
 
@@ -600,23 +619,40 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 
     if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
 
+    if (isInWater()) {
+        std::cout << "hahaha" << std::endl;
+        glm::vec3 shapePos = (m_topLeft + m_bottomRight) / 2.0f;
+        if ((glm::dot(desiredDir, shapePos - ballPos) > 0.0f && ballPos.y < ball.getRadius()) ||
+            (glm::dot(desiredDir, shapePos - ballPos) <= 0.0f && ballPos.y > ball.getRadius() - 0.2)) {
+            n = glm::normalize(ballPos - glm::vec3(shapePos.x, 0.5, shapePos.z)) + glm::vec3(0, 1, 0) * (ball.getRadius() - ballPos.y);
+        }
+        desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+        return desiredDir;
+    }
+
     for (auto shape : sceneData.shapes) {
         auto type = shape.primitive.type;
         glm::vec3 ballPos = glm::vec3(ball.getPos());
-//        glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
-        glm::vec3 shapePos = glm::vec4(3.5, 0.0, 3.5, 1.0f);
+        glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
         float dist = glm::distance(glm::vec2(shapePos.x, shapePos.z), glm::vec2(ballPos.x, ballPos.z));
         if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2.5) {
             continue;
         }
+        else if (shape.isFire && dist > ball.getRadius() + m_fire_radius) { // will change in the future when the position of the fire is stored
+            onFire = false;
+        }
         else if (shape.isFire && dist <= ball.getRadius() + m_fire_radius) {
             // In the case of fire
+            onFire = true;
             if ((glm::dot(desiredDir, ballPos - shapePos) > 0.0f && ballPos.y > ball.getRadius()) ||
                 (glm::dot(desiredDir, ballPos - shapePos) <= 0.0f && ballPos.y < ball.getRadius()+0.2)) {
-                n = (ballPos - glm::vec3(shapePos.x, 0.0, shapePos.z));
+                n = (ballPos - glm::vec3(shapePos.x, -0.1, shapePos.z));
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
             }
-            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
-            return desiredDir;
+        }
+        else {
+            continue; // other objects, implement later.
         }
     }
     return desiredDir;
@@ -665,6 +701,17 @@ void Realtime::timerEvent(QTimerEvent *event) {
         glm::vec3 realPos = glm::vec3(ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.00f));
         glm::mat4 rot = glm::translate(glm::rotate(glm::translate(glm::mat4(1.0), realPos), theta, rotAxis), -realPos);
         ctm = rot * ctm;
+    }
+
+    // drop down on the ground
+    float groundHeight = ball.getRadius();
+    if (isInWater()) groundHeight -= 0.02;
+
+    if (ball.getPos().x < m_bound && ball.getPos().z < m_bound &&
+        ball.getPos().x > -m_bound && ball.getPos().z > -m_bound &&
+        ball.getPos().y > groundHeight && !onFire) {
+        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.05, 0.0)) * ctm;
+        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.05, 0.0)) * cData.pos;
     }
 
     ball.updateCTM(ctm);

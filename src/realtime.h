@@ -98,12 +98,15 @@ private:
     glm::vec4 m_topLeft;
     glm::vec4 m_topRight;
     glm::vec4 m_bottomRight;
+    glm::vec4 m_bottomLeft;
 
     // ball
     SceneMaterial m_ballMaterial;
     Texture m_ballTexture;
     glm::vec3 getDir(bool w, bool s, bool a, bool d);
     float m_bound = 75.0;
+    bool isInWater();
+    bool onFire;
 
     // fire
     float m_fire_radius = 1.0f;
