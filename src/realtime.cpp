@@ -579,6 +579,7 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
 
 bool Realtime::isInWater() {
     glm::vec4 ballPos = ball.getPos();
+    ballPos.y = m_topLeft.y;
 
     glm::vec3 v1 = m_topLeft - m_topRight;
     glm::vec3 v2 = m_bottomLeft - m_topLeft;
@@ -590,7 +591,8 @@ bool Realtime::isInWater() {
 
     glm::vec3 n = {0.0, 1.0, 0.0};
 
-    std::cout << m_topLeft.x << m_topRight.x << std::endl;
+    std::cout << glm::dot(n, glm::cross(v1, v5)) << " " << glm::dot(n, glm::cross(v2, v5)) << std::endl;
+    std::cout << glm::dot(n, glm::cross(v3, v6)) << " " << glm::dot(n, glm::cross(v4, v6)) << std::endl;
 
 
     return glm::dot(n, glm::cross(v1, v5)) > 0 && glm::dot(n, glm::cross(v2, v5)) > 0 &&
@@ -620,11 +622,10 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
 
     if (isInWater()) {
-        std::cout << "hahaha" << std::endl;
         glm::vec3 shapePos = (m_topLeft + m_bottomRight) / 2.0f;
         if ((glm::dot(desiredDir, shapePos - ballPos) > 0.0f && ballPos.y < ball.getRadius()) ||
             (glm::dot(desiredDir, shapePos - ballPos) <= 0.0f && ballPos.y > ball.getRadius() - 0.2)) {
-            n = glm::normalize(ballPos - glm::vec3(shapePos.x, 0.5, shapePos.z)) + glm::vec3(0, 1, 0) * (ball.getRadius() - ballPos.y);
+            n = glm::vec3(shapePos.x, 1, shapePos.z) - ballPos;
         }
         desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
         return desiredDir;
@@ -674,6 +675,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::vec3 up = glm::vec3(glm::normalize(cData.up));
     float speed;
     speed = m_keyMap[Qt::Key_Shift]? 10.0f : 3.0f;
+    if (ball.getPos().y < ball.getRadius() - 0.19) speed *= 0.5;
     float dist = speed * deltaTime;
 
     glm::vec3 dir = getDir(m_keyMap[Qt::Key_W], m_keyMap[Qt::Key_S], m_keyMap[Qt::Key_A], m_keyMap[Qt::Key_D]);

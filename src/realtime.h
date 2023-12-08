@@ -109,6 +109,6 @@ private:
     bool onFire;
 
     // fire
-    float m_fire_radius = 1.0f;
+    float m_fire_radius = 0.8f;
 };
 

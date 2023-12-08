@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include "camera.h"
 #include "glm/ext/matrix_transform.hpp"
-#include "settings.h"
 
 Camera::Camera(const SceneCameraData cameraData, int width, int height)
     : cameraData(cameraData), width(width), height(height) {
