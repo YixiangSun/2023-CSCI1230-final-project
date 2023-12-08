@@ -596,12 +596,15 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 //        glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
         glm::vec3 shapePos = glm::vec4(3.5, 0.0, 3.5, 1.0f);
         float dist = glm::distance(glm::vec2(shapePos.x, shapePos.z), glm::vec2(ballPos.x, ballPos.z));
-        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2) {
+        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2.5) {
             continue;
         }
-        else if (shape.isFire && dist <= ball.getRadius() + m_fire_radius && dist >= m_fire_radius - ball.getRadius()) {
-            float a = (dist - m_fire_radius) / (2.0f*ball.getRadius()) + 0.5f;
-            n = a * (ballPos - glm::vec3(shapePos.x, 0.0, shapePos.z)) + (1-a) * glm::vec3(0.0, 1.0, 0.0);
+        else if (shape.isFire && dist <= ball.getRadius() + m_fire_radius) {
+            // In the case of fire
+            if ((glm::dot(desiredDir, ballPos - shapePos) > 0.0f && ballPos.y > ball.getRadius()) ||
+                (glm::dot(desiredDir, ballPos - shapePos) <= 0.0f && ballPos.y < ball.getRadius()+0.2)) {
+                n = (ballPos - glm::vec3(shapePos.x, 0.0, shapePos.z));
+            }
             desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
             return desiredDir;
         }
