@@ -32,38 +32,33 @@ add_executable(${PROJECT_NAME}
     src/settings.cpp
     src/camera/camera.cpp
     src/ball/ball.cpp
-#    src/shapes/Triangle.cpp
+    src/utils/textureMapping.cpp
     src/shapes/Cube.cpp
     src/shapes/Sphere.cpp
     src/shapes/Cylinder.cpp
     src/shapes/Cone.cpp
     src/shapes/Water.cpp
-#    src/shapes/Tet.cpp
     src/utils/scenefilereader.cpp
     src/utils/sceneparser.cpp
-    src/fire/fire.cpp
-    src/random.cpp
 
     src/mainwindow.h
     src/realtime.h
     src/settings.h
     src/camera/camera.h
     src/ball/ball.h
+    src/utils/textureMapping.h
     src/shaderloader.h
-#    src/shapes/Triangle.h
     src/shapes/Cube.h
     src/shapes/Sphere.h
     src/shapes/Cylinder.h
     src/shapes/Cone.h
     src/shapes/Water.h
-#    src/shapes/Tet.h
     src/utils/scenedata.h
     src/utils/scenefilereader.h
     src/utils/sceneparser.h
     src/utils/shaderloader.h
+    src/utils/rgba.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
-    src/fire/fire.h
-    src/random.h
 
 )
 

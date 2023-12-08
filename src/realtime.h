@@ -1,7 +1,9 @@
 #pragma once
 
 // Defined before including GLEW to suppress deprecation messages on macOS
+#include "ball/ball.h"
 #include "shapes/Water.h"
+#include "utils/rgba.h"
 #include "utils/sceneparser.h"
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -14,7 +16,6 @@
 #include <QOpenGLWidget>
 #include <QTime>
 #include <QTimer>
-#include "fire/fire.h"
 
 class Realtime : public QOpenGLWidget
 {
@@ -74,22 +75,19 @@ private:
     std::vector<float> angles;
     std::vector<float> penumbras;
 
-    std::vector<std::vector<float>> vertsList;
-    bool sceneLoaded = false;
+    std::vector<std::vector<float>> vertsList;          // Store the vertices data (position + normal) of all the shapes
+    bool sceneLoaded = false;                           // check if there's a scene loaded. Used to correctly draw the ball.
 
     GLint m_defaultFBO = 2;
 
     bool initialized = false;
-    FireProps m_Fire;
-    Fire m_FireSystem;
 
     void draw(RenderShapeData& shape, bool ifBall);
     void getVaos();
-    void extractInfo(std::string filepath, RenderData &renderData);
+    void extractInfo(std::string filepath);
     void getFullScreenVao();
     void makeFBO();
     void paintTexture(GLuint texture, bool perPixel, bool kernel);
-    void drawFire();
 
     // water
     Water water;
@@ -97,5 +95,9 @@ private:
     GLuint m_water_vbo;
     std::vector<float> m_waterData;
     void updateWater(bool initialized);
+
+    // ball
+    SceneMaterial m_ballMaterial;
+    Texture m_ballTexture;
 };
 

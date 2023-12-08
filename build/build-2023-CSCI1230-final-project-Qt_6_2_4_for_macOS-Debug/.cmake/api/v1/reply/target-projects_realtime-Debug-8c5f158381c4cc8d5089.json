@@ -54,7 +54,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 78,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
@@ -294,13 +294,13 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 75,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
 				"command" : 9,
 				"file" : 0,
-				"line" : 88,
+				"line" : 83,
 				"parent" : 0
 			},
 			{
@@ -488,8 +488,7 @@
 				12,
 				13,
 				14,
-				15,
-				34
+				33
 			]
 		}
 	],
@@ -627,14 +626,14 @@
 				12,
 				13,
 				14,
-				15,
-				34
+				33
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
+				15,
 				16,
 				17,
 				18,
@@ -651,23 +650,22 @@
 				29,
 				30,
 				31,
-				32,
-				33
+				32
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				35
+				34
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				36,
-				37
+				35,
+				36
 			]
 		}
 	],
@@ -719,6 +717,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/utils/textureMapping.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/shapes/Cube.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -760,18 +764,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/fire/fire.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/random.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
 			"path" : "src/mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
@@ -793,6 +785,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/ball/ball.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/utils/textureMapping.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -847,17 +844,12 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/utils/rgba.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/utils/aspectratiowidget/aspectratiowidget.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/fire/fire.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/random.h",
 			"sourceGroupIndex" : 1
 		},
 		{

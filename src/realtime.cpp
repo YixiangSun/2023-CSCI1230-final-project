@@ -4,7 +4,6 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <iostream>
-#include "ball/ball.h"
 #include "camera/camera.h"
 #include "glm/ext/matrix_transform.hpp"
 #include "settings.h"
@@ -14,7 +13,6 @@
 #include "shapes/Cube.h"
 #include "shapes/Cylinder.h"
 #include "shapes/Sphere.h"
-#include "fire/fire.h"
 
 // ================== Project 5: Lights, Camera
 
@@ -52,58 +50,6 @@ Realtime::Realtime(QWidget *parent)
     m_keyMap[Qt::Key_Shift]   = false;
 
     // If you must use this function, do not edit anything above this
-}
-
-void Realtime::extractInfo(std::string filepath, RenderData &renderData) {
-    SceneParser::parse(settings.sceneFilePath, sceneData);
-    m_ka = sceneData.globalData.ka;
-    m_kd = sceneData.globalData.kd;
-    m_ks = sceneData.globalData.ks;
-    // initialize fire system
-    m_FireSystem = Fire();
-    // initialize fire
-    m_Fire.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-    m_Fire.ColorEnd = {0.5f, 0.5f, 0.0f, 1.0f};
-    m_Fire.SizeBegin = 0.3f;
-    m_Fire.SizeVariation = 0.1f;
-    m_Fire.SizeEnd = 0.2f;
-    m_Fire.LifeTime = 1.0f;
-    m_Fire.Velocity = {0.0f, 0.2f, 0.0f};
-    m_Fire.Position = {0.0f, 3.0f, 0.0f};
-    lightTypes.clear();
-    lightDirs.clear();
-    lightColors.clear();
-    lightPoses.clear();
-    functions.clear();
-    angles.clear();
-    penumbras.clear();
-    for (auto light : sceneData.lights) {
-        if (light.type == LightType::LIGHT_DIRECTIONAL) {
-            lightTypes.push_back(0);
-            lightDirs.push_back(light.dir);
-            lightColors.push_back(light.color);
-            lightPoses.push_back(glm::vec4(999, 999, 999, 999));
-            functions.push_back(glm::vec3(1.0f, 0.f, 0.f));
-            angles.push_back(0.f);
-            penumbras.push_back(0.f);
-        } else if (light.type == LightType::LIGHT_POINT) {
-            lightTypes.push_back(1);
-            lightDirs.push_back(glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
-            lightColors.push_back(light.color);
-            lightPoses.push_back(light.pos);
-            functions.push_back(light.function);
-            angles.push_back(0.f);
-            penumbras.push_back(0.f);
-        } else {
-            lightTypes.push_back(2);
-            lightDirs.push_back(light.dir);
-            lightColors.push_back(light.color);
-            lightPoses.push_back(light.pos);
-            functions.push_back(light.function);
-            angles.push_back(light.angle);
-            penumbras.push_back(light.penumbra);
-        }
-    }
 }
 
 void Realtime::finish() {
@@ -155,7 +101,7 @@ void Realtime::initializeGL() {
     glViewport(0, 0, size().width() * m_devicePixelRatio, size().height() * m_devicePixelRatio);
 
     // Students: anything requiring OpenGL calls when the program starts should be done here
-    extractInfo(settings.sceneFilePath, sceneData);
+    extractInfo(settings.sceneFilePath);
     glClearColor(0,0,0,1);
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
@@ -170,13 +116,53 @@ void Realtime::initializeGL() {
     Realtime::makeFBO();
 
     initialized = true;
+}
 
-    m_FireSystem.Emit(m_Fire);
+// polulates the global variables by parsing the json file
+void Realtime::extractInfo(std::string filepath) {
+    SceneParser::parse(settings.sceneFilePath, sceneData);
+    m_ka = sceneData.globalData.ka;
+    m_kd = sceneData.globalData.kd;
+    m_ks = sceneData.globalData.ks;
+    lightTypes.clear();
+    lightDirs.clear();
+    lightColors.clear();
+    lightPoses.clear();
+    functions.clear();
+    angles.clear();
+    penumbras.clear();
+    for (auto light : sceneData.lights) {
+        if (light.type == LightType::LIGHT_DIRECTIONAL) {
+            lightTypes.push_back(0);
+            lightDirs.push_back(light.dir);
+            lightColors.push_back(light.color);
+            lightPoses.push_back(glm::vec4(999, 999, 999, 999));
+            functions.push_back(glm::vec3(1.0f, 0.f, 0.f));
+            angles.push_back(0.f);
+            penumbras.push_back(0.f);
+        } else if (light.type == LightType::LIGHT_POINT) {
+            lightTypes.push_back(1);
+            lightDirs.push_back(glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+            lightColors.push_back(light.color);
+            lightPoses.push_back(light.pos);
+            functions.push_back(light.function);
+            angles.push_back(0.f);
+            penumbras.push_back(0.f);
+        } else {
+            lightTypes.push_back(2);
+            lightDirs.push_back(light.dir);
+            lightColors.push_back(light.color);
+            lightPoses.push_back(light.pos);
+            functions.push_back(light.function);
+            angles.push_back(light.angle);
+            penumbras.push_back(light.penumbra);
+        }
+    }
 }
 
 void Realtime::updateWater(bool initialized) {
 
-    //    // ================= PrimitiveType::PRIMITIVE_WATER ================= //
+    // ================= PrimitiveType::PRIMITIVE_WATER ================= //
     water.updateParams(15, 15, 0.f, m_accumulatedTime, initialized);
     m_waterData = water.generateShape();
 
@@ -193,42 +179,6 @@ void Realtime::updateWater(bool initialized) {
     glBindVertexArray(0);
 }
 
-void Realtime::drawFire(){
-    int width = 5;
-    int height = 7;
-    SceneMaterial fireMaterial{
-        .cAmbient = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0)),
-        .cDiffuse = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0)),
-        .cSpecular = SceneColor(glm::vec4(0.5, 0.5, 0.5, 1.0)),
-        .shininess = 20.0
-    };
-    for (int h = 0; h < height; h ++){
-        for (int r = 0; r < width - h; r ++){
-            for (int c = 0; c < width - h; c ++){
-                if (h < 2 && std::abs(r - width/2) < 1 && std::abs(c - width/2) < 1){
-                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 200.f/255.f, 0.0, 1.0));
-                }else if(h < 3 && std::abs(r - width/2) < 2 && std::abs(c - width/2) < 2){
-                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 100.f/255.f, 0.0, 1.0));
-                }else{
-                    fireMaterial.cAmbient = SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
-                }
-                RenderShapeData fire_particle;
-                glm::mat4 translate = glm::mat4{
-                    1.0, 0.0, 0.0, 0.0,
-                    0.0, 1.0, 0.0, 0.0,
-                    0.0, 0.0, 1.0, 0.0,
-                    3.0 + (r + h/2) * 0.3, 0.15 + h * 0.3, 3.0 + (c + h/2) * 0.3, 1.0
-                };
-                fire_particle.ctm = glm::scale(glm::rotate(translate, 0.9f, glm::vec3(0.f, 1.f, 0.f)), glm::vec3(0.2, 0.2, 0.003));
-                fire_particle.primitive = ScenePrimitive{
-                    .type = PrimitiveType::PRIMITIVE_CUBE,
-                    .material = fireMaterial
-                };
-                sceneData.shapes.push_back(fire_particle);
-            }
-        }
-    }
-}
 void Realtime::getFullScreenVao() {
 
     glActiveTexture(GL_TEXTURE0);
@@ -272,6 +222,37 @@ void Realtime::getFullScreenVao() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+}
+
+
+void Realtime::makeFBO(){
+    // Task 19: Generate and bind an empty texture, set its min/mag filter interpolation, then unbind
+    glGenTextures(1, &m_fbo_texture);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_fbo_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+
+    // Task 20: Generate and bind a renderbuffer of the right size, set its format, then unbind
+    glGenRenderbuffers(1, &m_fbo_renderbuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, m_fbo_renderbuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+    // Task 18: Generate and bind an FBO
+    glGenFramebuffers(1, &m_fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+
+    // Task 21: Add our texture as a color attachment, and our renderbuffer as a depth+stencil attachment, to our FBO
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_fbo_texture, 0);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_fbo_renderbuffer);
+
+    // Task 22: Unbind the FBO
+    glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
+
 }
 
 void Realtime::getVaos() {
@@ -318,35 +299,6 @@ void Realtime::getVaos() {
     }
 }
 
-void Realtime::makeFBO(){
-    // Task 19: Generate and bind an empty texture, set its min/mag filter interpolation, then unbind
-    glGenTextures(1, &m_fbo_texture);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_fbo_texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
-
-
-    // Task 20: Generate and bind a renderbuffer of the right size, set its format, then unbind
-    glGenRenderbuffers(1, &m_fbo_renderbuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, m_fbo_renderbuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
-    // Task 18: Generate and bind an FBO
-    glGenFramebuffers(1, &m_fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
-
-    // Task 21: Add our texture as a color attachment, and our renderbuffer as a depth+stencil attachment, to our FBO
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_fbo_texture, 0);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_fbo_renderbuffer);
-
-    // Task 22: Unbind the FBO
-    glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
-
-}
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall) {
 
@@ -354,7 +306,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     int numLights = sceneData.lights.size();
 
     PrimitiveType type = shape.primitive.type;
-    GLuint vao;
+    GLuint vao = 0;
     std::vector<float> verts;
     glm::mat4 ctm = shape.ctm;
 
@@ -366,7 +318,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     if (shape.isFire){
         shape.riseCount += 1;
         if (shape.riseCount <= 150){
-            std::cout<<1<<std::endl;
             shape.ctm = shape.ctm * glm::translate(glm::mat4(1.0f), fire_rise);
             shape.primitive.material.cAmbient[1] += 0.003f;
         }else{
@@ -404,7 +355,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
         vao = vaos[3];
         verts = vertsList[3];
     }
-    else {
+    else if (type == PrimitiveType::PRIMITIVE_WATER){
         vao = m_water_vao;
         verts = m_waterData;
     }
@@ -506,7 +457,6 @@ void Realtime::paintGL() {
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    m_FireSystem.Emit(m_Fire);
     paintTexture(m_fbo_texture, settings.perPixelFilter, settings.kernelBasedFilter);
 }
 
@@ -546,10 +496,11 @@ void Realtime::resizeGL(int w, int h) {
 void Realtime::sceneChanged() {
     sceneLoaded = true;
     update(); // asks for a PaintGL() call to occur
-    extractInfo(settings.sceneFilePath, sceneData);
+    extractInfo(settings.sceneFilePath);
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
+    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, m_ballMaterial);
     // drawFire();
 }
 
@@ -558,6 +509,7 @@ void Realtime::settingsChanged() {
         Realtime::getVaos();
         update(); // asks for a PaintGL() call to occur
     }
+    m_ballMaterial = goldBall;  // change this later to enable different materials.
 }
 
 // ================== Action!
