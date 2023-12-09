@@ -493,7 +493,22 @@
             },
 	     {   
      		 "translate": [0.6, 0.005, 0.0],
-                 "scale": [0.09, 0.09, 0.06],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.6, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
           	 "rotate": [0.0, 1.0, 0.0, 80.0],
                  "primitives": [
                      {
@@ -508,7 +523,22 @@
             },
 	    {   
      		 "translate": [0.6, 0.005, 0.2],
-                 "scale": [0.09, 0.09, 0.06],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.6, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
           	 "rotate": [0.0, 1.0, 0.0, 80.0],
                  "primitives": [
                      {
@@ -523,7 +553,2407 @@
             },
 	    {   
      		 "translate": [0.6, 0.005, 0.4],
-                 "scale": [0.09, 0.09, 0.06],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.6, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+ 	    {   
+     		 "translate": [0.5, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.5, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+   	    {   
+     		 "translate": [0.5, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+    	    {   
+     		 "translate": [0.4, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.4, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [0.3, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.3, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [0.2, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.2, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.8],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [0.1, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.1, 0.005, 0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [0.0, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [0.0, 0.005, 0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+   	    {   
+     		 "translate": [-0.1, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+	    {   
+     		 "translate": [-0.1, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.1, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	 {   
+     		 "translate": [-0.2, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	  {   
+     		 "translate": [-0.2, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.2, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            }, 
+	    {   
+     		 "translate": [-0.3, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.3, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.4, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.4, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	     {   
+     		 "translate": [-0.5, 0.005, -0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+	    {   
+     		 "translate": [-0.5, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.5, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [-0.5, 0.005, 0.7],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, -0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+ 	    {   
+     		 "translate": [-0.6, 0.005, -0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, -0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, -0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.0],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.1],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.2],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.3],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.4],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+  	    {   
+     		 "translate": [-0.6, 0.005, 0.5],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },	
+	    {   
+     		 "translate": [-0.6, 0.005, 0.6],
+                 "scale": [0.06, 0.06, 0.03],
+          	 "rotate": [0.0, 1.0, 0.0, 80.0],
+                 "primitives": [
+                     {
+                  "type": "cube",
+    		  "ambient": [1.0, 0.79, 0.0],
+                  "diffuse": [1.0, 1.0, 1.0],
+    		  "specular": [1.0, 1.0, 1.0],
+    		  "shininess": 10.0,
+   		  "isFire": true
+                     }
+                 ]
+            },
+	    {   
+     		 "translate": [-0.6, 0.005, 0.7],
+                 "scale": [0.06, 0.06, 0.03],
           	 "rotate": [0.0, 1.0, 0.0, 80.0],
                  "primitives": [
                      {

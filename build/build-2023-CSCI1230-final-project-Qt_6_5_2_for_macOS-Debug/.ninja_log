@@ -47,3 +47,13 @@
 9	40	1702019403882566342	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
 45	1066	1702019404902384864	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	b508a98b08d504a2
 1066	1213	1702019405051755867	projects_realtime	29231fac36ff6898
+11	612	1702134894151385000	projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+11	612	1702134894151385000	projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+11	612	1702134894151385000	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+11	612	1702134894151385000	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+613	1087	1702134894630293681	CMakeFiles/projects_realtime.dir/src/camera/camera.cpp.o	e44d9fcd7c762b04
+613	1506	1702134895047279195	CMakeFiles/projects_realtime.dir/src/main.cpp.o	25af45c4b2f992f1
+613	1511	1702134895052386082	CMakeFiles/projects_realtime.dir/projects_realtime_autogen/mocs_compilation.cpp.o	d8cd4278228d56c0
+613	1606	1702134895148663466	CMakeFiles/projects_realtime.dir/src/mainwindow.cpp.o	6baa5a0f5ff1aa19
+613	1778	1702134895319184503	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	b508a98b08d504a2
+1778	1974	1702134895519566812	projects_realtime	29231fac36ff6898
