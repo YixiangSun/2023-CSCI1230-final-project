@@ -354,25 +354,25 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
             float y_vel = 0.1f;
             glm::vec3 velocity;
             if (shape.riseCount == 0){
-                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 400.f;
+                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 80.f;
                 shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
             }
             shape.riseCount += 1;
-            float r = ((double) rand() / (RAND_MAX)) * 0.3f;
-            if (shape.riseCount <= 60){
+            float r = ((double) rand() / (RAND_MAX)) * 0.2f;
+            if (shape.riseCount <= 40){
                 velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
-            }else if(shape.riseCount <= 120){
+            }else if(shape.riseCount <= 90){
                 velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
             }else{
                 velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
             }
-            if (shape.riseCount + shape.timeOffset >= 309.f){
+            if (shape.riseCount + shape.timeOffset >= 119.f){
                 shape.ctm = originalCTM;
                 shape.primitive.material.cAmbient[1] = 0.0f;
                 shape.riseCount = 0;
             }else{
                 shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                shape.primitive.material.cAmbient[1] += 0.004f;
+                shape.primitive.material.cAmbient[1] += 0.007f;
             }
         }
         vao = vaos[0];
