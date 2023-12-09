@@ -117,6 +117,7 @@ void Realtime::initializeGL() {
     Realtime::makeFBO();
 
     initialized = true;
+    m_fire_center = glm::vec3(2.1, 0.1, 1.2);
 }
 
 // polulates the global variables by parsing the json file
@@ -317,7 +318,7 @@ void Realtime::getVaos() {
 }
 
 
-void Realtime::draw(RenderShapeData& shape, bool ifBall) {
+void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
@@ -346,6 +347,34 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall) {
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
+        if (shape.isFire){
+            float x_dist = shape.ctm[3][0] - m_fire_center.x;
+            float z_dist = shape.ctm[3][2] - m_fire_center.z;
+            glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
+            float y_vel = 0.1f;
+            glm::vec3 velocity;
+            if (shape.riseCount == 0){
+                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 400.f;
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
+            }
+            shape.riseCount += 1;
+            float r = ((double) rand() / (RAND_MAX)) * 0.3f;
+            if (shape.riseCount <= 60){
+                velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
+            }else if(shape.riseCount <= 120){
+                velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
+            }else{
+                velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
+            }
+            if (shape.riseCount + shape.timeOffset >= 309.f){
+                shape.ctm = originalCTM;
+                shape.primitive.material.cAmbient[1] = 0.0f;
+                shape.riseCount = 0;
+            }else{
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                shape.primitive.material.cAmbient[1] += 0.004f;
+            }
+        }
         vao = vaos[0];
         verts = vertsList[0];
     }
@@ -453,10 +482,10 @@ void Realtime::paintGL() {
 
     if (sceneLoaded) {
         RenderShapeData ball = sceneData.shapes[0];
-        Realtime::draw(ball, true);  // draw the ball
+        Realtime::draw(ball, true, ball.ctm);  // draw the ball
     }
     for (RenderShapeData &shape : sceneData.shapes) {
-        Realtime::draw(shape, false);
+        Realtime::draw(shape, false, shape.originalCTM);
     }
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);

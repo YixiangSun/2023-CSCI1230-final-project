@@ -82,7 +82,7 @@ private:
 
     bool initialized = false;
 
-    void draw(RenderShapeData& shape, bool ifBall);
+    void draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM);
     void getVaos();
     void extractInfo(std::string filepath);
     void getFullScreenVao();
@@ -112,5 +112,6 @@ private:
     // fire
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
+    glm::vec3 m_fire_center;
 };
 

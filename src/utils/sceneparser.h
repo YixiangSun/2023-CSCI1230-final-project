@@ -8,8 +8,10 @@
 struct RenderShapeData {
     ScenePrimitive primitive;
     glm::mat4 ctm; // the cumulative transformation matrix
+    glm::mat4 originalCTM;
     bool isFire;
     int riseCount = 0;
+    float timeOffset;
 };
 
 // Struct which contains all the data needed to render a scene
