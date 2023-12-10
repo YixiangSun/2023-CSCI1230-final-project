@@ -83,6 +83,8 @@ void Realtime::finish() {
     glDeleteBuffers(1, &m_water_vbo);
     glDeleteVertexArrays(1, &m_water_vao);
 
+    glDeleteTextures(1, &m_kitten_texture); // !!!
+
     this->doneCurrent();
 }
 
@@ -128,6 +130,43 @@ void Realtime::initializeGL() {
 
     initialized = true;
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
+    readTexture(); // !!!!!!!!!!!!!!
+}
+
+void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // Prepare filepath
+    QString kitten_filepath = QString(":/resources/images/kitten.png");
+
+    // Task 1: Obtain image from filepath
+    m_image = QImage(kitten_filepath);
+
+    // Task 2: Format image to fit OpenGL
+    m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
+
+    // Task 3: Generate kitten texture
+    glGenTextures(1, &m_kitten_texture);
+
+    // Task 9: Set the active texture slot to texture slot 0
+    glActiveTexture(GL_TEXTURE0); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    // Task 4: Bind kitten texture
+    glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
+
+    // Task 5: Load image into kitten texture
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image.width(), m_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image.bits());
+
+    // Task 6: Set min and mag filters' interpolation mode to linear
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // Task 7: Unbind kitten texture
+    glBindTexture(0, m_kitten_texture);
+
+    // Task 10: Set the texture.frag uniform for our texture
+    glUseProgram(m_shader);
+    int textureLocation = glGetUniformLocation(m_shader, "sampleTexture");
+    glUniform1f(textureLocation, GL_TEXTURE0);  // Assuming you want to use texture slot 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glUseProgram(0);  // Return to default state
 }
 
 // polulates the global variables by parsing the json file
@@ -185,10 +224,10 @@ void Realtime::extractInfo(std::string filepath) {
             c += 1;
         }
     }
-//    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
+    //    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
     m_fire_pos = m_fire_pos * (1.0f/float(c));
 
-//    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
+    //    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
 
 }
 
@@ -344,7 +383,10 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     float shininess = shape.primitive.material.shininess;
     glm::vec3 fire_rise = glm::vec3(0.001, 0.005, 0.001);
 
-
+    glUseProgram(m_shader);
+    GLint primTypeLocation = glGetUniformLocation(m_shader, "primitive");
+    GLint blendLocation = glGetUniformLocation(m_shader, "blend");
+    glUniform1f(blendLocation, 0.5f);
 
     if (ifBall) {
         vao = vaos[4];
@@ -354,6 +396,8 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
         cSpecular = ball.getMaterial().cSpecular;
         shininess = ball.getMaterial().shininess;
         shape.ctm = ball.getCTM();
+
+        glUniform1i(primTypeLocation, 3);
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
@@ -387,18 +431,22 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
         }
         vao = vaos[0];
         verts = vertsList[0];
+        glUniform1i(primTypeLocation, 0);
     }
     else if (type == PrimitiveType::PRIMITIVE_CONE) {
         vao = vaos[1];
         verts = vertsList[1];
+        glUniform1i(primTypeLocation, 1);
     }
     else if (type == PrimitiveType::PRIMITIVE_CYLINDER){
         vao = vaos[2];
         verts = vertsList[2];
+        glUniform1i(primTypeLocation, 2);
     }
     else if (type == PrimitiveType::PRIMITIVE_SPHERE){
         vao = vaos[3];
         verts = vertsList[3];
+        glUniform1i(primTypeLocation, 3);
     }
     else if (type == PrimitiveType::PRIMITIVE_WATER){
         vao = m_water_vao;
@@ -406,7 +454,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     }
 
     glBindVertexArray(vao);
-    glUseProgram(m_shader);
+//    glUseProgram(m_shader);
 
     GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &shape.ctm[0][0]);
@@ -478,8 +526,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
         glUniform1f(uniformLocation, penumbras[i]);
     }
 
+    glActiveTexture(GL_TEXTURE0); // ????
+    glBindTexture(GL_TEXTURE_2D, m_kitten_texture); // ????
 
     glDrawArrays(GL_TRIANGLES, 0, verts.size() / 6);
+    glBindTexture(GL_TEXTURE_2D, 0); // ????
 
     glBindVertexArray(0);
     glUseProgram(0);

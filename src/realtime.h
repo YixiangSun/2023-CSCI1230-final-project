@@ -114,5 +114,9 @@ private:
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
     glm::vec3 m_fire_center;
+
+    void readTexture();
+    QImage m_image;
+    GLuint m_kitten_texture;
 };
 

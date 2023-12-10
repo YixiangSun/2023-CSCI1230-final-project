@@ -2,7 +2,10 @@
 
 in vec3 position;
 in vec3 normal;
+in vec2 uv;
 out vec4 fragColor;
+
+uniform float blend; // !!!
 
 uniform float k_a;
 uniform float k_d;
@@ -25,14 +28,14 @@ uniform vec3 functions[8];
 uniform float angles[8];
 uniform float penumbras[8];
 
-uniform sampler2D sampler;
+uniform sampler2D sampleTexture;
 
 void main() {
 
     vec3 realNormal = normalize(normal);  // normalize normal vector for the interpolated ones
 
-    fragColor = vec4(0.0);
-    fragColor += k_a * cAmbient;  // Ambient term
+    vec4 phongColor = vec4(0.0);
+    phongColor += k_a * cAmbient;  // Ambient term
 
     for (int i = 0; i < numLights; i++) {
 
@@ -42,9 +45,9 @@ void main() {
             vec4 lightDir = normalize(lightDirs[i]);
             vec4 r = normalize(reflect(lightDir, vec4(realNormal, 0.f)));
 
-            fragColor += k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
-            shininess == 0 ? fragColor += k_s * cSpecular * lightColor :
-                    fragColor += k_s * cSpecular *
+            phongColor += k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            shininess == 0 ? phongColor += k_s * cSpecular * lightColor :
+                    phongColor += k_s * cSpecular *
                     pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
         }
 
@@ -54,9 +57,9 @@ void main() {
             float d = length(vec4(position, 1.0f) - lightPoses[i]);
             float att = min(1.0f, 1.0f / (functions[i][0] + functions[i][1] * d + functions[i][2] * d * d));
 
-            fragColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
-            shininess == 0 ? fragColor += att * k_s * cSpecular * lightColor :
-                    fragColor += att * k_s * cSpecular *
+            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            shininess == 0 ? phongColor += att * k_s * cSpecular * lightColor :
+                    phongColor += att * k_s * cSpecular *
                     pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
         }
 
@@ -73,10 +76,15 @@ void main() {
             }
             else if (theta > angles[i]) att = 0;
 
-            fragColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
-            shininess == 0 ? fragColor += att * k_s * cSpecular * lightColor :
-                    fragColor += att * k_s * cSpecular *
+            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            shininess == 0 ? phongColor += att * k_s * cSpecular * lightColor :
+                    phongColor += att * k_s * cSpecular *
                     pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
         }
     }
+
+//    fragColor = phongColor;
+//    vec4 textureColor = texture(sampleTexture, vec2(uv));
+//    fragColor = mix(phongColor, textureColor, blend);
+    fragColor = texture(sampleTexture, vec2(uv));
 }

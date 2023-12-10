@@ -60,7 +60,6 @@ add_executable(${PROJECT_NAME}
     src/utils/rgba.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
 
-
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
@@ -91,6 +90,7 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/texture.vert
 	resources/shaders/fire.frag
     	resources/shaders/fire.vert
+        resources/images/kitten.png
 )
 
 target_sources(projects_realtime_other_files
