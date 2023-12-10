@@ -118,13 +118,10 @@ private:
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
     glm::vec3 m_fire_center;
-<<<<<<< HEAD
     std::vector<float> m_scene_vertices;
     std::vector<std::string> split(std::string& str, char delimiter);
     std::vector<float> loadMesh(std::string filename);
-=======
     bool fireOn = true;
->>>>>>> b4a98ea8e86167d98edc73e6111f873505f542fd
 
     void readTexture();
     QImage m_image;
