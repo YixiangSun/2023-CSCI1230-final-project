@@ -84,6 +84,8 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
     PREFIX
         "/"
     FILES
+        nature/nature_assets.obj
+        nature/nature_assets.mtl
         resources/shaders/phong.frag
         resources/shaders/phong.vert
         resources/shaders/texture.frag
@@ -93,13 +95,14 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         textures/kitten.png
         textures/wood_texture.png
         textures/angry_kitten.png
-	scenefiles/bunny.obj
+
 )
 
 target_sources(projects_realtime_other_files
   PRIVATE
     resources/shaders/fire.frag
     resources/shaders/fire.vert
+
 
 )
 

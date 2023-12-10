@@ -120,6 +120,8 @@ private:
     glm::vec3 m_fire_center;
     std::vector<float> m_scene_vertices;
     std::vector<std::string> split(std::string& str, char delimiter);
+    void makeCorner(std::string corner, std::vector<float> v, std::vector<float> vt,
+                    std::vector<float> vn, std::vector<float> vertices);
     std::vector<float> loadMesh(std::string filename);
     bool fireOn = true;
 

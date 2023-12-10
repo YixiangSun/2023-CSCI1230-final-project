@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/">
+    <file alias="nature/nature_assets.obj">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/nature/nature_assets.obj</file>
+    <file alias="nature/nature_assets.mtl">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/nature/nature_assets.mtl</file>
     <file alias="resources/shaders/phong.frag">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/resources/shaders/phong.frag</file>
     <file alias="resources/shaders/phong.vert">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/resources/shaders/phong.vert</file>
     <file alias="resources/shaders/texture.frag">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/resources/shaders/texture.frag</file>
@@ -9,7 +11,6 @@
     <file alias="textures/kitten.png">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/textures/kitten.png</file>
     <file alias="textures/wood_texture.png">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/textures/wood_texture.png</file>
     <file alias="textures/angry_kitten.png">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/textures/angry_kitten.png</file>
-    <file alias="scenefiles/bunny.obj">/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/scenefiles/bunny.obj</file>
   </qresource>
 </RCC>
 

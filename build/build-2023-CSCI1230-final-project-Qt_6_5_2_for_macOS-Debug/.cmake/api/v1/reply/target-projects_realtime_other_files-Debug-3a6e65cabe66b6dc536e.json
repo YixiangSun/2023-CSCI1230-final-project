@@ -151,6 +151,18 @@
 				"file" : 0,
 				"line" : 1735,
 				"parent" : 21
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 1937,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 1735,
+				"parent" : 23
 			}
 		]
 	},
@@ -164,31 +176,32 @@
 	"sourceGroups" : 
 	[
 		{
+			"name" : "Object Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				0,
 				1,
 				2,
 				3,
 				4,
-				5
+				5,
+				6,
+				7
 			]
 		},
 		{
 			"name" : "Resources",
 			"sourceIndexes" : 
 			[
-				6,
-				7,
-				8
-			]
-		},
-		{
-			"name" : "Object Files",
-			"sourceIndexes" : 
-			[
-				9
+				8,
+				9,
+				10
 			]
 		}
 	],
@@ -196,52 +209,57 @@
 	[
 		{
 			"backtrace" : 4,
-			"path" : "resources/shaders/phong.frag",
+			"path" : "nature/nature_assets.obj",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 6,
-			"path" : "resources/shaders/phong.vert",
-			"sourceGroupIndex" : 0
+			"path" : "nature/nature_assets.mtl",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 8,
-			"path" : "resources/shaders/texture.frag",
-			"sourceGroupIndex" : 0
+			"path" : "resources/shaders/phong.frag",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 10,
-			"path" : "resources/shaders/texture.vert",
-			"sourceGroupIndex" : 0
+			"path" : "resources/shaders/phong.vert",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 12,
-			"path" : "resources/shaders/fire.frag",
-			"sourceGroupIndex" : 0
+			"path" : "resources/shaders/texture.frag",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 14,
-			"path" : "resources/shaders/fire.vert",
-			"sourceGroupIndex" : 0
+			"path" : "resources/shaders/texture.vert",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 16,
-			"path" : "textures/kitten.png",
+			"path" : "resources/shaders/fire.frag",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 18,
-			"path" : "textures/wood_texture.png",
+			"path" : "resources/shaders/fire.vert",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 20,
-			"path" : "textures/angry_kitten.png",
-			"sourceGroupIndex" : 1
+			"path" : "textures/kitten.png",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 22,
-			"path" : "scenefiles/bunny.obj",
+			"path" : "textures/wood_texture.png",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 24,
+			"path" : "textures/angry_kitten.png",
 			"sourceGroupIndex" : 2
 		}
 	],

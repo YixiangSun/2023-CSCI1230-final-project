@@ -163,6 +163,8 @@ void Realtime::initializeGL() {
 }
 std::vector<float> Realtime::loadMesh(std::string filename){
     std::vector<float> v;
+    std::vector<float> vt;
+    std::vector<float> vn;
     std::vector<float> vertices;
 
     std::ifstream file;
@@ -176,10 +178,20 @@ std::vector<float> Realtime::loadMesh(std::string filename){
                 v.push_back(std::stof(words[1]));
                 v.push_back(std::stof(words[2]));
                 v.push_back(std::stof(words[3]));
+            }else if(words[0] == "vt"){
+                vt.push_back(std::stof(words[1]));
+                vt.push_back(std::stof(words[2]));
+            }else if(words[0] == "vn"){
+                vn.push_back(std::stof(words[1]));
+                vn.push_back(std::stof(words[2]));
+                vn.push_back(std::stof(words[3]));
             }else if(words[0] == "f"){
-                vertices.push_back(v[std::stof(words[1]) - 1]);
-                vertices.push_back(v[std::stof(words[2]) - 1]);
-                vertices.push_back(v[std::stof(words[3]) - 1]);
+                int triangleCount = words.size() - 3;
+                for (int i = 0; i < triangleCount; i ++){
+                    makeCorner(words[1], v, vt, vn, vertices);
+                    makeCorner(words[2 + i], v, vt, vn, vertices);
+                    makeCorner(words[3 + i], v, vt, vn, vertices);
+                }
             }
         }
         file.close();
@@ -187,6 +199,12 @@ std::vector<float> Realtime::loadMesh(std::string filename){
         std::cout<<"Unable to open file" << std::endl;
     }
     return vertices;
+}
+void Realtime::makeCorner(std::string corner, std::vector<float> v,
+                std::vector<float> vt, std::vector<float> vn,
+                std::vector<float> vertices){
+    std::vector<std::string> v_vt_vn = Realtime::split(corner, '/');
+    vertices.push_back(v[std::stoi(v_vt_vn[0]) - 1]);
 }
 std::vector<std::string> Realtime::split(std::string& str, char delimiter){
     std::istringstream iss(str);
@@ -444,12 +462,14 @@ void Realtime::getVaos() {
     }
 }
 
-//void Realtime::draw_scene(){
+//void Realtime::draw_scene(std::string obj_filename, std::string mtl_filename){
 //    glm::vec4 cameraPos = camera.getData().pos;
 //    int numLights = sceneData.lights.size();
 
 //    GLuint vao = 0;
 //    std::vector<float> verts;
+
+
 //}
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
