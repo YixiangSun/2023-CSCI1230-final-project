@@ -60,6 +60,8 @@ private:
     GLuint m_texture_shader;
     GLuint m_fullscreen_vbo;
     GLuint m_fullscreen_vao;
+    GLuint m_scene_vbo;
+    GLuint m_scene_vao;
     GLuint m_fbo_texture;
     GLuint m_fbo_renderbuffer;
     GLuint m_fbo;
@@ -116,6 +118,9 @@ private:
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
     glm::vec3 m_fire_center;
+    std::vector<float> m_scene_vertices;
+    std::vector<std::string> split(std::string& str, char delimiter);
+    std::vector<float> loadMesh(std::string filename);
 
     void readTexture();
     QImage m_image;

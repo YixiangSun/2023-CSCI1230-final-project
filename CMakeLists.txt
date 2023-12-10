@@ -93,12 +93,14 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         textures/kitten.png
         textures/wood_texture.png
         textures/angry_kitten.png
+	scenefiles/bunny.obj
 )
 
 target_sources(projects_realtime_other_files
   PRIVATE
     resources/shaders/fire.frag
     resources/shaders/fire.vert
+
 )
 
 # GLEW: this provides support for Windows (including 64-bit)
