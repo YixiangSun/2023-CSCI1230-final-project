@@ -20,8 +20,11 @@ uniform vec4 cSpecular;
 uniform float shininess;
 uniform vec4 cameraPos;
 
+uniform bool fireOn;
+
 uniform int numLights;
 uniform int lightTypes[8];
+uniform bool isFires[8];
 uniform vec4 lightDirs[8];
 uniform vec4 lightPoses[8];
 uniform vec4 lightColors[8];
@@ -40,7 +43,9 @@ void main() {
     phongColor += k_a * cAmbient;  // Ambient term
 
     for (int i = 0; i < numLights; i++) {
-
+        if (isFires[i] && !fireOn){
+            continue;
+        }
         vec4 lightColor = lightColors[i];
 
         if (lightTypes[i] == 0) { // Directional light

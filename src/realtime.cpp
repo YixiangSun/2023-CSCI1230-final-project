@@ -244,9 +244,11 @@ void Realtime::extractInfo(std::string filepath) {
     functions.clear();
     angles.clear();
     penumbras.clear();
+    isFires.clear();
     for (auto light : sceneData.lights) {
         if (light.type == LightType::LIGHT_DIRECTIONAL) {
             lightTypes.push_back(0);
+            isFires.push_back(light.isFire);
             lightDirs.push_back(light.dir);
             lightColors.push_back(light.color);
             lightPoses.push_back(glm::vec4(999, 999, 999, 999));
@@ -255,6 +257,7 @@ void Realtime::extractInfo(std::string filepath) {
             penumbras.push_back(0.f);
         } else if (light.type == LightType::LIGHT_POINT) {
             lightTypes.push_back(1);
+            isFires.push_back(light.isFire);
             lightDirs.push_back(glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
             lightColors.push_back(light.color);
             lightPoses.push_back(light.pos);
@@ -263,6 +266,7 @@ void Realtime::extractInfo(std::string filepath) {
             penumbras.push_back(0.f);
         } else {
             lightTypes.push_back(2);
+            isFires.push_back(light.isFire);
             lightDirs.push_back(light.dir);
             lightColors.push_back(light.color);
             lightPoses.push_back(light.pos);
@@ -576,11 +580,16 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     if (ifBall && settings.material != 1) anger = time_on_fire/10.0f;
     glUniform1f(uniformLocation, anger);
 
+    glUniform1i(glGetUniformLocation(m_shader, "fireOn"), fireOn);
     for (int i = 0; i < sceneData.lights.size(); i++) {
 
         std::string str =  "lightTypes[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_shader, str.c_str());
         glUniform1i(uniformLocation, lightTypes[i]);
+
+        str = "isFires[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform1i(uniformLocation, isFires[i]);
 
         str =  "lightPoses[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_shader, str.c_str());

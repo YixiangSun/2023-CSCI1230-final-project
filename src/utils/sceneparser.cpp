@@ -46,6 +46,7 @@ void dfsTransform(std::vector<SceneLightData> &lights, std::vector<RenderShapeDa
         lightData.type = light->type;
         lightData.color = light -> color;
         lightData.function = light -> function;
+        lightData.isFire = light -> isFire;
         if (light->type != LightType::LIGHT_DIRECTIONAL) {
             lightData.pos = mat * glm::vec4(0.f, 0.f, 0.f, 1.f);
         }

@@ -74,6 +74,7 @@ private:
     std::vector<glm::vec4> lightPoses;
     std::vector<glm::vec4> lightColors;
     std::vector<glm::vec3> functions;
+    std::vector<bool> isFires;
     std::vector<float> angles;
     std::vector<float> penumbras;
 

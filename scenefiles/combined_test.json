@@ -51,6 +51,7 @@
         "lights": [
           {
             "type": "directional",
+	    "isFire": false,
             "color": [1.0, 1.0, 1.0],
             "direction": [0.0, -1.0, 0.4]
           }
@@ -114,6 +115,7 @@
        		     "lights":[
    			{
      			   "type": "point",
+			   "isFire": true,
      			   "color": [1.0, 0.0, 0.0],
      			   "attenuationCoeff": [1.0, 1.0, 1.0]
    			}
@@ -124,6 +126,7 @@
        		     "lights":[
    			{
      			   "type": "point",
+		 	   "isFire": true,
      			   "color": [1.0, 0.0, 0.0],
      			   "attenuationCoeff": [1.0, 1.0, 1.0]
   			 }
@@ -134,6 +137,7 @@
       			"lights":[
    			   {
      				"type": "point",
+		 	 	"isFire": true,
      				"color": [1.0, 0.0, 0.0],
      				"attenuationCoeff": [1.0, 1.0, 1.0]
    			    }
@@ -144,6 +148,7 @@
       			"lights":[
    			   {
      				"type": "point",
+	 	 	    	"isFire": true,
      				"color": [1.0, 0.0, 0.0],
      				"attenuationCoeff": [1.0, 1.0, 1.0]
    			    }
@@ -154,6 +159,7 @@
       			"lights":[
    			   {
      				"type": "point",
+	 	   	        "isFire": true,
      				"color": [1.0, 0.0, 0.0],
      				"attenuationCoeff": [1.0, 1.0, 1.0]
    			    }
@@ -408,7 +414,7 @@
                  "primitives": [
                      {
                   "type": "cylinder",
-    	  	  "ambient": [0.55, 0.27, 0.550],
+    	  	  "ambient": [0.55, 0.27, 0.10],
                   "diffuse": [0.4, 0.4, 0.4],
     		  "specular": [0.2, 0.2, 0.2],
     		  "shininess": 5.0,
@@ -423,7 +429,7 @@
                  "primitives": [
                      {
                   "type": "cylinder",
-    		  "ambient": [0.55, 0.27, 0.550],
+    		  "ambient": [0.55, 0.27, 0.10],
                   "diffuse": [0.4, 0.4, 0.4],
     		  "specular": [0.2, 0.2, 0.2],
     		  "shininess": 5.0,

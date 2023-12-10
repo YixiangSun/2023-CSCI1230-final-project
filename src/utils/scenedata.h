@@ -46,6 +46,7 @@ struct SceneGlobalData {
 struct SceneLight {
     int id;
     LightType type;
+    bool isFire;
 
     SceneColor color;
     glm::vec3 function; // Attenuation function
@@ -61,6 +62,7 @@ struct SceneLight {
 struct SceneLightData {
     int id;
     LightType type;
+    bool isFire;
 
     SceneColor color;
     glm::vec3 function; // Attenuation function
