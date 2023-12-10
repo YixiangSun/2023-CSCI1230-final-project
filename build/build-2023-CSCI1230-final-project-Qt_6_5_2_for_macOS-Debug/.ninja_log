@@ -54,3 +54,9 @@
 17	235	1702238966914378324	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp	8d6258389f1ae99f
 236	2983	1702238969657046518	CMakeFiles/projects_realtime.dir/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/.rcc/qrc_Resources.cpp.o	dd9aecc0f236fdfb
 2983	3125	1702238969802245700	projects_realtime	29231fac36ff6898
+9	40	1702239292456841030	projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+9	40	1702239292456841030	projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+9	40	1702239292456841030	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/timestamp	cc5f14df684ad2ee
+9	40	1702239292456841030	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	cc5f14df684ad2ee
+44	1145	1702239293556049198	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	b508a98b08d504a2
+1145	1308	1702239293721794600	projects_realtime	29231fac36ff6898
