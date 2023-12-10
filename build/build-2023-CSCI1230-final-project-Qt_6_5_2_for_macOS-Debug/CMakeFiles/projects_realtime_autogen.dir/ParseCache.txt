@@ -2,6 +2,12 @@
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/realtime.h
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cone.h
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/settings.h
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Water.h
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.cpp
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shaderloader.h
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.cpp
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.h
+/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cylinder.h
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.h
  mmc:Q_OBJECT
  mdp:/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.h
@@ -1012,12 +1018,6 @@
  mdp:/Users/juliafu/Qt/6.5.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/Users/juliafu/Qt/6.5.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
  mdp:/Users/juliafu/Qt/6.5.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Water.h
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/mainwindow.cpp
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.cpp
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shaderloader.h
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenefilereader.h
-/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cylinder.h
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/main.cpp
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/camera/camera.h
 /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Cube.h

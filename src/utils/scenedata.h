@@ -150,6 +150,7 @@ struct ScenePrimitive {
     PrimitiveType type;
     SceneMaterial material;
     bool isFire;
+    bool isSmoke;
     std::string meshfile; // Used for triangle meshes
 };
 

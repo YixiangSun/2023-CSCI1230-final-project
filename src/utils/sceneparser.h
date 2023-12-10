@@ -10,6 +10,7 @@ struct RenderShapeData {
     glm::mat4 ctm; // the cumulative transformation matrix
     glm::mat4 originalCTM;
     bool isFire;
+    bool isSmoke;
     int riseCount = 0;
     float timeOffset;
 };

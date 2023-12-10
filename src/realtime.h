@@ -92,6 +92,13 @@ private:
     void makeFBO();
     void paintTexture(GLuint texture);
 
+    // scene parsing
+    std::vector<float> m_scene_vertices;
+    std::vector<std::string> split(std::string& str, char delimiter);
+    void makeCorner(std::string corner, std::vector<float> v, std::vector<float> vt,
+                    std::vector<float> vn, std::vector<float> vertices);
+    std::vector<float> loadMesh(std::string filename);
+
     // water
     Water water;
     GLuint m_water_vao;
@@ -119,13 +126,9 @@ private:
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
     glm::vec3 m_fire_center;
-    std::vector<float> m_scene_vertices;
-    std::vector<std::string> split(std::string& str, char delimiter);
-    void makeCorner(std::string corner, std::vector<float> v, std::vector<float> vt,
-                    std::vector<float> vn, std::vector<float> vertices);
-    std::vector<float> loadMesh(std::string filename);
     bool fireOn = true;
 
+    // texture
     void readTexture();
     QImage m_image;
     QImage m_angry_image;

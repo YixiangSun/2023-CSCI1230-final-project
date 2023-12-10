@@ -41,10 +41,22 @@ SceneMaterial redRitchie {
     .shininess = 60,      // Specular exponent
 };
 
+SceneMaterial smoke{
+    .cAmbient = SceneColor(glm::vec4(0.5f, 0.5f, 0.5f, 0.1f)), // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(1.0, 1.0, 1.0, 0.1f)), // Diffuse term
+    .cSpecular = SceneColor(glm::vec4(0.0, 0.0, 0.0, 0.1f)), // Specular term
+    .shininess = 1,       // Specular exponent
+};
 std::vector<SceneMaterial> materialList = {bronzeBall, coal, redRitchie};
 
-
+ScenePrimitive smokePrimitive{
+    .type = PrimitiveType::PRIMITIVE_CUBE,
+    .material = smoke,
+    .isFire = false,
+    .isSmoke = true,
+};
 RenderData sceneData;
+std::vector<RenderShapeData> smokeShapes;
 Camera camera(sceneData.cameraData, 0, 0);
 Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, bronzeBall);
 std::vector<GLuint> vaos(5);
@@ -438,6 +450,7 @@ void Realtime::getVaos() {
 
 
 //}
+
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
     glm::vec4 cameraPos = camera.getData().pos;
@@ -501,6 +514,57 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
             }else{
                 shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
             }
+        }
+        else if(shape.isSmoke){
+            float x_dist = shape.ctm[3][0] - ball.getPos().x;
+            float z_dist = shape.ctm[3][2] - ball.getPos().z;
+            glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
+            float y_vel = 0.1f;
+            glm::vec3 velocity;
+            if (shape.riseCount == 0){
+                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
+            }
+            shape.riseCount += 1;
+            float r = ((double) rand() / (RAND_MAX)) * 0.04f;
+            if (shape.riseCount <= 4){
+                velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
+            }else if(shape.riseCount <= 8){
+                velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
+            }else if (shape.riseCount <= 12){
+                velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
+            }else{
+                // velocity = glm::vec3(0.f, 10000.f, 0.f);
+                smokeShapes.clear();
+                return;
+            }
+            if (settings.material == 1){
+                if (isInWater()){
+                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                }else{
+                    return;
+                }
+            }else if(settings.material == 2){
+                if (time_on_fire < 10){
+                    if (isInWater()){
+                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                    }else if(!soaked){
+                        shape.primitive.material.cAmbient = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                    }else{
+                        return;
+                    }
+                }else{
+                    if (!soaked || isInWater()){
+                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                    }else{
+                        return;
+                    }
+                }
+            }else{
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+            }
+
         }
         vao = vaos[0];
         verts = vertsList[0];
@@ -635,7 +699,30 @@ void Realtime::paintGL() {
         RenderShapeData ball = sceneData.shapes[0];
         Realtime::draw(ball, true, ball.ctm);  // draw the ball
     }
+    if (time_on_fire > 0.f){
+        glm::vec3 ballPos = ball.getPos();
+        for (int i = -1; i < 2 ; i ++){
+            for (int j = 2; j < 4; j ++){
+                for (int k = -1; k < 2; k ++){
+                    glm::mat4 ctm = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(ballPos.x + float(i) * 0.2f, ballPos.y + float(j) * 0.2f, ballPos.z + float(k) * 0.2f)), glm::vec3(0.15f, 0.15f, 0.15f));
+                    RenderShapeData smoke = RenderShapeData{
+                        .ctm = ctm,
+                        .isFire = false,
+                        .isSmoke = true,
+                        .originalCTM = ctm,
+                        .primitive = smokePrimitive,
+                        .riseCount = 0,
+                        .timeOffset = 0,
+                    };
+                    smokeShapes.push_back(smoke);
+                }
+            }
+        }
+    }
     for (RenderShapeData &shape : sceneData.shapes) {
+        Realtime::draw(shape, false, shape.originalCTM);
+    }
+    for (RenderShapeData &shape : smokeShapes){
         Realtime::draw(shape, false, shape.originalCTM);
     }
 

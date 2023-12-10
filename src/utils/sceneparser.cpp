@@ -37,6 +37,7 @@ void dfsTransform(std::vector<SceneLightData> &lights, std::vector<RenderShapeDa
             shape.originalCTM = mat;
             shape.primitive = *p;
             shape.isFire = p -> isFire;
+            shape.isSmoke = false;
             shapes.push_back(shape);
         }
     }
