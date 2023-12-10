@@ -25,11 +25,11 @@ SceneMaterial bronzeBall {
     .shininess = 60,      // Specular exponent
 };
 
-SceneMaterial blank {
-    .cAmbient =  SceneColor(glm::vec4(0., 0., 0., 1)),  // Ambient term
+SceneMaterial coal {
+    .cAmbient =  SceneColor(glm::vec4(0.05, 0.05, 0.05, 1)),  // Ambient term
     .cDiffuse = SceneColor(glm::vec4(0, 0., 0., 1)),  // Diffuse term
-    .cSpecular = SceneColor(glm::vec4(0.4, 0.4, 0.4, 0.4)), // Specular term
-    .shininess = 30,      // Specular exponent
+    .cSpecular = SceneColor(glm::vec4(0.1, 0.1, 0.1, 1.0)), // Specular term
+    .shininess = 0,      // Specular exponent
 };
 
 SceneMaterial redRitchie {
@@ -39,7 +39,7 @@ SceneMaterial redRitchie {
     .shininess = 60,      // Specular exponent
 };
 
-std::vector<SceneMaterial> materialList = {bronzeBall, blank, redRitchie};
+std::vector<SceneMaterial> materialList = {bronzeBall, coal, redRitchie};
 
 
 RenderData sceneData;
@@ -64,7 +64,8 @@ Realtime::Realtime(QWidget *parent)
     m_keyMap[Qt::Key_Control] = false;
     m_keyMap[Qt::Key_Space]   = false;
     m_keyMap[Qt::Key_Shift]   = false;
-    m_keyMap[Qt::Key_J]   = false;
+    m_keyMap[Qt::Key_J]       = false;
+    m_keyMap[Qt::Key_F]       = false;
 
     // If you must use this function, do not edit anything above this
 }
@@ -510,7 +511,8 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
 
     uniformLocation = glGetUniformLocation(m_shader, "blend");
     float blend = 0.0f;
-    if (ifBall && settings.material != 1) blend = (1.0 - 0.6 * time_on_fire/10.0f);
+    if (ifBall && settings.material == 2) blend = (1.0 - time_on_fire/10.0f);
+    else if (ifBall && settings.material == 3) blend = (1.0 - 0.6 * time_on_fire/10.0f);
     glUniform1f(uniformLocation, blend);
 
     uniformLocation = glGetUniformLocation(m_shader, "anger");
@@ -578,10 +580,10 @@ void Realtime::paintGL() {
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    paintTexture(m_fbo_texture, settings.perPixelFilter, settings.kernelBasedFilter);
+    paintTexture(m_fbo_texture);
 }
 
-void Realtime::paintTexture(GLuint texture, bool perPixel, bool kernel){
+void Realtime::paintTexture(GLuint texture){
     glUseProgram(m_texture_shader);
 
     glBindVertexArray(m_fullscreen_vao);
@@ -591,13 +593,6 @@ void Realtime::paintTexture(GLuint texture, bool perPixel, bool kernel){
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindVertexArray(0);
-    glUseProgram(0);
-
-    glUseProgram(m_texture_shader);
-    GLint uniformLocation = glGetUniformLocation(m_texture_shader, "perPixel");
-    glUniform1i(uniformLocation, perPixel);
-    uniformLocation = glGetUniformLocation(m_texture_shader, "kernel");
-    glUniform1i(uniformLocation, kernel);
     glUseProgram(0);
 }
 
@@ -776,6 +771,45 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     return desiredDir;
 }
 
+void Realtime::updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCameraData &cData) {
+
+    glm::vec3 ballPos = ball.getPos();
+
+    // check if ball is soaked
+    if (settings.material != 1 && ballPos.y <= 0.1) {
+        soaked = true;
+    }
+
+    // check if ball is on fire and if fire is on to update time_on_fire
+    bool onFire = false;
+    if (glm::distance(m_fire_pos, glm::vec3(ballPos)) <= m_fire_radius + ball.getRadius()) {
+        onFire = true;
+    }
+    if (onFire && soaked && fireOn) {
+        // if ball is on the fireplace, it is soaked, and the fire is on, put out the fire, and dry the ball.
+        fireOn = false;
+        soaked = false;
+    }
+    if (onFire && fireOn) time_on_fire = fmin(10, time_on_fire + deltaTime);
+    else if (ballPos.y <= 0.1 && settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
+    else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
+    if (m_keyMap[Qt::Key_F]) fireOn = true;  // press F to put on fire
+
+    // jump or drop down to the ground
+    float groundHeight = ball.getRadius();
+    if (onFire) groundHeight += 0.5;
+    if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
+        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
+        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
+    }
+    if (ballPos.x < m_bound && ballPos.z < m_bound &&
+        ballPos.x > -m_bound && ballPos.z > -m_bound &&
+        ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
+        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
+        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
+    }
+}
+
 
 void Realtime::timerEvent(QTimerEvent *event) {
     int elapsedms   = m_elapsedTimer.elapsed();
@@ -830,28 +864,21 @@ void Realtime::timerEvent(QTimerEvent *event) {
 
     glm::vec3 ballPos = ball.getPos();
 
-    bool onFire = false;
-    if (glm::distance(m_fire_pos, glm::vec3(ballPos)) <= m_fire_radius + ball.getRadius()) {
-        onFire = true;
-    }
-
-    if (onFire) time_on_fire = fmin(10, time_on_fire + deltaTime);
-    else if (isInWater() && settings.material != 1) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
-    else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
+    updateBallAndFireStates(deltaTime, ctm, cData);
 
     // jump or drop down to the ground
-    float groundHeight = ball.getRadius();
-    if (onFire) groundHeight += 0.5;
-    if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
-        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
-        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
-    }
-    if (ballPos.x < m_bound && ballPos.z < m_bound &&
-        ballPos.x > -m_bound && ballPos.z > -m_bound &&
-        ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
-        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
-        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
-    }
+//    float groundHeight = ball.getRadius();
+//    if (onFire) groundHeight += 0.5;
+//    if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
+//        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
+//        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
+//    }
+//    if (ballPos.x < m_bound && ballPos.z < m_bound &&
+//        ballPos.x > -m_bound && ballPos.z > -m_bound &&
+//        ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
+//        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
+//        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
+//    }
 
     ball.updateCTM(ctm);
     camera.updateData(cData);

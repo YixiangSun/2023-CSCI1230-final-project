@@ -87,7 +87,7 @@ private:
     void extractInfo(std::string filepath);
     void getFullScreenVao();
     void makeFBO();
-    void paintTexture(GLuint texture, bool perPixel, bool kernel);
+    void paintTexture(GLuint texture);
 
     // water
     Water water;
@@ -109,13 +109,14 @@ private:
     glm::vec3 getWaterNormal();
     float m_rim_width = 0.8;
     float time_on_fire = 0.0f;
-//    float startingHeight = 0.3;
-//    bool falling = false;
+    bool soaked = false;
+    void updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCameraData &cData);
 
     // fire
     float m_fire_radius = 1.2f;
     glm::vec3 m_fire_pos;
     glm::vec3 m_fire_center;
+    bool fireOn = true;
 
     void readTexture();
     QImage m_image;
