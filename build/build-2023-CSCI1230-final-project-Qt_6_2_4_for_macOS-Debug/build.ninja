@@ -332,7 +332,7 @@ build StaticGLEW_autogen: phony CMakeFiles/StaticGLEW_autogen StaticGLEW_autogen
 #############################################
 # Custom command for .rcc/qrc_Resources.cpp
 
-build .rcc/qrc_Resources.cpp | ${cmake_ninja_workdir}.rcc/qrc_Resources.cpp: CUSTOM_COMMAND /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/kitten.png /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/wood_texture.png /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/angry_kitten.png .rcc/Resources.qrc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/rcc || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a projects_realtime_autogen projects_realtime_autogen_timestamp_deps
+build .rcc/qrc_Resources.cpp | ${cmake_ninja_workdir}.rcc/qrc_Resources.cpp: CUSTOM_COMMAND /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.frag /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.vert /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/kitten.png /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/wood_texture.png /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/angry_kitten.png /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/scenefiles/bunny.obj .rcc/Resources.qrc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/rcc || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a projects_realtime_autogen projects_realtime_autogen_timestamp_deps
   COMMAND = cd /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug && /Users/yixiangsun/Qt/6.2.4/macos/./libexec/rcc --output /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/.rcc/qrc_Resources.cpp --name Resources /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/.rcc/Resources.qrc --no-zstd
   DESC = Running rcc for resource Resources
   restat = 1
@@ -361,7 +361,7 @@ build StaticGLEW_autogen/timestamp StaticGLEW_autogen/mocs_compilation.cpp | ${c
 #############################################
 # Phony custom command for CMakeFiles/projects_realtime_autogen_timestamp_deps
 
-build CMakeFiles/projects_realtime_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/projects_realtime_autogen_timestamp_deps: phony /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic libStaticGLEW.a || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a
+build CMakeFiles/projects_realtime_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/projects_realtime_autogen_timestamp_deps: phony /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc libStaticGLEW.a || StaticGLEW_autogen StaticGLEW_autogen_timestamp_deps libStaticGLEW.a
 
 
 #############################################
@@ -373,7 +373,7 @@ build CMakeFiles/projects_realtime_autogen | ${cmake_ninja_workdir}CMakeFiles/pr
 #############################################
 # Phony custom command for CMakeFiles/StaticGLEW_autogen_timestamp_deps
 
-build CMakeFiles/StaticGLEW_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/StaticGLEW_autogen_timestamp_deps: phony /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic
+build CMakeFiles/StaticGLEW_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/StaticGLEW_autogen_timestamp_deps: phony /Users/yixiangsun/Qt/6.2.4/macos/./libexec/uic /Users/yixiangsun/Qt/6.2.4/macos/./libexec/moc
 
 
 #############################################

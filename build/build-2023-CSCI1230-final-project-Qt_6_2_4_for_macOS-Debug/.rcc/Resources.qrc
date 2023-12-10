@@ -9,6 +9,7 @@
     <file alias="textures/kitten.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/kitten.png</file>
     <file alias="textures/wood_texture.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/wood_texture.png</file>
     <file alias="textures/angry_kitten.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/angry_kitten.png</file>
+    <file alias="scenefiles/bunny.obj">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/scenefiles/bunny.obj</file>
   </qresource>
 </RCC>
 

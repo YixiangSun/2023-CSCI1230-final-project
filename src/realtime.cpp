@@ -4,8 +4,6 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include "camera/camera.h"
 #include "glm/ext/matrix_transform.hpp"
 #include "settings.h"
@@ -129,27 +127,6 @@ void Realtime::initializeGL() {
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
 
-//    m_scene_vertices = Realtime::loadMesh(":/resources/scenefiles/bunny.obj");
-//    int scene_vertices_count = m_scene_vertices.size()/8;
-
-//    glGenBuffers(1, &m_scene_vbo);
-//    glBindBuffer(GL_ARRAY_BUFFER, m_scene_vbo);
-//    glBufferData(GL_ARRAY_BUFFER, m_scene_vertices.size()*sizeof(GLfloat), m_scene_vertices.data(), GL_STATIC_DRAW);
-
-//    glGenVertexArrays(1, &m_scene_vao);
-//    glBindVertexArray(m_scene_vao);
-
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
-
-//    glUseProgram(m_shader);
-//    int textureLocation = glGetUniformLocation(m_shader, "sampleTexture");
-//    glUniform1f(textureLocation, GL_TEXTURE0);  // Assuming you want to use texture slot 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    glUseProgram(0);
-
-//    glBindBuffer(GL_ARRAY_BUFFER, 0);
-//    glBindVertexArray(0);
-
     glGenBuffers(1, &m_water_vbo);
     glGenVertexArrays(1, &m_water_vao);
     m_accumulatedTime = 0.f;
@@ -161,45 +138,7 @@ void Realtime::initializeGL() {
     initialized = true;
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
 }
-std::vector<float> Realtime::loadMesh(std::string filename){
-    std::vector<float> v;
-    std::vector<float> vertices;
 
-    std::ifstream file;
-    file.open(filename);
-
-    if(file.is_open()){
-        std::string line;
-        while(getline(file, line)){
-            std::vector <std::string> words = Realtime::split(line, ' ');
-            if (words[0] == "v"){
-                v.push_back(std::stof(words[1]));
-                v.push_back(std::stof(words[2]));
-                v.push_back(std::stof(words[3]));
-            }else if(words[0] == "f"){
-                vertices.push_back(v[std::stof(words[1]) - 1]);
-                vertices.push_back(v[std::stof(words[2]) - 1]);
-                vertices.push_back(v[std::stof(words[3]) - 1]);
-            }
-        }
-        file.close();
-    }else{
-        std::cout<<"Unable to open file" << std::endl;
-    }
-    return vertices;
-}
-std::vector<std::string> Realtime::split(std::string& str, char delimiter){
-    std::istringstream iss(str);
-    std::vector<std::string> tokens;
-    std::string token;
-
-    while(std::getline(iss, token, delimiter)){
-        if (!token.empty()){
-            tokens.push_back(token);
-        }
-    }
-    return tokens;
-}
 void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Prepare filepath
     QString kitten_filepath;
@@ -230,24 +169,6 @@ void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     int textureLocation = glGetUniformLocation(m_shader, "sampleTexture");
     glUniform1f(textureLocation, GL_TEXTURE0);  // Assuming you want to use texture slot 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     glUseProgram(0);  // Return to default state
-
-//    glGenTextures(1, &m_angry_kitten_texture);
-
-//    glActiveTexture(GL_TEXTURE2);
-
-//    glBindTexture(GL_TEXTURE_2D, m_angry_kitten_texture);
-
-//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_angry_image.width(), m_angry_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_angry_image.bits());
-
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-//    glBindTexture(0, m_angry_kitten_texture);
-
-//    glUseProgram(m_shader);
-//    textureLocation = glGetUniformLocation(m_shader, "angryTexture");
-//    glUniform1f(textureLocation, GL_TEXTURE2);
-//    glUseProgram(0);  // Return to default state
 }
 
 // polulates the global variables by parsing the json file
@@ -444,13 +365,7 @@ void Realtime::getVaos() {
     }
 }
 
-//void Realtime::draw_scene(){
-//    glm::vec4 cameraPos = camera.getData().pos;
-//    int numLights = sceneData.lights.size();
 
-//    GLuint vao = 0;
-//    std::vector<float> verts;
-//}
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
     glm::vec4 cameraPos = camera.getData().pos;
@@ -938,20 +853,6 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::vec3 ballPos = ball.getPos();
 
     updateBallAndFireStates(deltaTime, ctm, cData);
-
-    // jump or drop down to the ground
-//    float groundHeight = ball.getRadius();
-//    if (onFire) groundHeight += 0.5;
-//    if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
-//        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
-//        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
-//    }
-//    if (ballPos.x < m_bound && ballPos.z < m_bound &&
-//        ballPos.x > -m_bound && ballPos.z > -m_bound &&
-//        ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
-//        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
-//        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
-//    }
 
     ball.updateCTM(ctm);
     camera.updateData(cData);

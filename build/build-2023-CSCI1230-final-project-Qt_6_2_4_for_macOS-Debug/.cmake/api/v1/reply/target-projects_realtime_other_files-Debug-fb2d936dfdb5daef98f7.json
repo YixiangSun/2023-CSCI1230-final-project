@@ -139,6 +139,18 @@
 				"file" : 0,
 				"line" : 1813,
 				"parent" : 19
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 1910,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 1813,
+				"parent" : 21
 			}
 		]
 	},
@@ -170,6 +182,13 @@
 				6,
 				7,
 				8
+			]
+		},
+		{
+			"name" : "Object Files",
+			"sourceIndexes" : 
+			[
+				9
 			]
 		}
 	],
@@ -219,6 +238,11 @@
 			"backtrace" : 20,
 			"path" : "textures/angry_kitten.png",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 22,
+			"path" : "scenefiles/bunny.obj",
+			"sourceGroupIndex" : 2
 		}
 	],
 	"type" : "UTILITY"
