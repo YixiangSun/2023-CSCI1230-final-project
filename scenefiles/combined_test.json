@@ -64,7 +64,7 @@
             "primitives": [
               {
                 "type": "cube",
-                "diffuse": [0.1, 0.8, 0.5],
+                "diffuse": [0.3, 0.8, 0.5],
 		"isFire": false
               }
             ]
@@ -76,7 +76,7 @@
             "primitives": [
               {
                 "type": "cube",
-                "diffuse": [0.1, 0.8, 0.5],
+                "diffuse": [0.3, 0.8, 0.5],
 		"isFire": false
               }
             ]
@@ -88,7 +88,7 @@
             "primitives": [
               {
                 "type": "cube",
-                "diffuse": [0.1, 0.8, 0.5],
+                "diffuse": [0.3, 0.8, 0.5],
 		"isFire": false
               }
             ]
@@ -99,7 +99,7 @@
             "primitives": [
               {
                 "type": "cube",
-                "diffuse": [0.1, 0.8, 0.5],
+                "diffuse": [0.3, 0.8, 0.5],
 		"isFire": false
               }
             ]

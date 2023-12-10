@@ -1,6 +1,5 @@
 #version 330 core
 
-// Task 16: Create a UV coordinate in variable
 in vec3 uvCoordinates;
 uniform sampler2D sampler;
 uniform bool perPixel;

@@ -90,7 +90,9 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/texture.vert
 	resources/shaders/fire.frag
     	resources/shaders/fire.vert
-        resources/images/kitten.png
+        textures/kitten.png
+        textures/wood_texture.png
+        textures/angry_kitten.png
 )
 
 target_sources(projects_realtime_other_files

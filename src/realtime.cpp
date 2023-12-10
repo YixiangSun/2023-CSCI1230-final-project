@@ -23,18 +23,23 @@ SceneMaterial bronzeBall {
     .cDiffuse = SceneColor(glm::vec4(1, 0.5, 0.15, 1)),  // Diffuse term
     .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
     .shininess = 60,      // Specular exponent
-    .blend = 0.5
 };
 
 SceneMaterial blank {
     .cAmbient =  SceneColor(glm::vec4(0., 0., 0., 1)),  // Ambient term
     .cDiffuse = SceneColor(glm::vec4(0, 0., 0., 1)),  // Diffuse term
-    .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
-    .shininess = 60,      // Specular exponent
-    .blend = 0.5
+    .cSpecular = SceneColor(glm::vec4(0.4, 0.4, 0.4, 0.4)), // Specular term
+    .shininess = 30,      // Specular exponent
 };
 
-std::vector<SceneMaterial> materialList = {bronzeBall, blank, blank};
+SceneMaterial redRitchie {
+    .cAmbient =  SceneColor(glm::vec4(1.0, 0.0, 0.0, 1.0)),  // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(1.0, 0., 0., 1)),  // Diffuse term
+    .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
+    .shininess = 60,      // Specular exponent
+};
+
+std::vector<SceneMaterial> materialList = {bronzeBall, blank, redRitchie};
 
 
 RenderData sceneData;
@@ -130,43 +135,56 @@ void Realtime::initializeGL() {
 
     initialized = true;
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
-    readTexture(); // !!!!!!!!!!!!!!
 }
 
 void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Prepare filepath
-    QString kitten_filepath = QString(":/resources/images/kitten.png");
+    QString kitten_filepath;
+    if (settings.material == 3)  kitten_filepath = QString(":/textures/kitten.png");
+    else if (settings.material == 2)  kitten_filepath = QString(":/textures/wood_texture.png");
+    QString angry_filepath = QString(":/textures/angry_kitten.png");
 
-    // Task 1: Obtain image from filepath
     m_image = QImage(kitten_filepath);
+    m_angry_image = QImage(angry_filepath);
 
-    // Task 2: Format image to fit OpenGL
     m_image = m_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
+    m_angry_image = m_angry_image.convertToFormat(QImage::Format_RGBA8888).mirrored();
 
-    // Task 3: Generate kitten texture
     glGenTextures(1, &m_kitten_texture);
 
-    // Task 9: Set the active texture slot to texture slot 0
-    glActiveTexture(GL_TEXTURE0); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glActiveTexture(GL_TEXTURE0);
 
-    // Task 4: Bind kitten texture
     glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
 
-    // Task 5: Load image into kitten texture
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image.width(), m_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image.bits());
 
-    // Task 6: Set min and mag filters' interpolation mode to linear
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    // Task 7: Unbind kitten texture
     glBindTexture(0, m_kitten_texture);
 
-    // Task 10: Set the texture.frag uniform for our texture
     glUseProgram(m_shader);
     int textureLocation = glGetUniformLocation(m_shader, "sampleTexture");
     glUniform1f(textureLocation, GL_TEXTURE0);  // Assuming you want to use texture slot 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     glUseProgram(0);  // Return to default state
+
+//    glGenTextures(1, &m_angry_kitten_texture);
+
+//    glActiveTexture(GL_TEXTURE2);
+
+//    glBindTexture(GL_TEXTURE_2D, m_angry_kitten_texture);
+
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_angry_image.width(), m_angry_image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_angry_image.bits());
+
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+//    glBindTexture(0, m_angry_kitten_texture);
+
+//    glUseProgram(m_shader);
+//    textureLocation = glGetUniformLocation(m_shader, "angryTexture");
+//    glUniform1f(textureLocation, GL_TEXTURE2);
+//    glUseProgram(0);  // Return to default state
 }
 
 // polulates the global variables by parsing the json file
@@ -224,10 +242,7 @@ void Realtime::extractInfo(std::string filepath) {
             c += 1;
         }
     }
-    //    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
     m_fire_pos = m_fire_pos * (1.0f/float(c));
-
-    //    std::cout << m_fire_pos.x << " " << m_fire_pos.z << std::endl;
 
 }
 
@@ -385,8 +400,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
 
     glUseProgram(m_shader);
     GLint primTypeLocation = glGetUniformLocation(m_shader, "primitive");
-    GLint blendLocation = glGetUniformLocation(m_shader, "blend");
-    glUniform1f(blendLocation, 0.5f);
 
     if (ifBall) {
         vao = vaos[4];
@@ -454,7 +467,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     }
 
     glBindVertexArray(vao);
-//    glUseProgram(m_shader);
 
     GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &shape.ctm[0][0]);
@@ -495,6 +507,16 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     uniformLocation = glGetUniformLocation(m_shader, "numLights");
     glUniform1i(uniformLocation, numLights);
 
+    uniformLocation = glGetUniformLocation(m_shader, "blend");
+    float blend = 0.0f;
+    if (ifBall && settings.material != 1) blend = (1.0 - 0.6 * time_on_fire/10.0f);
+    glUniform1f(uniformLocation, blend);
+
+    uniformLocation = glGetUniformLocation(m_shader, "anger");
+    float anger = 0.0f;
+    if (ifBall && settings.material != 1) anger = time_on_fire/10.0f;
+    glUniform1f(uniformLocation, anger);
+
     for (int i = 0; i < sceneData.lights.size(); i++) {
 
         std::string str =  "lightTypes[" + std::to_string(i) + "]";
@@ -526,11 +548,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
         glUniform1f(uniformLocation, penumbras[i]);
     }
 
-    glActiveTexture(GL_TEXTURE0); // ????
-    glBindTexture(GL_TEXTURE_2D, m_kitten_texture); // ????
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
 
     glDrawArrays(GL_TRIANGLES, 0, verts.size() / 6);
-    glBindTexture(GL_TEXTURE_2D, 0); // ????
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     glBindVertexArray(0);
     glUseProgram(0);
@@ -606,6 +628,7 @@ void Realtime::settingsChanged() {
     m_ballMaterial = materialList[settings.material-1];
     if (initialized) {
         getVaos();
+        readTexture();
         update(); // asks for a PaintGL() call to occur
     }
     ball.changeMaterial(materialList[settings.material-1]);
@@ -766,9 +789,16 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::mat4 ctm = ball.getCTM();
     glm::vec3 look = glm::vec3(glm::normalize(cData.look));
     glm::vec3 up = glm::vec3(glm::normalize(cData.up));
-    float speed;
-    speed = m_keyMap[Qt::Key_Shift]? 10.0f : 3.0f;
-    if (ball.getPos().y < ball.getRadius()/2) speed *= 0.5;
+    float speed = 4.0;
+
+    if (settings.material == 1) speed = 3.0;
+    else if (settings.material == 2) speed = 6.0;
+
+    if (m_keyMap[Qt::Key_Shift]) speed *= 2.5;
+
+    if (isInWater() && settings.material == 1) speed *= 0.8;
+    else if (isInWater() && settings.material == 2) speed *= 0.5;
+    else if (isInWater()) speed *= 0.6;
     float dist = speed * deltaTime;
 
     glm::vec3 dir = getDir(m_keyMap[Qt::Key_W], m_keyMap[Qt::Key_S], m_keyMap[Qt::Key_A], m_keyMap[Qt::Key_D]);
@@ -803,8 +833,8 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (onFire) time_on_fire = fmin(10, time_on_fire + deltaTime);
-    else if (isInWater()) time_on_fire = fmax(0, time_on_fire - deltaTime*10);
-    else time_on_fire = fmax(0, time_on_fire - deltaTime);
+    else if (isInWater() && settings.material != 1) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
+    else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
 
     // drop down to the ground
     float groundHeight = ball.getRadius();

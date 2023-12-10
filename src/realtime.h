@@ -117,6 +117,8 @@ private:
 
     void readTexture();
     QImage m_image;
+    QImage m_angry_image;
     GLuint m_kitten_texture;
+    GLuint m_angry_kitten_texture;
 };
 

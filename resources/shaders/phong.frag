@@ -5,7 +5,8 @@ in vec3 normal;
 in vec2 uv;
 out vec4 fragColor;
 
-uniform float blend; // !!!
+uniform float blend;
+uniform float anger;
 
 uniform float k_a;
 uniform float k_d;
@@ -29,6 +30,7 @@ uniform float angles[8];
 uniform float penumbras[8];
 
 uniform sampler2D sampleTexture;
+uniform sampler2D angryTexture;
 
 void main() {
 
@@ -76,15 +78,14 @@ void main() {
             }
             else if (theta > angles[i]) att = 0;
 
-            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;  // Diffusion term
             shininess == 0 ? phongColor += att * k_s * cSpecular * lightColor :
                     phongColor += att * k_s * cSpecular *
                     pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
         }
     }
 
-//    fragColor = phongColor;
-//    vec4 textureColor = texture(sampleTexture, vec2(uv));
-//    fragColor = mix(phongColor, textureColor, blend);
-    fragColor = texture(sampleTexture, vec2(uv));
+    fragColor = phongColor;
+    vec4 textureColor = texture(sampleTexture, vec2(uv)) * (1 - anger) + texture(angryTexture, vec2(uv)) * anger;
+    fragColor = mix(phongColor, textureColor, blend);
 }
