@@ -18,18 +18,18 @@
 
 // Global variables
 
-SceneMaterial goldBall {
-    .cAmbient =  SceneColor(glm::vec4(0.3, 0.25, 0.15, 1)),  // Ambient term
-    .cDiffuse = SceneColor(glm::vec4(1.0, 0.8, 0.2, 1)),  // Diffuse term
+SceneMaterial bronzeBall {
+    .cAmbient =  SceneColor(glm::vec4(0.3, 0.25, 0.08, 1)),  // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(0.8, 0.7, 0.15, 1)),  // Diffuse term
     .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
-    .shininess = 50,      // Specular exponent
+    .shininess = 60,      // Specular exponent
     .blend = 0.5
 };
 
 
 RenderData sceneData;
 Camera camera(sceneData.cameraData, 0, 0);
-Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, goldBall);
+Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, bronzeBall);
 std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
@@ -339,10 +339,10 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     if (ifBall) {
         vao = vaos[4];
         verts = vertsList[4];
-        cAmbient = goldBall.cAmbient;
-        cDiffuse = goldBall.cDiffuse;
-        cSpecular = goldBall.cSpecular;
-        shininess = goldBall.shininess;
+        cAmbient = ball.getMaterial().cAmbient;
+        cDiffuse = ball.getMaterial().cDiffuse;
+        cSpecular = ball.getMaterial().cSpecular;
+        shininess = ball.getMaterial().shininess;
         shape.ctm = ball.getCTM();
     }
 
@@ -418,9 +418,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     glUniform1f(uniformLocation, m_ks);
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
+    if (ifBall) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.4, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
+    if (ifBall) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.0, 1.0);
     glUniform4f(uniformLocation, cDiffuse[0], cDiffuse[1], cDiffuse[2], cDiffuse[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
@@ -544,7 +546,7 @@ void Realtime::settingsChanged() {
         Realtime::getVaos();
         update(); // asks for a PaintGL() call to occur
     }
-    m_ballMaterial = goldBall;  // change this later to enable different materials.
+    m_ballMaterial = bronzeBall;  // change this later to enable different materials.
 }
 
 // ================== Action!
@@ -608,17 +610,17 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
 
 bool Realtime::isInWater() {
     glm::vec4 ballPos = ball.getPos();
-    ballPos.y = m_topLeft.y;
+//    ballPos.y = m_topLeft.y;
 
-    glm::vec3 v1 = m_topLeft - m_topRight;
-    glm::vec3 v2 = m_bottomLeft - m_topLeft;
-    glm::vec3 v3 = m_bottomRight - m_bottomLeft;
-    glm::vec3 v4 = m_topRight - m_bottomRight;
+//    glm::vec3 v1 = m_topLeft - m_topRight;
+//    glm::vec3 v2 = m_bottomLeft - m_topLeft;
+//    glm::vec3 v3 = m_bottomRight - m_bottomLeft;
+//    glm::vec3 v4 = m_topRight - m_bottomRight;
 
-    glm::vec3 v5 = ballPos - m_topLeft;
-    glm::vec3 v6 = ballPos - m_bottomRight;
+//    glm::vec3 v5 = ballPos - m_topLeft;
+//    glm::vec3 v6 = ballPos - m_bottomRight;
 
-    glm::vec3 n = {0.0, 1.0, 0.0};
+//    glm::vec3 n = {0.0, 1.0, 0.0};
 
 //    std::cout << glm::dot(n, glm::cross(v1, v5)) << " " << glm::dot(n, glm::cross(v2, v5)) << std::endl;
 //    std::cout << glm::dot(n, glm::cross(v3, v6)) << " " << glm::dot(n, glm::cross(v4, v6)) << std::endl;
@@ -709,7 +711,6 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
 
 
 void Realtime::timerEvent(QTimerEvent *event) {
-//    onFire = false; // initialize as false, may become true when looping through the objects to get normal.
     int elapsedms   = m_elapsedTimer.elapsed();
     float deltaTime = elapsedms * 0.001f;
     m_elapsedTimer.restart();
@@ -756,7 +757,10 @@ void Realtime::timerEvent(QTimerEvent *event) {
     bool onFire = false;
     if (glm::distance(m_fire_pos, glm::vec3(ball.getPos())) <= m_fire_radius + ball.getRadius()) {
         onFire = true;
-    }       // Used for later texture change
+    }
+
+    if (onFire) time_on_fire = fmin(10, time_on_fire + deltaTime);
+    else time_on_fire = fmax(0, time_on_fire - deltaTime);
 
     // drop down to the ground
     float groundHeight = ball.getRadius();

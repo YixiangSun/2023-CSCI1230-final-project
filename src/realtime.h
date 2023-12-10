@@ -108,6 +108,7 @@ private:
     bool isInWater();
     glm::vec3 getWaterNormal();
     float m_rim_width = 0.8;
+    float time_on_fire = 0.0f;
 
     // fire
     float m_fire_radius = 1.2f;
