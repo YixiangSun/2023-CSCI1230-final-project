@@ -109,6 +109,8 @@ private:
     glm::vec3 getWaterNormal();
     float m_rim_width = 0.8;
     float time_on_fire = 0.0f;
+//    float startingHeight = 0.3;
+//    bool falling = false;
 
     // fire
     float m_fire_radius = 1.2f;

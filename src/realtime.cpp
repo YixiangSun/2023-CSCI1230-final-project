@@ -64,6 +64,7 @@ Realtime::Realtime(QWidget *parent)
     m_keyMap[Qt::Key_Control] = false;
     m_keyMap[Qt::Key_Space]   = false;
     m_keyMap[Qt::Key_Shift]   = false;
+    m_keyMap[Qt::Key_J]   = false;
 
     // If you must use this function, do not edit anything above this
 }
@@ -827,8 +828,10 @@ void Realtime::timerEvent(QTimerEvent *event) {
         ctm = rot * ctm;
     }
 
+    glm::vec3 ballPos = ball.getPos();
+
     bool onFire = false;
-    if (glm::distance(m_fire_pos, glm::vec3(ball.getPos())) <= m_fire_radius + ball.getRadius()) {
+    if (glm::distance(m_fire_pos, glm::vec3(ballPos)) <= m_fire_radius + ball.getRadius()) {
         onFire = true;
     }
 
@@ -836,14 +839,18 @@ void Realtime::timerEvent(QTimerEvent *event) {
     else if (isInWater() && settings.material != 1) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
     else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
 
-    // drop down to the ground
+    // jump or drop down to the ground
     float groundHeight = ball.getRadius();
-    if (isInWater()) groundHeight -= 0.05;
-    if (ball.getPos().x < m_bound && ball.getPos().z < m_bound &&
-        ball.getPos().x > -m_bound && ball.getPos().z > -m_bound &&
-        ball.getPos().y > groundHeight && !onFire) {
-        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.05, 0.0)) * ctm;
-        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.05, 0.0)) * cData.pos;
+    if (onFire) groundHeight += 0.5;
+    if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
+        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
+        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
+    }
+    if (ballPos.x < m_bound && ballPos.z < m_bound &&
+        ballPos.x > -m_bound && ballPos.z > -m_bound &&
+        ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
+        ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
+        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
     }
 
     ball.updateCTM(ctm);
