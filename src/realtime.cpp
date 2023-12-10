@@ -20,7 +20,7 @@
 
 SceneMaterial bronzeBall {
     .cAmbient =  SceneColor(glm::vec4(0.3, 0.25, 0.08, 1)),  // Ambient term
-    .cDiffuse = SceneColor(glm::vec4(0.8, 0.7, 0.15, 1)),  // Diffuse term
+    .cDiffuse = SceneColor(glm::vec4(1, 0.7, 0.15, 1)),  // Diffuse term
     .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
     .shininess = 60,      // Specular exponent
     .blend = 0.5
@@ -760,6 +760,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     }
 
     if (onFire) time_on_fire = fmin(10, time_on_fire + deltaTime);
+    else if (isInWater()) time_on_fire = fmax(0, time_on_fire - deltaTime*10);
     else time_on_fire = fmax(0, time_on_fire - deltaTime);
 
     // drop down to the ground
