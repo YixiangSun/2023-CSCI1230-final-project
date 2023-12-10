@@ -34,3 +34,7 @@ glm::vec4 Ball::getPos() {
 void Ball::restart() {
     ctm = glm::translate(glm::mat4(1.0f), glm::vec3(0, r, 0));
 }
+
+void Ball::changeMaterial(SceneMaterial newMaterial) {
+    material = newMaterial;
+}

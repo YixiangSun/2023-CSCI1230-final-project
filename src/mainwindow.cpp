@@ -25,7 +25,7 @@ void MainWindow::initialize() {
     font.setPointSize(12);
     font.setBold(true);
     QLabel *tesselation_label = new QLabel(); // Parameters label
-    tesselation_label->setText("Tesselation");
+    tesselation_label->setText("Choose Your Ball!");
     tesselation_label->setFont(font);
     QLabel *camera_label = new QLabel(); // Camera label
     camera_label->setText("Camera");
@@ -74,12 +74,12 @@ void MainWindow::initialize() {
     p1Slider = new QSlider(Qt::Orientation::Horizontal); // Parameter 1 slider
     p1Slider->setTickInterval(1);
     p1Slider->setMinimum(1);
-    p1Slider->setMaximum(25);
+    p1Slider->setMaximum(3);
     p1Slider->setValue(1);
 
     p1Box = new QSpinBox();
     p1Box->setMinimum(1);
-    p1Box->setMaximum(25);
+    p1Box->setMaximum(3);
     p1Box->setSingleStep(1);
     p1Box->setValue(1);
 
@@ -164,29 +164,29 @@ void MainWindow::initialize() {
     vLayout->addWidget(uploadFile);
     vLayout->addWidget(saveImage);
     vLayout->addWidget(tesselation_label);
-    vLayout->addWidget(param1_label);
+//    vLayout->addWidget(param1_label);
     vLayout->addWidget(p1Layout);
-    vLayout->addWidget(param2_label);
-    vLayout->addWidget(p2Layout);
-    vLayout->addWidget(camera_label);
-    vLayout->addWidget(near_label);
-    vLayout->addWidget(nearLayout);
-    vLayout->addWidget(far_label);
-    vLayout->addWidget(farLayout);
-    vLayout->addWidget(filters_label);
-    vLayout->addWidget(filter1);
-    vLayout->addWidget(filter2);
-    // Extra Credit:
-    vLayout->addWidget(ec_label);
-    vLayout->addWidget(ec1);
-    vLayout->addWidget(ec2);
-    vLayout->addWidget(ec3);
-    vLayout->addWidget(ec4);
+//    vLayout->addWidget(param2_label);
+//    vLayout->addWidget(p2Layout);
+//    vLayout->addWidget(camera_label);
+//    vLayout->addWidget(near_label);
+//    vLayout->addWidget(nearLayout);
+//    vLayout->addWidget(far_label);
+//    vLayout->addWidget(farLayout);
+//    vLayout->addWidget(filters_label);
+//    vLayout->addWidget(filter1);
+//    vLayout->addWidget(filter2);
+//    // Extra Credit:
+//    vLayout->addWidget(ec_label);
+//    vLayout->addWidget(ec1);
+//    vLayout->addWidget(ec2);
+//    vLayout->addWidget(ec3);
+//    vLayout->addWidget(ec4);
 
     connectUIElements();
 
     // Set default values of 5 for tesselation parameters
-    onValChangeP1(5);
+    onValChangeP1(1);
     onValChangeP2(5);
 
     // Set default values for near and far planes
@@ -200,15 +200,15 @@ void MainWindow::finish() {
 }
 
 void MainWindow::connectUIElements() {
-    connectPerPixelFilter();
-    connectKernelBasedFilter();
+//    connectPerPixelFilter();
+//    connectKernelBasedFilter();
     connectUploadFile();
     connectSaveImage();
     connectParam1();
-    connectParam2();
-    connectNear();
-    connectFar();
-    connectExtraCredit();
+//    connectParam2();
+//    connectNear();
+//    connectFar();
+//    connectExtraCredit();
 }
 
 void MainWindow::connectPerPixelFilter() {
@@ -314,7 +314,7 @@ void MainWindow::onSaveImage() {
 void MainWindow::onValChangeP1(int newValue) {
     p1Slider->setValue(newValue);
     p1Box->setValue(newValue);
-    settings.shapeParameter1 = p1Slider->value();
+    settings.material = p1Slider->value();
     realtime->settingsChanged();
 }
 

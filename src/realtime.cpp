@@ -20,11 +20,21 @@
 
 SceneMaterial bronzeBall {
     .cAmbient =  SceneColor(glm::vec4(0.3, 0.25, 0.08, 1)),  // Ambient term
-    .cDiffuse = SceneColor(glm::vec4(1, 0.7, 0.15, 1)),  // Diffuse term
+    .cDiffuse = SceneColor(glm::vec4(1, 0.5, 0.15, 1)),  // Diffuse term
     .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
     .shininess = 60,      // Specular exponent
     .blend = 0.5
 };
+
+SceneMaterial blank {
+    .cAmbient =  SceneColor(glm::vec4(0., 0., 0., 1)),  // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(0, 0., 0., 1)),  // Diffuse term
+    .cSpecular = SceneColor(glm::vec4(1, 1, 1, 1)), // Specular term
+    .shininess = 60,      // Specular exponent
+    .blend = 0.5
+};
+
+std::vector<SceneMaterial> materialList = {bronzeBall, blank, blank};
 
 
 RenderData sceneData;
@@ -276,15 +286,15 @@ void Realtime::makeFBO(){
 void Realtime::getVaos() {
 
     Cube cube{};
-    cube.updateParams(settings.shapeParameter1);
+    cube.updateParams(2);
     std::vector<float> cubeVerts = cube.generateShape();
 
     Cone cone{};
-    cone.updateParams(settings.shapeParameter1, settings.shapeParameter2);
+    cone.updateParams(5, 5);
     std::vector<float> coneVerts = cone.generateShape();
 
     Cylinder cylinder{};
-    cylinder.updateParams(settings.shapeParameter1, settings.shapeParameter2);
+    cylinder.updateParams(5, 5);
     std::vector<float> cylinderVerts = cylinder.generateShape();
 
     Sphere sphere{};
@@ -418,11 +428,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     glUniform1f(uniformLocation, m_ks);
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
-    if (ifBall) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.4, 1.0);
+    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.4, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
-    if (ifBall) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.0, 1.0);
+    if (ifBall && settings.material == 1) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.0, 1.0);
     glUniform4f(uniformLocation, cDiffuse[0], cDiffuse[1], cDiffuse[2], cDiffuse[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
@@ -542,11 +552,12 @@ void Realtime::sceneChanged() {
 }
 
 void Realtime::settingsChanged() {
+    m_ballMaterial = materialList[settings.material-1];
     if (initialized) {
-        Realtime::getVaos();
+        getVaos();
         update(); // asks for a PaintGL() call to occur
     }
-    m_ballMaterial = bronzeBall;  // change this later to enable different materials.
+    ball.changeMaterial(materialList[settings.material-1]);
 }
 
 // ================== Action!
@@ -610,25 +621,6 @@ void Realtime::mouseMoveEvent(QMouseEvent *event) {
 
 bool Realtime::isInWater() {
     glm::vec4 ballPos = ball.getPos();
-//    ballPos.y = m_topLeft.y;
-
-//    glm::vec3 v1 = m_topLeft - m_topRight;
-//    glm::vec3 v2 = m_bottomLeft - m_topLeft;
-//    glm::vec3 v3 = m_bottomRight - m_bottomLeft;
-//    glm::vec3 v4 = m_topRight - m_bottomRight;
-
-//    glm::vec3 v5 = ballPos - m_topLeft;
-//    glm::vec3 v6 = ballPos - m_bottomRight;
-
-//    glm::vec3 n = {0.0, 1.0, 0.0};
-
-//    std::cout << glm::dot(n, glm::cross(v1, v5)) << " " << glm::dot(n, glm::cross(v2, v5)) << std::endl;
-//    std::cout << glm::dot(n, glm::cross(v3, v6)) << " " << glm::dot(n, glm::cross(v4, v6)) << std::endl;
-
-
-//    return glm::dot(n, glm::cross(v1, v5)) > 0 && glm::dot(n, glm::cross(v2, v5)) > 0 &&
-//           glm::dot(n, glm::cross(v3, v6)) > 0 && glm::dot(n, glm::cross(v4, v6)) > 0;
-
 
     return ballPos.x >= m_topLeft.x && ballPos.z <= m_topLeft.z && ballPos.x <= m_bottomRight.x && ballPos.z >= m_bottomRight.z;
 }

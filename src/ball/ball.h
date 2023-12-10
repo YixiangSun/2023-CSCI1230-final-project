@@ -40,4 +40,6 @@ public:
     // Gets the position of the ball.
     glm::vec4 getPos();
 
+    void changeMaterial(SceneMaterial newMaterial);
+
 };
