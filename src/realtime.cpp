@@ -152,7 +152,7 @@ void Realtime::initializeGL() {
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
     // ????????????????????????????????????????
-    m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
+    // m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
     objData = objparser.parseMtlFile(":/objects/green.mtl");

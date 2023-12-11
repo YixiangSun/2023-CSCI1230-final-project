@@ -1,3 +1,5 @@
+#version 330 core
+
 uniform sampler2D qt_Texture0;
 varying vec4 qt_TexCoord0;
 
