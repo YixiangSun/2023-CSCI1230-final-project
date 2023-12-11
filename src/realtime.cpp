@@ -180,9 +180,17 @@ std::vector<float> Realtime::loadMesh(std::string filename){
             }else if(words[0] == "f"){
                 int triangleCount = words.size() - 3;
                 for (int i = 0; i < triangleCount; i ++){
-                    makeCorner(words[1], v, vt, vn, vertices);
-                    makeCorner(words[2 + i], v, vt, vn, vertices);
-                    makeCorner(words[3 + i], v, vt, vn, vertices);
+                    std::vector <std::string> v_vt_vn1 = Realtime::split(words[1], '/');
+                    std::vector <std::string> v_vt_vn2 = Realtime::split(words[2 + i], '/');
+                    std::vector <std::string> v_vt_vn3 = Realtime::split(words[3 + i], '/');
+                    // vertex positions
+                    vertices.push_back(v[std::stoi(v_vt_vn1[0]) - 1]);
+                    vertices.push_back(v[std::stoi(v_vt_vn2[0]) - 1]);
+                    vertices.push_back(v[std::stoi(v_vt_vn3[0]) - 1]);
+                    // vertex normals
+                    vertices.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
+                    vertices.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
+                    vertices.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
                 }
             }
         }
