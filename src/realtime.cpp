@@ -63,6 +63,12 @@ std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
 
+// ?????????????????????????????????????????????????????????????????????????????????
+std::unordered_map<std::string, OBJMaterial> objData;
+std::set<std::string> objNames;
+std::vector<GLuint> objVaos;
+std::vector<GLuint> objVbos;
+
 
 Realtime::Realtime(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -105,6 +111,11 @@ void Realtime::finish() {
     glDeleteVertexArrays(1, &m_water_vao);
 
     glDeleteTextures(1, &m_kitten_texture); // !!!
+    glDeleteProgram(m_object_shader); // ??????????
+    for (int j = 0; j < objVaos.size(); j++) {
+        glDeleteVertexArrays(1, &objVaos[j]);
+        glDeleteBuffers(1, &objVbos[j]);
+    }
 
     this->doneCurrent();
 }
@@ -140,6 +151,13 @@ void Realtime::initializeGL() {
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
+    // ????????????????????????????????????????
+    m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
+    objData.clear();
+    objNames.clear();
+    objData = objparser.parseMtlFile(":/objects/green.mtl");
+    objNames = objparser.loadMesh(":/objects/green.obj", objData);
+    // ?????????????????????????? //
 
     glGenBuffers(1, &m_water_vbo);
     glGenVertexArrays(1, &m_water_vao);
@@ -449,15 +467,29 @@ void Realtime::getVaos() {
     }
 }
 
-//void Realtime::draw_scene(std::string obj_filename, std::string mtl_filename){
-//    glm::vec4 cameraPos = camera.getData().pos;
-//    int numLights = sceneData.lights.size();
+void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
+    int i = 0;
+    for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
+        // '(*it)' is the current string in the set
+        glDeleteVertexArrays(1, &objVaos[i]); // ??
+        glDeleteBuffers(1, &objVbos[i]); // ??
+        glGenBuffers(1, &objVbos[i]);
+        glBindBuffer(GL_ARRAY_BUFFER, objVbos[i]);
+        std::vector<float> obj_vertexData = objData[*it].obj_vertexData;
+        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * obj_vertexData.size(), obj_vertexData.data(), GL_STATIC_DRAW);
 
-//    GLuint vao = 0;
-//    std::vector<float> verts;
+        glGenVertexArrays(1, &objVaos[i]);
+        glBindVertexArray(objVaos[i]);
 
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
 
-//}
+        glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+    }
+}
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
@@ -610,14 +642,17 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     uniformLocation = glGetUniformLocation(m_shader, "projmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
 
-    uniformLocation = glGetUniformLocation(m_shader, "k_a");
-    glUniform1f(uniformLocation, m_ka);
+    //    uniformLocation = glGetUniformLocation(m_shader, "k_a");
+    //    glUniform1f(uniformLocation, m_ka);
 
-    uniformLocation = glGetUniformLocation(m_shader, "k_d");
-    glUniform1f(uniformLocation, m_kd);
+    //    uniformLocation = glGetUniformLocation(m_shader, "k_d");
+    //    glUniform1f(uniformLocation, m_kd);
 
-    uniformLocation = glGetUniformLocation(m_shader, "k_s");
-    glUniform1f(uniformLocation, m_ks);
+    //    uniformLocation = glGetUniformLocation(m_shader, "k_s");
+    //    glUniform1f(uniformLocation, m_ks);
+    cAmbient *= m_ka;
+    cDiffuse *= m_kd;
+    cSpecular *= m_ks;
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
     if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.4, 1.0);
@@ -714,11 +749,11 @@ void Realtime::paintGL() {
                 for (int k = -1; k < 2; k ++){
                     glm::mat4 ctm = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(ballPos.x + float(i) * 0.2f, ballPos.y + float(j) * 0.2f, ballPos.z + float(k) * 0.2f)), glm::vec3(0.15f, 0.15f, 0.15f));
                     RenderShapeData smoke = RenderShapeData{
+                        .primitive = smokePrimitive,
                         .ctm = ctm,
+                        .originalCTM = ctm,
                         .isFire = false,
                         .isSmoke = true,
-                        .originalCTM = ctm,
-                        .primitive = smokePrimitive,
                         .riseCount = 0,
                         .timeOffset = 0,
                     };

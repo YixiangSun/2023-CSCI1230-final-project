@@ -40,6 +40,7 @@ add_executable(${PROJECT_NAME}
     src/shapes/Water.cpp
     src/utils/scenefilereader.cpp
     src/utils/sceneparser.cpp
+    src/utils/objparser.cpp
 
     src/mainwindow.h
     src/realtime.h
@@ -59,6 +60,7 @@ add_executable(${PROJECT_NAME}
     src/utils/shaderloader.h
     src/utils/rgba.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
+    src/utils/objparser.h
 
 )
 
@@ -92,10 +94,15 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/texture.vert
 	resources/shaders/fire.frag
     	resources/shaders/fire.vert
+        resources/shaders/object.frag
+        resources/shaders/object.vert
         textures/kitten.png
         textures/wood_texture.png
         textures/angry_kitten.png
 
+        # replicate
+        objects/greens.mtl
+        objects/greens.obj
 )
 
 target_sources(projects_realtime_other_files

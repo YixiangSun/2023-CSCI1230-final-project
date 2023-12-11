@@ -3,6 +3,7 @@
 // Defined before including GLEW to suppress deprecation messages on macOS
 #include "ball/ball.h"
 #include "shapes/Water.h"
+#include "utils/objparser.h"
 #include "utils/rgba.h"
 #include "utils/sceneparser.h"
 #ifdef __APPLE__
@@ -134,5 +135,12 @@ private:
     QImage m_angry_image;
     GLuint m_kitten_texture;
     GLuint m_angry_kitten_texture;
+
+    // objparser
+    OBJparser objparser;
+    void paintObject();
+    GLuint m_object_shader;
+    void createObjVAO();
+    void getObjVaos();
 };
 
