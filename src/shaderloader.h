@@ -6,7 +6,7 @@
 #include <QTextStream>
 class ShaderLoader{
 public:
-    static GLuint createShaderProgram(const char * vertex_file_path, const char * fragment_file_path){
+    static GLuint createShaderProgram(const char * vertex_file_path, const char * fragment_file_path) {
         // Create and compile the shaders.
         GLuint vertexShaderID = createShader(GL_VERTEX_SHADER, vertex_file_path);
         GLuint fragmentShaderID = createShader(GL_FRAGMENT_SHADER, fragment_file_path);

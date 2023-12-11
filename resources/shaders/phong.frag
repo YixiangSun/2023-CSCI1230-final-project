@@ -20,9 +20,9 @@ uniform vec4 cSpecular;
 uniform float shininess;
 uniform vec4 cameraPos;
 
-uniform bool fireOn;
+uniform bool fireOn; // ???
 
-uniform int numLights;
+uniform int numLights; // ???
 uniform int lightTypes[8];
 uniform bool isFires[8];
 uniform vec4 lightDirs[8];

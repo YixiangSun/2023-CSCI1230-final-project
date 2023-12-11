@@ -142,5 +142,6 @@ private:
     GLuint m_object_shader;
     void createObjVAO();
     void getObjVaos();
+    void paintObj();
 };
 

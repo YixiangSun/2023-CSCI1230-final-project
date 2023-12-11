@@ -12,9 +12,12 @@
 // Define structures to store material properties
 struct OBJMaterial {
     std::string name;
-    float ambient[3];
-    float diffuse[3];
-    float specular[3];
+    float ambient[4];
+    float diffuse[4];
+    float specular[4];
+//    float ambient;
+//    float diffuse;
+//    float specular;
     float shininess;
     std::vector<float> obj_vertexData;
 };
@@ -24,12 +27,12 @@ class OBJparser
 public:
     OBJparser();
 
-    std::set<std::string> loadMesh(std::string filename, std::unordered_map<std::string, OBJMaterial>& objects);
+    std::set<std::string> loadMesh(const char *filepath, std::unordered_map<std::string, OBJMaterial>& objects);
 //    void makeCorner(std::string corner, std::vector<float> vp,
 //                    std::vector<float> vt, std::vector<float> vn,
 //                    std::vector<float>& vertices);
-    std::vector<std::string> split(std::string& str, char delimiter);
-    std::unordered_map<std::string, OBJMaterial> parseMtlFile(std::string filename);
+    std::vector<std::string> split(const std::string& str, char delimiter);
+    std::unordered_map<std::string, OBJMaterial> parseMtlFile(const char *filepath); // std::string filename
 };
 
 #endif // OBJPARSER_H

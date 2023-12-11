@@ -66,8 +66,8 @@ float m_accumulatedTime;
 // ?????????????????????????????????????????????????????????????????????????????????
 std::unordered_map<std::string, OBJMaterial> objData;
 std::set<std::string> objNames;
-std::vector<GLuint> objVaos;
-std::vector<GLuint> objVbos;
+std::vector<GLuint> objVaos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
+std::vector<GLuint> objVbos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
 
 
 Realtime::Realtime(QWidget *parent)
@@ -155,8 +155,9 @@ void Realtime::initializeGL() {
     // m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
-    objData = objparser.parseMtlFile(":/objects/green.mtl");
-    objNames = objparser.loadMesh(":/objects/green.obj", objData);
+    objData = objparser.parseMtlFile(":/objects/greens.mtl");
+//    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // crash
+//    getObjVaos();
     // ?????????????????????????? //
 
     glGenBuffers(1, &m_water_vbo);
@@ -169,72 +170,6 @@ void Realtime::initializeGL() {
 
     initialized = true;
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
-}
-
-std::vector<float> Realtime::loadMesh(std::string filename){
-    std::vector<float> v;
-    std::vector<float> vt;
-    std::vector<float> vn;
-    std::vector<float> vertices;
-
-    std::ifstream file;
-    file.open(filename);
-
-    if(file.is_open()){
-        std::string line;
-        while(getline(file, line)){
-            std::vector <std::string> words = Realtime::split(line, ' ');
-            if (words[0] == "v"){
-                v.push_back(std::stof(words[1]));
-                v.push_back(std::stof(words[2]));
-                v.push_back(std::stof(words[3]));
-            }else if(words[0] == "vt"){
-                vt.push_back(std::stof(words[1]));
-                vt.push_back(std::stof(words[2]));
-            }else if(words[0] == "vn"){
-                vn.push_back(std::stof(words[1]));
-                vn.push_back(std::stof(words[2]));
-                vn.push_back(std::stof(words[3]));
-            }else if(words[0] == "f"){
-                int triangleCount = words.size() - 3;
-                for (int i = 0; i < triangleCount; i ++){
-                    std::vector <std::string> v_vt_vn1 = Realtime::split(words[1], '/');
-                    std::vector <std::string> v_vt_vn2 = Realtime::split(words[2 + i], '/');
-                    std::vector <std::string> v_vt_vn3 = Realtime::split(words[3 + i], '/');
-                    // vertex positions
-                    vertices.push_back(v[std::stoi(v_vt_vn1[0]) - 1]);
-                    vertices.push_back(v[std::stoi(v_vt_vn2[0]) - 1]);
-                    vertices.push_back(v[std::stoi(v_vt_vn3[0]) - 1]);
-                    // vertex normals
-                    vertices.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
-                    vertices.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
-                    vertices.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
-                }
-            }
-        }
-        file.close();
-    }else{
-        std::cout<<"Unable to open file" << std::endl;
-    }
-    return vertices;
-}
-void Realtime::makeCorner(std::string corner, std::vector<float> v,
-                std::vector<float> vt, std::vector<float> vn,
-                std::vector<float> vertices){
-    std::vector<std::string> v_vt_vn = Realtime::split(corner, '/');
-    vertices.push_back(v[std::stoi(v_vt_vn[0]) - 1]);
-}
-std::vector<std::string> Realtime::split(std::string& str, char delimiter){
-    std::istringstream iss(str);
-    std::vector<std::string> tokens;
-    std::string token;
-
-    while(std::getline(iss, token, delimiter)){
-        if (!token.empty()){
-            tokens.push_back(token);
-        }
-    }
-    return tokens;
 }
 
 void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -467,8 +402,11 @@ void Realtime::getVaos() {
     }
 }
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
-    int i = 0;
+    int i = 10;
+    //    std::vector<GLuint> objVaos;
+    //    std::vector<GLuint> objVbos;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
         // '(*it)' is the current string in the set
         glDeleteVertexArrays(1, &objVaos[i]); // ??
@@ -490,6 +428,91 @@ void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Realtime::paintObj() {
+
+    glm::vec4 cameraPos = camera.getData().pos;
+    int numLights = sceneData.lights.size();
+
+    glm::mat4 identityMatrix(1.0f);
+    glUseProgram(m_shader);
+    GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identityMatrix[0][0]);
+    uniformLocation = glGetUniformLocation(m_shader, "viewmatrix");
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
+    uniformLocation = glGetUniformLocation(m_shader, "projmatrix");
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
+    uniformLocation = glGetUniformLocation(m_shader, "cameraPos");
+    glUniform4f(uniformLocation, cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[3]);
+    uniformLocation = glGetUniformLocation(m_shader, "blend");
+    float blend = 0.f;
+    glUniform1f(uniformLocation, blend);
+
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    glUniform1i(glGetUniformLocation(m_shader, "fireOn"), fireOn);
+    for (int i = 0; i < sceneData.lights.size(); i++) {
+        std::string str =  "lightTypes[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform1i(uniformLocation, lightTypes[i]);
+
+        str = "isFires[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform1i(uniformLocation, false);
+
+        str =  "lightPoses[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform4f(uniformLocation, lightPoses[i][0],  lightPoses[i][1],  lightPoses[i][2],  lightPoses[i][3]);
+
+        str =  "lightColors[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform4f(uniformLocation, lightColors[i][0], lightColors[i][1], lightColors[i][2], lightColors[i][3]);
+
+        str =  "lightDirs[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform4f(uniformLocation, lightDirs[i][0], lightDirs[i][1], lightDirs[i][2], lightDirs[i][3]);
+
+        str =  "functions[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform3f(uniformLocation, functions[i][0], functions[i][1], functions[i][2]);
+
+        str =  "angles[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform1f(uniformLocation, angles[i]);
+
+        str =  "penumbras[" + std::to_string(i) + "]";
+        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        glUniform1f(uniformLocation, penumbras[i]);
+    }
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    int i = 10;
+    for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
+        uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
+        glUniform4fv(uniformLocation, 1, objData[*it].ambient);
+
+        uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
+        glUniform4fv(uniformLocation, 1, objData[*it].diffuse);
+
+        uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
+        glUniform4fv(uniformLocation, 1, objData[*it].specular);
+
+        uniformLocation = glGetUniformLocation(m_shader, "shininess");
+        glUniform1f(uniformLocation, objData[*it].shininess);
+
+        glBindVertexArray(objVaos[i]);
+        glDrawArrays(GL_TRIANGLES, 0, objData[*it].obj_vertexData.size() / 6);
+        glBindVertexArray(0);
+    }
+
+    //    glActiveTexture(GL_TEXTURE0);
+    //    glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
+
+    //    glDrawArrays(GL_TRIANGLES, 0, verts.size() / 6);
+    //    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(0);
+}
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
@@ -748,6 +771,7 @@ void Realtime::paintGL() {
     for (RenderShapeData &shape : smokeShapes){
         Realtime::draw(shape, false, shape.originalCTM);
     }
+//    paintObj(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
