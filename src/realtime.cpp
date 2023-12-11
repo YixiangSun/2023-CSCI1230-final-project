@@ -147,7 +147,7 @@ void Realtime::initializeGL() {
 
     // Students: anything requiring OpenGL calls when the program starts should be done here
     extractInfo(settings.sceneFilePath);
-    glClearColor(0,0,0,1);
+    glClearColor(0.12, 0.588, 0.9, 1);
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
@@ -524,25 +524,25 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
         if (shape.isFire){
-            float x_dist = shape.ctm[3][0] - m_fire_center.x;
-            float z_dist = shape.ctm[3][2] - m_fire_center.z;
-            glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
-            float y_vel = 0.1f;
-            glm::vec3 velocity;
-            if (shape.riseCount == 0){
-                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
-            }
-            shape.riseCount += 1;
-            float r = ((double) rand() / (RAND_MAX)) * 0.04f;
-            if (shape.riseCount <= 30){
-                velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
-            }else if(shape.riseCount <= 80){
-                velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
-            }else{
-                velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
-            }
-            if (fireOn){
+            if (fireOn || ctm != originalCTM){
+                float x_dist = shape.ctm[3][0] - m_fire_center.x;
+                float z_dist = shape.ctm[3][2] - m_fire_center.z;
+                glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
+                float y_vel = 0.1f;
+                glm::vec3 velocity;
+                if (shape.riseCount == 0){
+                    shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
+                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
+                }
+                shape.riseCount += 1;
+                float r = ((double) rand() / (RAND_MAX)) * 0.04f;
+                if (shape.riseCount <= 30){
+                    velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
+                }else if(shape.riseCount <= 80){
+                    velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
+                }else{
+                    velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
+                }
                 if (shape.riseCount + shape.timeOffset >= 99.f){
                     shape.ctm = originalCTM;
                     shape.primitive.material.cAmbient[1] = 0.0f;
@@ -552,7 +552,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
                     shape.primitive.material.cAmbient[1] += 0.007f;
                 }
             }else{
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                return;
             }
         }
         else if(shape.isSmoke){
