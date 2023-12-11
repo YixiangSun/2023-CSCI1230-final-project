@@ -47,6 +47,13 @@ SceneMaterial smoke{
     .cSpecular = SceneColor(glm::vec4(0.0, 0.0, 0.0, 0.1f)), // Specular term
     .shininess = 1,       // Specular exponent
 };
+
+SceneMaterial redSmoke{
+    .cAmbient = SceneColor(glm::vec4(1.0f, 0.0f, 0.0f, 0.1f)), // Ambient term
+    .cDiffuse = SceneColor(glm::vec4(1.0, 1.0, 1.0, 0.1f)), // Diffuse term
+    .cSpecular = SceneColor(glm::vec4(0.0, 0.0, 0.0, 0.1f)), // Specular term
+    .shininess = 1,       // Specular exponent
+};
 std::vector<SceneMaterial> materialList = {bronzeBall, coal, redRitchie};
 
 ScenePrimitive smokePrimitive{
@@ -54,6 +61,14 @@ ScenePrimitive smokePrimitive{
     .material = smoke,
     .isFire = false,
     .isSmoke = true,
+    .isRedSmoke = false,
+};
+ScenePrimitive redSmokePrimitive{
+    .type = PrimitiveType::PRIMITIVE_CUBE,
+    .material = redSmoke,
+    .isFire = false,
+    .isSmoke = false,
+    .isRedSmoke = true,
 };
 RenderData sceneData;
 std::vector<RenderShapeData> smokeShapes;
@@ -148,6 +163,7 @@ void Realtime::initializeGL() {
     // Students: anything requiring OpenGL calls when the program starts should be done here
     extractInfo(settings.sceneFilePath);
     glClearColor(0.12, 0.588, 0.9, 1);
+//    glClearColor(0.0, 0.0, 0.0, 1);
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
@@ -546,7 +562,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
-        if (shape.isSmoke){
+        if (shape.isSmoke || shape.isRedSmoke){
             float x_dist = shape.ctm[3][0] - ball.getPos().x;
             float z_dist = shape.ctm[3][2] - ball.getPos().z;
             glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
@@ -562,28 +578,13 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
                 velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
             }else if(shape.riseCount <= 8){
                 velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
-            }else if (shape.riseCount <= 12){
+            }else if (shape.riseCount <= 15){
                 velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
             }else{
                 smokeShapes.clear();
                 return;
             }
-            if (settings.material == 1){
-                if (isInWater()){
-                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                }else{
-                    return;
-                }
-            }else if(settings.material == 2){
-                if (time_on_fire < 8 && !isInWater()) {
-                    shape.primitive.material.cAmbient = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                } else {
-                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                }
-            }else{
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-            }
+            shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
         }
         else if (shape.isFire){
             if (fireOn || ctm != originalCTM){
@@ -748,19 +749,38 @@ void Realtime::paintGL() {
     if (time_on_fire > 2.f) {
         glm::vec3 ballPos = ball.getPos();
         for (int i = -1; i < 2 ; i ++){
-            for (int j = 2; j < 4; j ++){
+            for (int j = 1; j < 3; j ++){
                 for (int k = -1; k < 2; k ++){
                     glm::mat4 ctm = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(ballPos.x + float(i) * 0.2f, ballPos.y + float(j) * 0.2f, ballPos.z + float(k) * 0.2f)), glm::vec3(0.15f, 0.15f, 0.15f));
-                    RenderShapeData smoke = RenderShapeData{
-                        .primitive = smokePrimitive,
-                        .ctm = ctm,
-                        .originalCTM = ctm,
-                        .isFire = false,
-                        .isSmoke = true,
-                        .riseCount = 0,
-                        .timeOffset = 0,
-                    };
-                    smokeShapes.push_back(smoke);
+                    bool bronzeSteam = (settings.material == 1) && (isInWater());
+                    bool coalBurn = (settings.material == 2) && (time_on_fire < 8) && (!isInWater());
+                    bool woodSteam = (settings.material == 2) && (! ((time_on_fire < 8) && (!isInWater())));
+                    bool DRSteam = settings.material == 3;
+                    if (bronzeSteam || woodSteam || DRSteam){
+                        RenderShapeData smoke = RenderShapeData{
+                            .primitive = smokePrimitive,
+                            .ctm = ctm,
+                            .originalCTM = ctm,
+                            .isFire = false,
+                            .isSmoke = true,
+                            .isRedSmoke = false,
+                            .riseCount = 0,
+                            .timeOffset = 0,
+                        };
+                        smokeShapes.push_back(smoke);
+                    }else if(coalBurn){
+                        RenderShapeData smoke = RenderShapeData{
+                            .primitive = redSmokePrimitive,
+                            .ctm = ctm,
+                            .originalCTM = ctm,
+                            .isFire = false,
+                            .isSmoke = false,
+                            .isRedSmoke = true,
+                            .riseCount = 0,
+                            .timeOffset = 0,
+                        };
+                        smokeShapes.push_back(smoke);
+                    }
                 }
             }
         }

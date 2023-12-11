@@ -11,6 +11,7 @@ struct RenderShapeData {
     glm::mat4 originalCTM;
     bool isFire;
     bool isSmoke;
+    bool isRedSmoke;
     int riseCount = 0;
     float timeOffset;
 };
