@@ -801,6 +801,7 @@ void Realtime::settingsChanged() {
         update(); // asks for a PaintGL() call to occur
     }
     ball.changeMaterial(materialList[settings.material-1]);
+    if (settings.material == 1) soaked = false;
 }
 
 // ================== Action!
