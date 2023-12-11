@@ -323,7 +323,7 @@ void Realtime::extractInfo(std::string filepath) {
             m_bottomRight = ctm * glm::vec4(1, 0.0, -1, 1.0);
             m_bottomLeft = ctm * glm::vec4(-1, 0.0, -1, 1.0);
         }
-        else if (shape.isFire) {
+        else if (shape.isFire && shape.primitive.type != PrimitiveType::PRIMITIVE_CUBE) {
             m_fire_pos += glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0));
             c += 1;
         }
@@ -523,7 +523,46 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     }
 
     else if (type == PrimitiveType::PRIMITIVE_CUBE) {
-        if (shape.isFire){
+        if (shape.isSmoke){
+            float x_dist = shape.ctm[3][0] - ball.getPos().x;
+            float z_dist = shape.ctm[3][2] - ball.getPos().z;
+            glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
+            float y_vel = 0.1f;
+            glm::vec3 velocity;
+            if (shape.riseCount == 0){
+                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
+            }
+            shape.riseCount += 1;
+            float r = ((double) rand() / (RAND_MAX)) * 0.04f;
+            if (shape.riseCount <= 4){
+                velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
+            }else if(shape.riseCount <= 8){
+                velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
+            }else if (shape.riseCount <= 12){
+                velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
+            }else{
+                smokeShapes.clear();
+                return;
+            }
+            if (settings.material == 1){
+                if (isInWater()){
+                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                }else{
+                    return;
+                }
+            }else if(settings.material == 2){
+                if (time_on_fire < 8 && !isInWater()) {
+                    shape.primitive.material.cAmbient = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                } else {
+                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+                }
+            }else{
+                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
+            }
+        }
+        else if (shape.isFire){
             if (fireOn || ctm != originalCTM){
                 float x_dist = shape.ctm[3][0] - m_fire_center.x;
                 float z_dist = shape.ctm[3][2] - m_fire_center.z;
@@ -551,60 +590,9 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
                     shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
                     shape.primitive.material.cAmbient[1] += 0.007f;
                 }
-            }else{
+            } else {
                 return;
             }
-        }
-        else if(shape.isSmoke){
-            float x_dist = shape.ctm[3][0] - ball.getPos().x;
-            float z_dist = shape.ctm[3][2] - ball.getPos().z;
-            glm::vec2 xz_vel = glm::vec2(-glm::normalize(glm::vec2(x_dist, z_dist))[1], glm::normalize(glm::vec2(x_dist, z_dist))[0]);
-            float y_vel = 0.1f;
-            glm::vec3 velocity;
-            if (shape.riseCount == 0){
-                shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), glm::vec3(0, shape.timeOffset * y_vel, 0));
-            }
-            shape.riseCount += 1;
-            float r = ((double) rand() / (RAND_MAX)) * 0.04f;
-            if (shape.riseCount <= 4){
-                velocity = glm::vec3(r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, r * xz_vel[1]);
-            }else if(shape.riseCount <= 8){
-                velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
-            }else if (shape.riseCount <= 12){
-                velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
-            }else{
-                // velocity = glm::vec3(0.f, 10000.f, 0.f);
-                smokeShapes.clear();
-                return;
-            }
-            if (settings.material == 1){
-                if (isInWater()){
-                    shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                }else{
-                    return;
-                }
-            }else if(settings.material == 2){
-                if (time_on_fire < 10){
-                    if (isInWater()){
-                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                    }else if(!soaked){
-                        shape.primitive.material.cAmbient = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                    }else{
-                        return;
-                    }
-                }else{
-                    if (!soaked || isInWater()){
-                        shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-                    }else{
-                        return;
-                    }
-                }
-            }else{
-                shape.ctm = shape.ctm * glm::translate(glm::mat4(1.f), velocity);
-            }
-
         }
         vao = vaos[0];
         verts = vertsList[0];
@@ -642,20 +630,12 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     uniformLocation = glGetUniformLocation(m_shader, "projmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
 
-    //    uniformLocation = glGetUniformLocation(m_shader, "k_a");
-    //    glUniform1f(uniformLocation, m_ka);
-
-    //    uniformLocation = glGetUniformLocation(m_shader, "k_d");
-    //    glUniform1f(uniformLocation, m_kd);
-
-    //    uniformLocation = glGetUniformLocation(m_shader, "k_s");
-    //    glUniform1f(uniformLocation, m_ks);
     cAmbient *= m_ka;
     cDiffuse *= m_kd;
     cSpecular *= m_ks;
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
-    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.4, 1.0);
+    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.7, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
@@ -742,7 +722,7 @@ void Realtime::paintGL() {
         RenderShapeData ball = sceneData.shapes[0];
         Realtime::draw(ball, true, ball.ctm);  // draw the ball
     }
-    if (time_on_fire > 0.f){
+    if (time_on_fire > 2.f) {
         glm::vec3 ballPos = ball.getPos();
         for (int i = -1; i < 2 ; i ++){
             for (int j = 2; j < 4; j ++){
@@ -984,7 +964,7 @@ void Realtime::updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCam
         soaked = false;
     }
     if (onFire && fireOn) time_on_fire = fmin(10, time_on_fire + deltaTime);
-    else if (ballPos.y <= 0.1 && settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
+    else if (ballPos.y <= 0.1) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
     else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
     if (m_keyMap[Qt::Key_F]) fireOn = true;  // press F to put on fire
 
