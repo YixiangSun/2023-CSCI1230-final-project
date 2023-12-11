@@ -659,11 +659,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     cSpecular *= m_ks;
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
-    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.7, 1.0);
+    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.25, 0.23, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
-    if (ifBall && settings.material == 1) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.0, 1.0);
+    if (ifBall && settings.material == 1) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.25, 1.0);
     glUniform4f(uniformLocation, cDiffuse[0], cDiffuse[1], cDiffuse[2], cDiffuse[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
