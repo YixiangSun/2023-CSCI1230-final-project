@@ -392,7 +392,7 @@ void Realtime::makeFBO(){
 void Realtime::getVaos() {
 
     Cube cube{};
-    cube.updateParams(2);
+    cube.updateParams(1);
     std::vector<float> cubeVerts = cube.generateShape();
 
     Cone cone{};
@@ -663,11 +663,11 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     cSpecular *= m_ks;
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
-    if (ifBall && settings.material == 1) cAmbient = (1.0f - time_on_fire/10.0f) * cAmbient + time_on_fire/10.0f * glm::vec4(1.0, 0.25, 0.23, 1.0);
+    if (ifBall && settings.material == 1) cAmbient = fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cAmbient + fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.25, 0.23, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
-    if (ifBall && settings.material == 1) cDiffuse = (1.0f - time_on_fire/10.0f) * cDiffuse + time_on_fire/10.0f * glm::vec4(1.0, 0.0, 0.25, 1.0);
+    if (ifBall && settings.material == 1) cDiffuse = fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cDiffuse + fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.0, 0.25, 1.0);
     glUniform4f(uniformLocation, cDiffuse[0], cDiffuse[1], cDiffuse[2], cDiffuse[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
@@ -684,13 +684,13 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
 
     uniformLocation = glGetUniformLocation(m_shader, "blend");
     float blend = 0.0f;
-    if (ifBall && settings.material == 2) blend = (1.0 - time_on_fire/10.0f);
-    else if (ifBall && settings.material == 3) blend = (1.0 - 0.6 * time_on_fire/10.0f);
+    if (ifBall && settings.material == 2) blend = fmin(1.0f, (1.0f - time_on_fire/10.0f));
+    else if (ifBall && settings.material == 3) blend = fmin(1.0f, (1.0f - 0.6 * time_on_fire/10.0f));
     glUniform1f(uniformLocation, blend);
 
     uniformLocation = glGetUniformLocation(m_shader, "anger");
     float anger = 0.0f;
-    if (ifBall && settings.material != 1) anger = time_on_fire/10.0f;
+    if (ifBall && settings.material != 1) anger = fmax(0.0f, time_on_fire/10.0f);
     glUniform1f(uniformLocation, anger);
 
     glUniform1i(glGetUniformLocation(m_shader, "fireOn"), fireOn);
@@ -750,7 +750,7 @@ void Realtime::paintGL() {
         RenderShapeData ball = sceneData.shapes[0];
         Realtime::draw(ball, true, ball.ctm);  // draw the ball
     }
-    if (time_on_fire > 2.f) {
+    if (time_on_fire > 1.f) {
         glm::vec3 ballPos = ball.getPos();
         for (int i = -1; i < 2 ; i ++){
             for (int j = 1; j < 2; j ++){
@@ -788,6 +788,8 @@ void Realtime::paintGL() {
                 }
             }
         }
+    } else if (time_on_fire <= -2.9f) {
+        smokeShapes.clear();
     }
     for (RenderShapeData &shape : sceneData.shapes) {
         Realtime::draw(shape, false, shape.originalCTM);
@@ -795,7 +797,7 @@ void Realtime::paintGL() {
     for (RenderShapeData &shape : smokeShapes){
         Realtime::draw(shape, false, shape.originalCTM);
     }
-    paintObj(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    paintObj();
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
@@ -840,7 +842,7 @@ void Realtime::sceneChanged() {
     camera = Camera(cData, m_width, m_height);
     fireOn = true;
     soaked = false;
-    time_on_fire = 0.0;
+    time_on_fire = -3.0f;
     onRock = false;
 }
 
@@ -1026,13 +1028,13 @@ void Realtime::updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCam
         soaked = false;
     }
     if (onFire && fireOn) {
-        time_on_fire = fmin(10, time_on_fire + deltaTime);
+        time_on_fire = fmin(10.0f, time_on_fire + deltaTime);
     }
     else if (ballPos.y <= ball.getRadius() - 0.2) {
-        time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
+        time_on_fire = fmax(-3.0f, time_on_fire - deltaTime * 5);
     }
     else if (settings.material != 2) {
-        time_on_fire = fmax(0, time_on_fire - deltaTime);
+        time_on_fire = fmax(-3.0f, time_on_fire - deltaTime);
     }
     if (m_keyMap[Qt::Key_F]) fireOn = true;  // press F to light on fire
 

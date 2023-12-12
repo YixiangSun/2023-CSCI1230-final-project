@@ -120,7 +120,7 @@ private:
     float m_bound = 75.0;
     bool isInWater();
     glm::vec3 getWaterNormal();
-    float time_on_fire = 0.0f;
+    float time_on_fire = -3.0f;
     bool soaked = false;
     void updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCameraData &cData);
     bool onRock = false;
