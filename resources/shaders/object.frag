@@ -2,14 +2,8 @@
 
 in vec3 position; // Good
 in vec3 normal;   // Good
-//in vec2 uv;
+
 out vec4 fragColor;
-
-//uniform float blend;
-//uniform float anger;
-
-//uniform mat4 viewMatrix;
-//uniform mat4 modelmatrix;
 
 uniform vec4 cAmbient;   // Good
 uniform vec4 cDiffuse;   // Good
@@ -17,9 +11,8 @@ uniform vec4 cSpecular;  // Good
 uniform float shininess; // Good
 uniform vec4 cameraPos;  // Good
 
-uniform int numLights; // ???
+uniform int numLights;
 uniform int lightTypes[8];
-//uniform bool isFires[8];
 uniform vec4 lightDirs[8];
 uniform vec4 lightPoses[8];
 uniform vec4 lightColors[8];
@@ -31,10 +24,7 @@ void main(void)
 {
     vec3 realNormal = normalize(normal);
     vec4 phongColor = vec4(0);
-//    phongColor += k_a * cAmbient;  // Ambient term
     phongColor += cAmbient * 0.25f; // ????????????????????????????????????????????????? suppose IA is 0.25f
-//    phongColor += cDiffuse; // correctly passed in //!!
-//    phongColor += cSpecular;
 //    phongColor += vec4(normal, 0);
 
 

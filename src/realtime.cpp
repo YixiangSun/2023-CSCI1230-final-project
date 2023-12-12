@@ -78,11 +78,11 @@ std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
 
-// ?????????????????????????????????????????????????????????????????????????????????
+// Object data
 std::unordered_map<std::string, OBJMaterial> objData;
-std::set<std::string> objNames;
-std::vector<GLuint> objVaos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
-std::vector<GLuint> objVbos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
+std::set<std::string> objNames; // keys for accessing the map of objData
+std::vector<GLuint> objVaos(999); // objVao
+std::vector<GLuint> objVbos(999); // objVbo
 
 
 Realtime::Realtime(QWidget *parent)
@@ -171,8 +171,8 @@ void Realtime::initializeGL() {
     m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
-    objData = objparser.parseMtlFile(":/objects/greens.mtl");
-    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // crash
+    objData = objparser.parseMtlFile(":/objects/greens.mtl"); // parse Mtl file and create objData
+    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // load the mesh vertex data into corresponding objects
     getObjVaos();
     // ?????????????????????????? //
 
@@ -449,24 +449,17 @@ void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
 void Realtime::paintObj() {
 
     glm::vec4 cameraPos = camera.getData().pos;
-//    int numLights = sceneData.lights.size();
 
     glm::mat4 identityMatrix(1.0f);
     glUseProgram(m_object_shader);
-//    GLint uniformLocation = glGetUniformLocation(m_object_shader, "modelmatrix");
-//    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identityMatrix[0][0]);
+
     GLint uniformLocation = glGetUniformLocation(m_object_shader, "viewmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
     uniformLocation = glGetUniformLocation(m_object_shader, "projmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
     uniformLocation = glGetUniformLocation(m_object_shader, "cameraPos");
     glUniform4f(uniformLocation, cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[3]);
-//    uniformLocation = glGetUniformLocation(m_object_shader, "blend");
-//    float blend = 0.f;
-//    glUniform1f(uniformLocation, blend);
 
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-//    glUniform1i(glGetUniformLocation(m_object_shader, "fireOn"), fireOn);
     int numLights = sceneData.lights.size();
     uniformLocation = glGetUniformLocation(m_object_shader, "numLights");
     glUniform1i(uniformLocation, numLights);
@@ -505,45 +498,16 @@ void Realtime::paintObj() {
         glUniform1f(uniformLocation, penumbras[i]);
     }
 
-//    uniform int numLights; // ???
-//    uniform int lightTypes[8];
-//    uniform vec4 lightDirs[8];
-//    uniform vec4 lightPoses[8];
-//    uniform vec4 lightColors[8];
-//    uniform vec3 functions[8];
-//    uniform float angles[8];
-//    uniform float penumbras[8];
-
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
     int i = 50;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
         uniformLocation = glGetUniformLocation(m_object_shader, "cAmbient");
         glUniform4fv(uniformLocation, 1, objData[*it].ambient);
 
-//        std::cout << "Ambient Term: "; // ?????????
-//        for (int i = 0; i <= 3; ++i) {
-//            std::cout << objData[*it].ambient[i] << " ";
-//        }
-//        std::cout << std::endl;
-
         uniformLocation = glGetUniformLocation(m_object_shader, "cDiffuse");
         glUniform4fv(uniformLocation, 1, objData[*it].diffuse);
 
-//        std::cout << "Diffuse Term: "; // ?????????
-//        for (int i = 0; i <= 3; ++i) {
-//            std::cout << objData[*it].diffuse[i] << " ";
-//        }
-//        std::cout << std::endl;
-
         uniformLocation = glGetUniformLocation(m_object_shader, "cSpecular");
         glUniform4fv(uniformLocation, 1, objData[*it].specular);
-
-//        std::cout << "Specular Term: "; // ?????????
-//        for (int i = 0; i <= 3; ++i) {
-//            std::cout << objData[*it].specular[i] << " ";
-//        }
-//        std::cout << std::endl;
 
         uniformLocation = glGetUniformLocation(m_object_shader, "shininess");
         glUniform1f(uniformLocation, objData[*it].shininess);
@@ -552,12 +516,6 @@ void Realtime::paintObj() {
         glDrawArrays(GL_TRIANGLES, 0, objData[*it].obj_vertexData.size() / 6);
         glBindVertexArray(0);
     }
-
-    //    glActiveTexture(GL_TEXTURE0);
-    //    glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
-
-    //    glDrawArrays(GL_TRIANGLES, 0, verts.size() / 6);
-    //    glBindTexture(GL_TEXTURE_2D, 0);
     glUseProgram(0);
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

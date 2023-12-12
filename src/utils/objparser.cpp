@@ -11,7 +11,6 @@ OBJparser::OBJparser(){}
 std::set<std::string> OBJparser::loadMesh(const char *filepath, std::unordered_map<std::string, OBJMaterial>& objects){ // std::unordered_map<std::string, Material>
     std::vector<float> vp;
     std::vector<float> vn;
-//    std::vector<float> vertices;
     std::set<std::string> objNames;
 
     QString filepathStr = QString(filepath);
@@ -142,29 +141,14 @@ std::unordered_map<std::string, OBJMaterial> OBJparser::parseMtlFile(const char 
             } else if (token == "Ka") {
                 iss >> currentMaterial.ambient[0] >> currentMaterial.ambient[1] >> currentMaterial.ambient[2];
                 currentMaterial.ambient[3] = 0;
-
-//                std::cout << "Ambient Term: ";
-//                for (int i = 0; i <= 3; ++i) {
-//                    std::cout << currentMaterial.ambient[i] << " ";
-//                }
-//                std::cout << std::endl;
-
             } else if (token == "Kd") {
                 iss >> currentMaterial.diffuse[0] >> currentMaterial.diffuse[1] >> currentMaterial.diffuse[2];
                 currentMaterial.diffuse[3] = 0;
-
-//                std::cout << "Diffuse Term: ";
-//                for (int i = 0; i <= 3; ++i) {
-//                    std::cout << currentMaterial.diffuse[i] << " ";
-//                }
-//                std::cout << std::endl;
-
             } else if (token == "Ks") {
                 iss >> currentMaterial.specular[0] >> currentMaterial.specular[1] >> currentMaterial.specular[2];
-                currentMaterial.specular[3] = 0; // ??????
+                currentMaterial.specular[3] = 0;
             } else if (token == "Ns") {
                 iss >> currentMaterial.shininess;
-//                currentMaterial.shininess /= 255.f; // ??????
             }
             // Additional material properties can be handled similarly
             // Ke 0.000000 0.000000 0.000000 // ????
