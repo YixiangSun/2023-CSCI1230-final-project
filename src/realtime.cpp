@@ -834,7 +834,7 @@ void Realtime::sceneChanged() {
     sceneLoaded = true;
     update(); // asks for a PaintGL() call to occur
     extractInfo(settings.sceneFilePath);
-    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, m_ballMaterial);
+    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.5, m_ballMaterial);
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);

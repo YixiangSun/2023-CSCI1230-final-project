@@ -111,7 +111,7 @@ private:
     glm::vec4 m_topRight;
     glm::vec4 m_bottomRight;
     glm::vec4 m_bottomLeft;
-    float m_rim_width = 0.8;
+    float m_rim_width = 1.2;
 
     // ball
     SceneMaterial m_ballMaterial;
