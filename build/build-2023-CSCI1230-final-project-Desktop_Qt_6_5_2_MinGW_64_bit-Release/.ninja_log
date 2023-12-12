@@ -1,0 +1,75 @@
+# ninja log v5
+60682	62044	7240427284140726	CMakeFiles/projects_realtime.dir/src/shapes/Cone.cpp.obj	804fc616e29dea4e
+10862	10964	7240426773441438	CMakeFiles/StaticGLEW.dir/StaticGLEW_autogen/mocs_compilation.cpp.obj	7d059b940a66bdc3
+6	10861	7240426671203755	StaticGLEW_autogen/timestamp	2465e31b205e04ce
+10871	18232	7240426846087652	CMakeFiles/StaticGLEW.dir/glew/src/glew.c.obj	bf931784b21ce9b7
+60706	62133	7240427284520721	CMakeFiles/projects_realtime.dir/src/shapes/Sphere.cpp.obj	56fffecc3a08e5fa
+6	10861	7240426671203755	StaticGLEW_autogen/mocs_compilation.cpp	2465e31b205e04ce
+18236	19140	7240426854771400	libStaticGLEW.a	bd80415afac4a9a
+6	10861	7240426671203755	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/StaticGLEW_autogen/timestamp	2465e31b205e04ce
+6	10861	7240426671203755	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/StaticGLEW_autogen/mocs_compilation.cpp	2465e31b205e04ce
+28	17165	7240557676475135	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+28	17165	7240557676475135	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+60731	63199	7240427295728755	CMakeFiles/projects_realtime.dir/src/shapes/Water.cpp.obj	96b212b08161165b
+28	17165	7240557676475135	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+60625	62507	7240427288822714	CMakeFiles/projects_realtime.dir/src/ball/ball.cpp.obj	69732c9125b337ff
+28	17165	7240557676475135	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+60647	61899	7240427282460734	CMakeFiles/projects_realtime.dir/src/settings.cpp.obj	6791a3dbca5b1559
+59855	60595	7240427269726517	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+59855	60595	7240427269726517	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+60744	67703	7240427340794137	CMakeFiles/projects_realtime.dir/src/utils/scenefilereader.cpp.obj	e15d7dfc3a1de27a
+60694	62135	7240427284870718	CMakeFiles/projects_realtime.dir/src/shapes/Cylinder.cpp.obj	9520731fc851afb3
+60635	62597	7240427289646680	CMakeFiles/projects_realtime.dir/src/camera/camera.cpp.obj	d985438ce2badea9
+60659	62641	7240427290176675	CMakeFiles/projects_realtime.dir/src/shapes/Cube.cpp.obj	56a642dc278dbed3
+60670	63998	7240427303752561	CMakeFiles/projects_realtime.dir/src/utils/textureMapping.cpp.obj	667a194e3a838dc3
+60796	65467	7240427318428888	CMakeFiles/projects_realtime.dir/src/utils/objparser.cpp.obj	82f0320f014564d8
+60758	65104	7240427314822327	CMakeFiles/projects_realtime.dir/src/utils/sceneparser.cpp.obj	cf6de071e554694b
+60615	67024	7240427334024610	CMakeFiles/projects_realtime.dir/src/main.cpp.obj	28a7dc6c7da0d4c2
+60717	67111	7240427334874615	CMakeFiles/projects_realtime.dir/projects_realtime_autogen/mocs_compilation.cpp.obj	d9a21c33273e501e
+60604	67634	7240427340104144	CMakeFiles/projects_realtime.dir/src/mainwindow.cpp.obj	16bcfdf0c5e0102a
+17210	23943	7240557744254631	CMakeFiles/projects_realtime.dir/src/realtime.cpp.obj	14c3c036d241831f
+60771	71430	7240427378056786	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+23944	24612	7240557750406351	projects_realtime.exe	a4dfcdec70a1064d
+26	12140	7240558549061308	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+26	12140	7240558549061308	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+26	12140	7240558549061308	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+26	12140	7240558549061308	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+12187	18451	7240558612173059	CMakeFiles/projects_realtime.dir/src/realtime.cpp.obj	14c3c036d241831f
+18452	19245	7240558619068819	projects_realtime.exe	a4dfcdec70a1064d
+30	60454	7240576822909279	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+30	60454	7240576822909279	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+30	60454	7240576822909279	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+30	60454	7240576822909279	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+60502	63043	7240576848797910	CMakeFiles/projects_realtime.dir/src/utils/objparser.cpp.obj	82f0320f014564d8
+63044	63798	7240576855379800	projects_realtime.exe	a4dfcdec70a1064d
+25	906	7240593844416332	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+25	906	7240593844416332	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+907	9065	7240593925988620	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+9067	10279	7240593937172483	projects_realtime.exe	a4dfcdec70a1064d
+16	61943	7240611528893909	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+16	61943	7240611528893909	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+16	61943	7240611528893909	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+16	61943	7240611528893909	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+61992	62752	7240611536959381	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+61992	62752	7240611536959381	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+62752	69488	7240611604322231	CMakeFiles/projects_realtime.dir/src/realtime.cpp.obj	14c3c036d241831f
+62761	70784	7240611617288014	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+70786	71784	7240611626311401	projects_realtime.exe	a4dfcdec70a1064d
+21	760	7240618576797194	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+21	760	7240618576797194	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+762	8395	7240618653140427	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+8397	9422	7240618661852463	projects_realtime.exe	a4dfcdec70a1064d
+17	769	7240619294314564	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+17	769	7240619294314564	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+770	8515	7240619371766516	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+8516	9512	7240619380714780	projects_realtime.exe	a4dfcdec70a1064d
+29	56067	7240629812095777	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+29	56067	7240629812095777	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+29	56067	7240629812095777	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+29	56067	7240629812095777	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+56113	60244	7240629853853259	CMakeFiles/projects_realtime.dir/src/utils/objparser.cpp.obj	82f0320f014564d8
+60245	61696	7240629867259083	projects_realtime.exe	a4dfcdec70a1064d
+30	1021	7240630967515390	.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+30	1021	7240630967515390	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
+1022	9215	7240631049462670	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
+9217	10549	7240631061750606	projects_realtime.exe	a4dfcdec70a1064d

@@ -14,90 +14,118 @@ OBJparser::OBJparser(){}
 //std::vector<float>
 std::set<std::string> OBJparser::loadMesh(const char *filepath, std::unordered_map<std::string, OBJMaterial>& objects){ // std::unordered_map<std::string, Material>
     std::vector<float> vp;
-//    std::vector<float> vt;
     std::vector<float> vn;
 //    std::vector<float> vertices;
     std::set<std::string> objNames;
 
-//    std::ifstream file;
-//    file.open(filename);
     QString filepathStr = QString(filepath);
     QFile file(filepathStr);
 
-//    if(file.is_open()){
-//        std::string line;
-
-//        OBJMaterial currentOBJ; // ??????????????????????
-//        currentOBJ.obj_vertexData.clear();
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream stream(&file);
         QString line;
 
         std::string currentName = "FALSE";
-        OBJMaterial currentOBJ;
-        currentOBJ.obj_vertexData.clear();
+//        OBJMaterial currentOBJ;
+//        currentOBJ.obj_vertexData.clear();
+        std::vector<float> curr_vertexData;
+        curr_vertexData.clear();
 //        while(getline(file, line)){
         while (!(line = stream.readLine()).isNull()) {
 //            std::vector<std::string> words = OBJparser::split(line, ' ');
             std::vector<std::string> words = OBJparser::split(line.toStdString(), ' ');
-//            std::istringstream iss(line.toStdString());
-//            std::string token;
-//            iss >> token;
-            if (words[0] == "o") { // !!!!!!!!!!!!!!!!!!
 
-                vp.clear();
-//                vt.clear();
-                vn.clear();
-//                vertices.clear();
-
-            } else if (words[0] == "v") {
+            if (words[0] == "v") {
                 vp.push_back(std::stof(words[1]));
                 vp.push_back(std::stof(words[2]));
                 vp.push_back(std::stof(words[3]));
-            } /*else if (words[0] == "vt") {
-                vt.push_back(std::stof(words[1]));
-                vt.push_back(std::stof(words[2]));
-            }*/ else if (words[0] == "vn") {
+            } else if (words[0] == "vn") {
                 vn.push_back(std::stof(words[1]));
                 vn.push_back(std::stof(words[2]));
                 vn.push_back(std::stof(words[3]));
             } else if (words[0] == "f") { // !!!!!!!!!!!!!!!!
+
+                std::vector <std::string> v_vt_vn1 = split(words[1], '/');
+                std::vector <std::string> v_vt_vn2 = split(words[2], '/');
+                std::vector <std::string> v_vt_vn3 = split(words[3], '/');
+                // vertex positions and vertex normals
+                int firstPos = (std::stoi(v_vt_vn1[0]) - 1) * 3;
+                int firstNom = (std::stoi(v_vt_vn1[2]) - 1) * 3;
+//                curr_vertexData.push_back(vp[std::stoi(v_vt_vn1[0]) - 1]);
+//                curr_vertexData.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
+                curr_vertexData.push_back(vp[firstPos]);
+                curr_vertexData.push_back(vp[firstPos + 1]);
+                curr_vertexData.push_back(vp[firstPos + 2]);
+                curr_vertexData.push_back(vn[firstNom]);
+                curr_vertexData.push_back(vn[firstNom + 1]);
+                curr_vertexData.push_back(vn[firstNom + 2]);
+
+                int secondPos = (std::stoi(v_vt_vn2[0]) - 1) * 3;
+                int secondNom = (std::stoi(v_vt_vn2[2]) - 1) * 3;
+//                curr_vertexData.push_back(vp[std::stoi(v_vt_vn2[0]) - 1]);
+//                curr_vertexData.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
+                curr_vertexData.push_back(vp[secondPos]);
+                curr_vertexData.push_back(vp[secondPos + 1]);
+                curr_vertexData.push_back(vp[secondPos + 2]);
+                curr_vertexData.push_back(vn[secondNom]);
+                curr_vertexData.push_back(vn[secondNom + 1]);
+                curr_vertexData.push_back(vn[secondNom + 2]);
+
+                int thirdPos = (std::stoi(v_vt_vn3[0]) - 1) * 3;
+                int thirdNom = (std::stoi(v_vt_vn3[2]) - 1) * 3;
+//                curr_vertexData.push_back(vp[std::stoi(v_vt_vn3[0]) - 1]);
+//                curr_vertexData.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
+                curr_vertexData.push_back(vp[thirdPos]);
+                curr_vertexData.push_back(vp[thirdPos + 1]);
+                curr_vertexData.push_back(vp[thirdPos + 2]);
+                curr_vertexData.push_back(vn[thirdNom]);
+                curr_vertexData.push_back(vn[thirdNom + 1]);
+                curr_vertexData.push_back(vn[thirdNom + 2]);
+
 //                int triangleCount = words.size() - 3;
 //                for (int i = 0; i < triangleCount; i ++){
-////                    makeCorner(words[1], vp, vt, vn, vertices);
-////                    makeCorner(words[2 + i], vp, vt, vn, vertices);
-////                    makeCorner(words[3 + i], vp, vt, vn, vertices);
-//                    makeCorner(words[1], vp, vt, vn, currentOBJ.obj_vertexData);
-//                    makeCorner(words[2 + i], vp, vt, vn, currentOBJ.obj_vertexData);
-//                    makeCorner(words[3 + i], vp, vt, vn, currentOBJ.obj_vertexData);
+//                    // ??????????????????????????????????????????//
+//                    std::vector <std::string> v_vt_vn1 = split(words[1], '/');
+//                    std::vector <std::string> v_vt_vn2 = split(words[2 + i], '/');
+//                    std::vector <std::string> v_vt_vn3 = split(words[3 + i], '/');
+//                    // vertex positions
+//                    curr_vertexData.push_back(vp[std::stoi(v_vt_vn1[0]) - 1]);
+//                    curr_vertexData.push_back(vp[std::stoi(v_vt_vn2[0]) - 1]);
+//                    curr_vertexData.push_back(vp[std::stoi(v_vt_vn3[0]) - 1]);
+//                    // vertex normals
+//                    curr_vertexData.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
+//                    curr_vertexData.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
+//                    curr_vertexData.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
+
+//                    // vertex positions
+//                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn1[0]) - 1]);
+//                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn2[0]) - 1]);
+//                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn3[0]) - 1]);
+//                    // vertex normals
+//                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
+//                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
+//                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
 //                }
-                int triangleCount = words.size() - 3;
-                for (int i = 0; i < triangleCount; i ++){
-                    // ??????????????????????????????????????????//
-                    std::vector <std::string> v_vt_vn1 = split(words[1], '/');
-                    std::vector <std::string> v_vt_vn2 = split(words[2 + i], '/');
-                    std::vector <std::string> v_vt_vn3 = split(words[3 + i], '/');
-                    // vertex positions
-                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn1[0]) - 1]);
-                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn2[0]) - 1]);
-                    currentOBJ.obj_vertexData.push_back(vp[std::stoi(v_vt_vn3[0]) - 1]);
-                    // vertex normals
-                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn1[2]) - 1]);
-                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn2[2]) - 1]);
-                    currentOBJ.obj_vertexData.push_back(vn[std::stoi(v_vt_vn3[2]) - 1]);
-                }
             } else if (words[0] == "usemtl") {
                 if (currentName != "FALSE") { // ??????
                     objects[currentName].obj_vertexData.insert(objects[currentName].obj_vertexData.end(),
-                                                               currentOBJ.obj_vertexData.begin(),
-                                                               currentOBJ.obj_vertexData.end());
+                                                               curr_vertexData.begin(),
+                                                               curr_vertexData.end());
+                    curr_vertexData.clear(); // ???????????????
                 }
 
                 currentName = words[1]; // ????????????
-                currentOBJ = objects[currentName];
+//                currentOBJ = objects[currentName]; // ??????????????????
                 objNames.insert(currentName); // ????????????
             }
         }
+
+        if (currentName != "FALSE") { // parse the last element
+            objects[currentName].obj_vertexData.insert(objects[currentName].obj_vertexData.end(),
+                                                       curr_vertexData.begin(),
+                                                       curr_vertexData.end());
+        }
+
         file.close();
     } else {
         std::cout<<"Unable to open file" << std::endl;

@@ -168,12 +168,12 @@ void Realtime::initializeGL() {
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
     // ????????????????????????????????????????
-    // m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
+    m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
     objData = objparser.parseMtlFile(":/objects/greens.mtl");
-//    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // crash
-//    getObjVaos();
+    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // crash
+    getObjVaos();
     // ?????????????????????????? //
 
     glGenBuffers(1, &m_water_vbo);
@@ -420,7 +420,7 @@ void Realtime::getVaos() {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
-    int i = 10;
+    int i = 50;
     //    std::vector<GLuint> objVaos;
     //    std::vector<GLuint> objVbos;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
@@ -449,71 +449,71 @@ void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
 void Realtime::paintObj() {
 
     glm::vec4 cameraPos = camera.getData().pos;
-    int numLights = sceneData.lights.size();
+//    int numLights = sceneData.lights.size();
 
     glm::mat4 identityMatrix(1.0f);
-    glUseProgram(m_shader);
-    GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
-    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identityMatrix[0][0]);
-    uniformLocation = glGetUniformLocation(m_shader, "viewmatrix");
+    glUseProgram(m_object_shader);
+//    GLint uniformLocation = glGetUniformLocation(m_object_shader, "modelmatrix");
+//    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identityMatrix[0][0]);
+    GLint uniformLocation = glGetUniformLocation(m_object_shader, "viewmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
-    uniformLocation = glGetUniformLocation(m_shader, "projmatrix");
+    uniformLocation = glGetUniformLocation(m_object_shader, "projmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
-    uniformLocation = glGetUniformLocation(m_shader, "cameraPos");
+    uniformLocation = glGetUniformLocation(m_object_shader, "cameraPos");
     glUniform4f(uniformLocation, cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[3]);
-    uniformLocation = glGetUniformLocation(m_shader, "blend");
-    float blend = 0.f;
-    glUniform1f(uniformLocation, blend);
+//    uniformLocation = glGetUniformLocation(m_object_shader, "blend");
+//    float blend = 0.f;
+//    glUniform1f(uniformLocation, blend);
 
     // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    glUniform1i(glGetUniformLocation(m_shader, "fireOn"), fireOn);
+//    glUniform1i(glGetUniformLocation(m_object_shader, "fireOn"), fireOn);
     for (int i = 0; i < sceneData.lights.size(); i++) {
         std::string str =  "lightTypes[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1i(uniformLocation, lightTypes[i]);
 
         str = "isFires[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1i(uniformLocation, false);
 
         str =  "lightPoses[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform4f(uniformLocation, lightPoses[i][0],  lightPoses[i][1],  lightPoses[i][2],  lightPoses[i][3]);
 
         str =  "lightColors[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform4f(uniformLocation, lightColors[i][0], lightColors[i][1], lightColors[i][2], lightColors[i][3]);
 
         str =  "lightDirs[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform4f(uniformLocation, lightDirs[i][0], lightDirs[i][1], lightDirs[i][2], lightDirs[i][3]);
 
         str =  "functions[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform3f(uniformLocation, functions[i][0], functions[i][1], functions[i][2]);
 
         str =  "angles[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1f(uniformLocation, angles[i]);
 
         str =  "penumbras[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_shader, str.c_str());
+        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1f(uniformLocation, penumbras[i]);
     }
     // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-    int i = 10;
+    int i = 50;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
-        uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
+        uniformLocation = glGetUniformLocation(m_object_shader, "cAmbient");
         glUniform4fv(uniformLocation, 1, objData[*it].ambient);
 
-        uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
+        uniformLocation = glGetUniformLocation(m_object_shader, "cDiffuse");
         glUniform4fv(uniformLocation, 1, objData[*it].diffuse);
 
-        uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
+        uniformLocation = glGetUniformLocation(m_object_shader, "cSpecular");
         glUniform4fv(uniformLocation, 1, objData[*it].specular);
 
-        uniformLocation = glGetUniformLocation(m_shader, "shininess");
+        uniformLocation = glGetUniformLocation(m_object_shader, "shininess");
         glUniform1f(uniformLocation, objData[*it].shininess);
 
         glBindVertexArray(objVaos[i]);
@@ -653,7 +653,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
 
     GLint uniformLocation = glGetUniformLocation(m_shader, "modelmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &shape.ctm[0][0]);
-
 
     uniformLocation = glGetUniformLocation(m_shader, "viewmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
@@ -798,7 +797,7 @@ void Realtime::paintGL() {
     for (RenderShapeData &shape : smokeShapes){
         Realtime::draw(shape, false, shape.originalCTM);
     }
-//    paintObj(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    paintObj(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
     glViewport(0, 0, m_width * m_devicePixelRatio, m_height * m_devicePixelRatio);
@@ -847,7 +846,7 @@ void Realtime::sceneChanged() {
 void Realtime::settingsChanged() {
     m_ballMaterial = materialList[settings.material-1];
     if (initialized) {
-        getVaos();
+//        getVaos(); //?????!!!!!!!!!!!!!!!!!
         readTexture();
         update(); // asks for a PaintGL() call to occur
     }

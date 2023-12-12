@@ -1,12 +1,20 @@
 #version 330 core
 
-attribute vec4 qt_Vertex;
-attribute vec4 qt_MultiTexCoord0;
-uniform mat4 qt_ModelViewProjectionMatrix;
-varying vec4 qt_TexCoord0;
+layout(location = 0) in vec3 positionObj;
+layout(location = 1) in vec3 normalObj;
 
-void main(void)
-{
-    gl_Position = qt_ModelViewProjectionMatrix * qt_Vertex;
-    qt_TexCoord0 = qt_MultiTexCoord0;
+out vec3 position;
+out vec3 normal;
+//uniform mat4 modelmatrix;
+uniform mat4 viewmatrix;
+uniform mat4 projmatrix;
+
+//const float epsilon = 0.0001f;
+//const float PI = 3.1415926535897932384626433832795;
+//uniform int primitive; // !!!
+
+void main() {
+    position = positionObj;
+    normal = normalize(normalObj);
+    gl_Position = projmatrix * viewmatrix * vec4(positionObj, 1.0f);
 }
