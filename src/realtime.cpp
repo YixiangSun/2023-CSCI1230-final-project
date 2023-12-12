@@ -566,7 +566,7 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
             float x_dist = shape.ctm[3][0] - ball.getPos().x;
             float z_dist = shape.ctm[3][2] - ball.getPos().z;
             glm::vec2 xz_vel = glm::vec2(glm::normalize(glm::vec2(x_dist, z_dist))[0], glm::normalize(glm::vec2(x_dist, z_dist))[1]);
-            float y_vel = 0.1f;
+            float y_vel = 0.2f;
             glm::vec3 velocity;
             if (shape.riseCount == 0){
                 shape.timeOffset = ((double) rand() / (RAND_MAX)) * 60.f;
