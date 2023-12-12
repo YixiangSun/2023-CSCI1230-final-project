@@ -28,7 +28,7 @@ void main(void)
 //    phongColor += vec4(normal, 0);
 
 
-    for (int i = 0; i < numLights; i++) { // Buggy!
+    for (int i = 0; i < numLights; i++) {
         vec4 lightColor = lightColors[i];
 
 //        phongColor += vec4(normal, 0);

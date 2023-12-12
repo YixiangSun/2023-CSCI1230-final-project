@@ -3,6 +3,7 @@
 // Defined before including GLEW to suppress deprecation messages on macOS
 #include "ball/ball.h"
 #include "shapes/Water.h"
+#include "utils/hitObjects.h"
 #include "utils/objparser.h"
 #include "utils/rgba.h"
 #include "utils/sceneparser.h"
@@ -110,6 +111,7 @@ private:
     glm::vec4 m_topRight;
     glm::vec4 m_bottomRight;
     glm::vec4 m_bottomLeft;
+    float m_rim_width = 0.8;
 
     // ball
     SceneMaterial m_ballMaterial;
@@ -118,10 +120,11 @@ private:
     float m_bound = 75.0;
     bool isInWater();
     glm::vec3 getWaterNormal();
-    float m_rim_width = 0.8;
     float time_on_fire = 0.0f;
     bool soaked = false;
     void updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCameraData &cData);
+    bool onRock = false;
+    bool onFire = false;
 
     // fire
     float m_fire_radius = 1.2f;
@@ -143,5 +146,9 @@ private:
     void createObjVAO();
     void getObjVaos();
     void paintObj();
+
+    // hit objects
+    std::vector<hitObject> hitObjs;
+    void populateHitObjs();
 };
 

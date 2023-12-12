@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="nature/nature_assets.obj">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/nature/nature_assets.obj</file>
+    <file alias="nature/nature_assets.mtl">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/nature/nature_assets.mtl</file>
+    <file alias="resources/shaders/phong.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.frag</file>
+    <file alias="resources/shaders/phong.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/phong.vert</file>
+    <file alias="resources/shaders/texture.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.frag</file>
+    <file alias="resources/shaders/texture.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/texture.vert</file>
+    <file alias="resources/shaders/fire.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.frag</file>
+    <file alias="resources/shaders/fire.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/fire.vert</file>
+    <file alias="resources/shaders/object.frag">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/object.frag</file>
+    <file alias="resources/shaders/object.vert">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/resources/shaders/object.vert</file>
+    <file alias="textures/kitten.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/kitten.png</file>
+    <file alias="textures/wood_texture.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/wood_texture.png</file>
+    <file alias="textures/angry_kitten.png">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/textures/angry_kitten.png</file>
+    <file alias="objects/greens.mtl">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/objects/greens.mtl</file>
+    <file alias="objects/greens.obj">/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/objects/greens.obj</file>
+  </qresource>
+</RCC>
+
