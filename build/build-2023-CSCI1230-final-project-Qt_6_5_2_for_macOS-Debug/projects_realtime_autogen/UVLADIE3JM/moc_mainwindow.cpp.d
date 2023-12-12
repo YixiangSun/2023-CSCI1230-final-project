@@ -848,6 +848,7 @@
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/realtime.h \
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/shapes/Water.h \
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp \
+  /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/hitObjects.h \
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/objparser.h \
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/rgba.h \
   /Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/scenedata.h \

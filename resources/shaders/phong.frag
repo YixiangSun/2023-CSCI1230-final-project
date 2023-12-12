@@ -11,8 +11,8 @@ uniform float anger;
 //uniform float k_a;
 //uniform float k_d;
 //uniform float k_s;
-uniform mat4 viewMatrix;
-uniform mat4 modelmatrix;
+//uniform mat4 viewMatrix;
+//uniform mat4 modelmatrix;
 
 uniform vec4 cAmbient;
 uniform vec4 cDiffuse;
@@ -40,7 +40,7 @@ void main() {
     vec3 realNormal = normalize(normal);  // normalize normal vector for the interpolated ones
 
     vec4 phongColor = vec4(0.0);
-//    phongColor += k_a * cAmbient;  // Ambient term
+     // Ambient term
     phongColor += cAmbient;
 
     for (int i = 0; i < numLights; i++) {
@@ -49,15 +49,14 @@ void main() {
         }
         vec4 lightColor = lightColors[i];
 
-        if (lightTypes[i] == 0) { // Directional light
+        // Directional light
+        if (lightTypes[i] == 0) {
             vec4 lightDir = normalize(lightDirs[i]);
             vec4 r = normalize(reflect(lightDir, vec4(realNormal, 0.f)));
 
-//            phongColor += k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            // Diffusion term
             phongColor += cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-//            shininess == 0 ? phongColor += k_s * cSpecular * lightColor :
-//                    phongColor += k_s * cSpecular *
-//                    pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
+            // specular term
             shininess == 0 ? phongColor += cSpecular * lightColor :
                              phongColor += cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
                                                      * lightColor;
@@ -69,11 +68,9 @@ void main() {
             float d = length(vec4(position, 1.0f) - lightPoses[i]);
             float att = min(1.0f, 1.0f / (functions[i][0] + functions[i][1] * d + functions[i][2] * d * d));
 
-//            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor; // Diffusion term
+            // Diffusion term
             phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-//            shininess == 0 ? phongColor += att * k_s * cSpecular * lightColor :
-//                    phongColor += att * k_s * cSpecular *
-//                    pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
+            // specular term
             shininess == 0 ? phongColor += att * cSpecular * lightColor :
                              phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
                                                * lightColor;  // specular term
@@ -92,11 +89,9 @@ void main() {
             }
             else if (theta > angles[i]) att = 0;
 
-//            phongColor += att * k_d * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;  // Diffusion term
+            // Diffusion term
             phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-//            shininess == 0 ? phongColor += att * k_s * cSpecular * lightColor :
-//                    phongColor += att * k_s * cSpecular *
-//                    pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess) * lightColor;  // specular term
+            // specular term
             shininess == 0 ? phongColor += att * cSpecular * lightColor :
                              phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
                                                * lightColor;  // specular term

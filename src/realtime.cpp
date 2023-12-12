@@ -78,11 +78,11 @@ std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
 
-// ?????????????????????????????????????????????????????????????????????????????????
+// Object data
 std::unordered_map<std::string, OBJMaterial> objData;
-std::set<std::string> objNames;
-std::vector<GLuint> objVaos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
-std::vector<GLuint> objVbos(999); // !!!!!!!!!!!!!!!!!!!!!??????????????
+std::set<std::string> objNames; // keys for accessing the map of objData
+std::vector<GLuint> objVaos(999); // objVao
+std::vector<GLuint> objVbos(999); // objVbo
 
 
 Realtime::Realtime(QWidget *parent)
@@ -163,7 +163,6 @@ void Realtime::initializeGL() {
     // Students: anything requiring OpenGL calls when the program starts should be done here
     extractInfo(settings.sceneFilePath);
     glClearColor(0.12, 0.588, 0.9, 1);
-//    glClearColor(0.0, 0.0, 0.0, 1);
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
@@ -171,8 +170,8 @@ void Realtime::initializeGL() {
     m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
-    objData = objparser.parseMtlFile(":/objects/greens.mtl");
-    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // crash
+    objData = objparser.parseMtlFile(":/objects/greens.mtl"); // parse Mtl file and create objData
+    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // load the mesh vertex data into corresponding objects
     getObjVaos();
     // ?????????????????????????? //
 
@@ -188,7 +187,23 @@ void Realtime::initializeGL() {
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
 }
 
-void Realtime::readTexture() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Realtime::populateHitObjs() {
+    hitObject rock = {
+        .position = {0, 10},
+        .radius = 0.6,
+        .type = HitObjType::HitObj_Sphere
+    };
+
+    hitObject tree = {
+        .position = {10, 0},
+        .radius = 0.3,
+        .type = HitObjType::HitObj_Cylinder
+    };
+    hitObjs.push_back(rock);
+    hitObjs.push_back(tree);
+}
+
+void Realtime::readTexture() {
     // Prepare filepath
     QString kitten_filepath;
     if (settings.material == 3)  kitten_filepath = QString(":/textures/kitten.png");
@@ -449,32 +464,25 @@ void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
 void Realtime::paintObj() {
 
     glm::vec4 cameraPos = camera.getData().pos;
-//    int numLights = sceneData.lights.size();
 
     glm::mat4 identityMatrix(1.0f);
     glUseProgram(m_object_shader);
-//    GLint uniformLocation = glGetUniformLocation(m_object_shader, "modelmatrix");
-//    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identityMatrix[0][0]);
+
     GLint uniformLocation = glGetUniformLocation(m_object_shader, "viewmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
     uniformLocation = glGetUniformLocation(m_object_shader, "projmatrix");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
     uniformLocation = glGetUniformLocation(m_object_shader, "cameraPos");
     glUniform4f(uniformLocation, cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[3]);
-//    uniformLocation = glGetUniformLocation(m_object_shader, "blend");
-//    float blend = 0.f;
-//    glUniform1f(uniformLocation, blend);
 
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-//    glUniform1i(glGetUniformLocation(m_object_shader, "fireOn"), fireOn);
+    int numLights = sceneData.lights.size();
+    uniformLocation = glGetUniformLocation(m_object_shader, "numLights");
+    glUniform1i(uniformLocation, numLights);
+
     for (int i = 0; i < sceneData.lights.size(); i++) {
         std::string str =  "lightTypes[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1i(uniformLocation, lightTypes[i]);
-
-        str = "isFires[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
-        glUniform1i(uniformLocation, false);
 
         str =  "lightPoses[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
@@ -500,7 +508,6 @@ void Realtime::paintObj() {
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1f(uniformLocation, penumbras[i]);
     }
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     int i = 50;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
@@ -520,12 +527,6 @@ void Realtime::paintObj() {
         glDrawArrays(GL_TRIANGLES, 0, objData[*it].obj_vertexData.size() / 6);
         glBindVertexArray(0);
     }
-
-    //    glActiveTexture(GL_TEXTURE0);
-    //    glBindTexture(GL_TEXTURE_2D, m_kitten_texture);
-
-    //    glDrawArrays(GL_TRIANGLES, 0, verts.size() / 6);
-    //    glBindTexture(GL_TEXTURE_2D, 0);
     glUseProgram(0);
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -580,9 +581,6 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
                 velocity = glm::vec3(0.f, (double) rand() / (RAND_MAX) * y_vel, 0.f);
             }else if (shape.riseCount <= 18){
                 velocity = glm::vec3(-r * xz_vel[0], (double) rand() / (RAND_MAX) * y_vel, -r * xz_vel[1]);
-//            }else{
-//                smokeShapes.clear();
-//                return;
             }
             if (shape.riseCount + shape.timeOffset > 44.f){
                 return;
@@ -836,22 +834,25 @@ void Realtime::sceneChanged() {
     sceneLoaded = true;
     update(); // asks for a PaintGL() call to occur
     extractInfo(settings.sceneFilePath);
-    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, m_ballMaterial);
+    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.5, m_ballMaterial);
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
-    // drawFire();
+    fireOn = true;
+    soaked = false;
+    time_on_fire = 0.0;
+    onRock = false;
 }
 
 void Realtime::settingsChanged() {
     m_ballMaterial = materialList[settings.material-1];
     if (initialized) {
-//        getVaos(); //?????!!!!!!!!!!!!!!!!!
         readTexture();
         update(); // asks for a PaintGL() call to occur
     }
     ball.changeMaterial(materialList[settings.material-1]);
     if (settings.material == 1) soaked = false;
+    populateHitObjs();
 }
 
 // ================== Action!
@@ -968,28 +969,41 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
         return desiredDir;
     }
 
-    if (glm::distance(m_fire_pos, ballPos) <= ball.getRadius() + m_fire_radius && glm::distance(m_fire_pos, ballPos) > m_fire_radius) {
-        if ((glm::dot(desiredDir, ballPos - m_fire_pos) > 0.0f && ballPos.y > ball.getRadius()) ||
-            (glm::dot(desiredDir, ballPos - m_fire_pos) <= 0.0f && ballPos.y < ball.getRadius()+0.4)) {
-            n = ballPos - m_fire_pos;
-            n.y = 0;
-            n = glm::normalize(glm::vec3(0, 0.5, 0) + glm::normalize(n));
-            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
-            return desiredDir;
-        }
+    onFire = false;
+    onRock = false;
 
+
+    if (glm::distance(m_fire_pos, ballPos) <= ball.getRadius() + m_fire_radius){
+        onFire = true;
+        if (glm::distance(m_fire_pos, ballPos) > m_fire_radius) {
+            if ((glm::dot(desiredDir, ballPos - m_fire_pos) > 0.0f && ballPos.y > ball.getRadius()) ||
+                (glm::dot(desiredDir, ballPos - m_fire_pos) <= 0.0f && ballPos.y < ball.getRadius() + 0.4)) {
+                n = ballPos - m_fire_pos;
+                n.y = 0;
+                n = glm::normalize(glm::vec3(0, 0.7, 0) + glm::normalize(n));
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+        }
     }
 
-    for (auto shape : sceneData.shapes) {
-        auto type = shape.primitive.type;
-        glm::vec3 ballPos = glm::vec3(ball.getPos());
-        glm::vec3 shapePos = glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0f));
-        float dist = glm::distance(glm::vec2(shapePos.x, shapePos.z), glm::vec2(ballPos.x, ballPos.z));
-        if (type == PrimitiveType::PRIMITIVE_CUBE || type == PrimitiveType::PRIMITIVE_WATER || dist >= 2.5 || shape.isFire) {
-            continue;
-        }
-        else {
-            continue; // other objects, implement later.
+    for (auto obj : hitObjs) {
+        auto type = obj.type;
+        glm::vec3 objPos = glm::vec3(obj.position[0], ballPos.y, obj.position[1]);
+        float dist = glm::distance(ballPos, objPos);
+        if (dist <= ball.getRadius() + obj.radius) {
+            if (type == HitObjType::HitObj_Cylinder && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
+                n = glm::normalize(glm::vec3(ballPos.x - obj.position[0], 0.0f, ballPos.z - obj.position[1]));
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            } else {
+                onRock = true;
+                if ((glm::dot(desiredDir, objPos - ballPos) > 0.0f) || ballPos.y > ball.getRadius()) {
+                    n = glm::normalize(ballPos - glm::vec3(obj.position[0], 0.0f, obj.position[1]));
+                    desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                    return desiredDir;
+                }
+            }
         }
     }
     return desiredDir;
@@ -999,29 +1013,33 @@ void Realtime::updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCam
 
     glm::vec3 ballPos = ball.getPos();
 
+
     // check if ball is soaked
     if (settings.material != 1 && ballPos.y <= 0.1) {
         soaked = true;
     }
 
     // check if ball is on fire and if fire is on to update time_on_fire
-    bool onFire = false;
-    if (glm::distance(m_fire_pos, glm::vec3(ballPos)) <= m_fire_radius + ball.getRadius()) {
-        onFire = true;
-    }
     if (onFire && soaked && fireOn) {
         // if ball is on the fireplace, it is soaked, and the fire is on, put out the fire, and dry the ball.
         fireOn = false;
         soaked = false;
     }
-    if (onFire && fireOn) time_on_fire = fmin(10, time_on_fire + deltaTime);
-    else if (ballPos.y <= 0.1) time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
-    else if (settings.material != 2) time_on_fire = fmax(0, time_on_fire - deltaTime);
-    if (m_keyMap[Qt::Key_F]) fireOn = true;  // press F to put on fire
+    if (onFire && fireOn) {
+        time_on_fire = fmin(10, time_on_fire + deltaTime);
+    }
+    else if (ballPos.y <= ball.getRadius() - 0.2) {
+        time_on_fire = fmax(0, time_on_fire - deltaTime * 10);
+    }
+    else if (settings.material != 2) {
+        time_on_fire = fmax(0, time_on_fire - deltaTime);
+    }
+    if (m_keyMap[Qt::Key_F]) fireOn = true;  // press F to light on fire
 
     // jump or drop down to the ground
     float groundHeight = ball.getRadius();
     if (onFire) groundHeight += 0.5;
+    if (onRock) groundHeight += 0.3;
     if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
         ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
         cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;

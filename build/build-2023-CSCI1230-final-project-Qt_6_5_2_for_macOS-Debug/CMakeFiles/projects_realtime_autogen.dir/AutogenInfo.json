@@ -589,6 +589,12 @@
 			null
 		],
 		[
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/hitObjects.h",
+			"MU",
+			"VSCBVMNR7M/moc_hitObjects.cpp",
+			null
+		],
+		[
 			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/utils/objparser.h",
 			"MU",
 			"VSCBVMNR7M/moc_objparser.cpp",
@@ -718,6 +724,11 @@
 		],
 		[
 			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/camera/camera.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/src/hitObjects.cpp",
 			"MU",
 			null
 		],

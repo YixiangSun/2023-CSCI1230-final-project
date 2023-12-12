@@ -1,25 +1,18 @@
 #version 330 core
 
-in vec3 position;
-in vec3 normal;
-//in vec2 uv;
+in vec3 position; // Good
+in vec3 normal;   // Good
+
 out vec4 fragColor;
 
-//uniform float blend;
-//uniform float anger;
+uniform vec4 cAmbient;   // Good
+uniform vec4 cDiffuse;   // Good
+uniform vec4 cSpecular;  // Good
+uniform float shininess; // Good
+uniform vec4 cameraPos;  // Good
 
-uniform mat4 viewMatrix;
-uniform mat4 modelmatrix;
-
-uniform vec4 cAmbient;
-uniform vec4 cDiffuse;
-uniform vec4 cSpecular;
-uniform float shininess;
-uniform vec4 cameraPos;
-
-uniform int numLights; // ???
+uniform int numLights;
 uniform int lightTypes[8];
-uniform bool isFires[8];
 uniform vec4 lightDirs[8];
 uniform vec4 lightPoses[8];
 uniform vec4 lightColors[8];
@@ -30,14 +23,17 @@ uniform float penumbras[8];
 void main(void)
 {
     vec3 realNormal = normalize(normal);
-    vec4 phongColor = vec4(0.0);
-//    phongColor += k_a * cAmbient;  // Ambient term
-    phongColor += cAmbient;
+    vec4 phongColor = vec4(0);
+    phongColor += cAmbient * 0.25f; // ????????????????????????????????????????????????? suppose IA is 0.25f
+//    phongColor += vec4(normal, 0);
+
 
     for (int i = 0; i < numLights; i++) {
         vec4 lightColor = lightColors[i];
 
-        if (lightTypes[i] == 0) { // Directional light
+//        phongColor += vec4(normal, 0);
+        if (lightTypes[i] == 0) { // Directional light // Buggy!
+//            phongColor += vec4(shininess, 0, 0, 0);
             vec4 lightDir = normalize(lightDirs[i]);
             vec4 r = normalize(reflect(lightDir, vec4(realNormal, 0.f)));
 
@@ -45,6 +41,8 @@ void main(void)
             shininess == 0 ? phongColor += cSpecular * lightColor :
                              phongColor += cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
                                                      * lightColor;
+//            phongColor += cDiffuse;
+//            phongColor += cSpecular;
         }
 
         else if (lightTypes[i] == 1) {  // Point light
@@ -80,4 +78,5 @@ void main(void)
     }
 
     fragColor = phongColor;
+//    fragColor = vec4(1, 0, 0, 0);
 }

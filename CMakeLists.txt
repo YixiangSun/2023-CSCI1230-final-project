@@ -41,6 +41,7 @@ add_executable(${PROJECT_NAME}
     src/utils/scenefilereader.cpp
     src/utils/sceneparser.cpp
     src/utils/objparser.cpp
+    src/hitObjects.cpp
 
     src/mainwindow.h
     src/realtime.h
@@ -61,6 +62,7 @@ add_executable(${PROJECT_NAME}
     src/utils/rgba.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
     src/utils/objparser.h
+    src/utils/hitObjects.h
 
 )
 
