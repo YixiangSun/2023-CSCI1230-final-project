@@ -467,14 +467,18 @@ void Realtime::paintObj() {
 
     // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //    glUniform1i(glGetUniformLocation(m_object_shader, "fireOn"), fireOn);
+    int numLights = sceneData.lights.size();
+    uniformLocation = glGetUniformLocation(m_object_shader, "numLights");
+    glUniform1i(uniformLocation, numLights);
+
     for (int i = 0; i < sceneData.lights.size(); i++) {
         std::string str =  "lightTypes[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1i(uniformLocation, lightTypes[i]);
 
-        str = "isFires[" + std::to_string(i) + "]";
-        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
-        glUniform1i(uniformLocation, false);
+//        str = "isFires[" + std::to_string(i) + "]";
+//        uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
+//        glUniform1i(uniformLocation, false);
 
         str =  "lightPoses[" + std::to_string(i) + "]";
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
@@ -500,6 +504,16 @@ void Realtime::paintObj() {
         uniformLocation = glGetUniformLocation(m_object_shader, str.c_str());
         glUniform1f(uniformLocation, penumbras[i]);
     }
+
+//    uniform int numLights; // ???
+//    uniform int lightTypes[8];
+//    uniform vec4 lightDirs[8];
+//    uniform vec4 lightPoses[8];
+//    uniform vec4 lightColors[8];
+//    uniform vec3 functions[8];
+//    uniform float angles[8];
+//    uniform float penumbras[8];
+
     // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     int i = 50;
@@ -507,11 +521,29 @@ void Realtime::paintObj() {
         uniformLocation = glGetUniformLocation(m_object_shader, "cAmbient");
         glUniform4fv(uniformLocation, 1, objData[*it].ambient);
 
+//        std::cout << "Ambient Term: "; // ?????????
+//        for (int i = 0; i <= 3; ++i) {
+//            std::cout << objData[*it].ambient[i] << " ";
+//        }
+//        std::cout << std::endl;
+
         uniformLocation = glGetUniformLocation(m_object_shader, "cDiffuse");
         glUniform4fv(uniformLocation, 1, objData[*it].diffuse);
 
+//        std::cout << "Diffuse Term: "; // ?????????
+//        for (int i = 0; i <= 3; ++i) {
+//            std::cout << objData[*it].diffuse[i] << " ";
+//        }
+//        std::cout << std::endl;
+
         uniformLocation = glGetUniformLocation(m_object_shader, "cSpecular");
         glUniform4fv(uniformLocation, 1, objData[*it].specular);
+
+//        std::cout << "Specular Term: "; // ?????????
+//        for (int i = 0; i <= 3; ++i) {
+//            std::cout << objData[*it].specular[i] << " ";
+//        }
+//        std::cout << std::endl;
 
         uniformLocation = glGetUniformLocation(m_object_shader, "shininess");
         glUniform1f(uniformLocation, objData[*it].shininess);

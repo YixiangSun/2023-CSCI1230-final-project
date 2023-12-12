@@ -11,8 +11,8 @@ uniform float anger;
 //uniform float k_a;
 //uniform float k_d;
 //uniform float k_s;
-uniform mat4 viewMatrix;
-uniform mat4 modelmatrix;
+//uniform mat4 viewMatrix;
+//uniform mat4 modelmatrix;
 
 uniform vec4 cAmbient;
 uniform vec4 cDiffuse;
