@@ -196,7 +196,7 @@ void Realtime::populateHitObjs() {
 
     hitObject tree = {
         .position = {10, 0},
-        .radius = 0.5,
+        .radius = 0.3,
         .type = HitObjType::HitObj_Cylinder
     };
     hitObjs.push_back(rock);
@@ -991,7 +991,6 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
         auto type = obj.type;
         glm::vec3 objPos = glm::vec3(obj.position[0], ballPos.y, obj.position[1]);
         float dist = glm::distance(ballPos, objPos);
-        std::cout << dist << std::endl;
         if (dist <= ball.getRadius() + obj.radius) {
             if (type == HitObjType::HitObj_Cylinder && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
                 n = glm::normalize(glm::vec3(ballPos.x - obj.position[0], 0.0f, ballPos.z - obj.position[1]));

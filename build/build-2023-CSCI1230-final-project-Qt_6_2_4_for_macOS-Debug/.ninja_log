@@ -35,3 +35,14 @@
 55	2888	1702418634729750000	projects_realtime_autogen/mocs_compilation.cpp	4c12362243b5ea55
 55	2888	1702418634729750000	/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/projects_realtime_autogen/timestamp	4c12362243b5ea55
 55	2888	1702418634729750000	/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	4c12362243b5ea55
+2889	11538	1702418643401219031	CMakeFiles/projects_realtime.dir/src/main.cpp.o	a899774f966a3aa4
+2888	11629	1702418643492963987	CMakeFiles/projects_realtime.dir/projects_realtime_autogen/mocs_compilation.cpp.o	25095d9e223f261b
+2893	11858	1702418643725242796	CMakeFiles/projects_realtime.dir/src/mainwindow.cpp.o	e75ab71b231ac287
+2891	13359	1702418645229888995	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	5ce4e65d1328782a
+13359	13725	1702418645607929784	projects_realtime	b6871ef185d8052c
+42	196	1702418731357298734	projects_realtime_autogen/timestamp	4c12362243b5ea55
+42	196	1702418731357298734	projects_realtime_autogen/mocs_compilation.cpp	4c12362243b5ea55
+42	196	1702418731357298734	/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/projects_realtime_autogen/timestamp	4c12362243b5ea55
+42	196	1702418731357298734	/Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_2_4_for_macOS-Debug/projects_realtime_autogen/mocs_compilation.cpp	4c12362243b5ea55
+209	9117	1702418740257990750	CMakeFiles/projects_realtime.dir/src/realtime.cpp.o	5ce4e65d1328782a
+9118	9506	1702418740655363360	projects_realtime	b6871ef185d8052c
