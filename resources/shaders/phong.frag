@@ -3,16 +3,13 @@
 in vec3 position;
 in vec3 normal;
 in vec2 uv;
+//in vec4 lightSpacePos; // required only for shadow mapping (spot/directional light)
 out vec4 fragColor;
 
 uniform float blend;
 uniform float anger;
 
-//uniform float k_a;
-//uniform float k_d;
-//uniform float k_s;
-//uniform mat4 viewMatrix;
-//uniform mat4 modelmatrix;
+//uniform sampler2D gShadowMap;        // required only for shadow mapping (spot/directional light)
 
 uniform vec4 cAmbient;
 uniform vec4 cDiffuse;
@@ -35,6 +32,23 @@ uniform float penumbras[8];
 uniform sampler2D sampleTexture;
 uniform sampler2D angryTexture;
 
+//float CalcShadowFactor() {
+//    vec3 ProjCoords = lightSpacePos.xyz / lightSpacePos.w;
+//    vec2 UVCoords;
+//    UVCoords.x = 0.5 * ProjCoords.x + 0.5;
+//    UVCoords.y = 0.5 * ProjCoords.y + 0.5;
+//    float z = 0.5 * ProjCoords.z + 0.5;
+//    float Depth = texture(gShadowMap, UVCoords).x;
+
+//    float bias = 0.0025f;
+
+//    if (Depth + bias < z) {
+//        return 0.5f;
+//    } else {
+//        return 1.f;
+//    }
+//}
+
 void main() {
 
     vec3 realNormal = normalize(normal);  // normalize normal vector for the interpolated ones
@@ -42,6 +56,9 @@ void main() {
     vec4 phongColor = vec4(0.0);
      // Ambient term
     phongColor += cAmbient;
+
+//    float shadowFactor = 1.f; // ??????????????????????????????????????
+//    shadowFactor = CalcShadowFactor(); // ??????????????????????????????????????
 
     for (int i = 0; i < numLights; i++) {
         if (isFires[i] && !fireOn){
@@ -54,12 +71,15 @@ void main() {
             vec4 lightDir = normalize(lightDirs[i]);
             vec4 r = normalize(reflect(lightDir, vec4(realNormal, 0.f)));
 
+//            vec4 unshadowedColor = vec4(0, 0, 0, 0);
             // Diffusion term
             phongColor += cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
             // specular term
             shininess == 0 ? phongColor += cSpecular * lightColor :
                              phongColor += cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                                     * lightColor;
+                                                          * lightColor;
+
+//            phongColor += unshadowedColor * shadowFactor;
         }
 
         else if (lightTypes[i] == 1) {  // Point light
@@ -68,12 +88,15 @@ void main() {
             float d = length(vec4(position, 1.0f) - lightPoses[i]);
             float att = min(1.0f, 1.0f / (functions[i][0] + functions[i][1] * d + functions[i][2] * d * d));
 
+//            vec4 unshadowedColor = vec4(0, 0, 0, 0);
             // Diffusion term
             phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
             // specular term
             shininess == 0 ? phongColor += att * cSpecular * lightColor :
                              phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                               * lightColor;  // specular term
+                                                    * lightColor;  // specular term
+
+//            phongColor += unshadowedColor * shadowFactor;
         }
 
         else if (lightTypes[i] == 2){  // spot light
@@ -89,12 +112,15 @@ void main() {
             }
             else if (theta > angles[i]) att = 0;
 
+//            vec4 unshadowedColor = vec4(0, 0, 0, 0);
             // Diffusion term
             phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
             // specular term
             shininess == 0 ? phongColor += att * cSpecular * lightColor :
                              phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                               * lightColor;  // specular term
+                                                    * lightColor;  // specular term
+
+//            phongColor += unshadowedColor * shadowFactor;
         }
     }
 

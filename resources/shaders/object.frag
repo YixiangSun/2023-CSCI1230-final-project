@@ -1,7 +1,10 @@
 #version 330 core
 
 in vec3 position; // Good
-in vec3 normal;   // Good
+in vec3 normal;   // Good'
+in vec4 lightSpacePos; // required only for shadow mapping (spot/directional light)s
+
+uniform sampler2D gShadowMap;        // required only for shadow mapping (spot/directional light)
 
 out vec4 fragColor;
 
@@ -20,29 +23,50 @@ uniform vec3 functions[8];
 uniform float angles[8];
 uniform float penumbras[8];
 
+float CalcShadowFactor() {
+    vec3 ProjCoords = lightSpacePos.xyz / lightSpacePos.w;
+    vec2 UVCoords;
+    UVCoords.x = 0.5 * ProjCoords.x + 0.5;
+    UVCoords.y = 0.5 * ProjCoords.y + 0.5;
+    float z = 0.5 * ProjCoords.z + 0.5;
+    float Depth = texture(gShadowMap, UVCoords).x;
+
+    float bias = 0.0025f;
+
+    if (Depth + bias < z) {
+        return 0.5f;
+    } else {
+        return 1.f;
+    }
+}
+
 void main(void)
 {
     vec3 realNormal = normalize(normal);
     vec4 phongColor = vec4(0);
-    phongColor += cAmbient * 0.25f; // ????????????????????????????????????????????????? suppose IA is 0.25f
+    phongColor += cAmbient * 0.18f; // ????????????????????????????????????????????????? suppose IA is 0.25f
 //    phongColor += vec4(normal, 0);
 
+    float shadowFactor = 1.f; // ??????????????????????????????????????
+    shadowFactor = CalcShadowFactor(); // ??????????????????????????????????????
 
     for (int i = 0; i < numLights; i++) {
         vec4 lightColor = lightColors[i];
 
-//        phongColor += vec4(normal, 0);
-        if (lightTypes[i] == 0) { // Directional light // Buggy!
-//            phongColor += vec4(shininess, 0, 0, 0);
+        // Directional light
+        if (lightTypes[i] == 0) {
             vec4 lightDir = normalize(lightDirs[i]);
             vec4 r = normalize(reflect(lightDir, vec4(realNormal, 0.f)));
 
-            phongColor += cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-            shininess == 0 ? phongColor += cSpecular * lightColor :
-                             phongColor += cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                                     * lightColor;
-//            phongColor += cDiffuse;
-//            phongColor += cSpecular;
+            vec4 unshadowedColor = vec4(0, 0, 0, 0);
+            // Diffusion term
+            unshadowedColor += cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
+            // specular term
+            shininess == 0 ? unshadowedColor += cSpecular * lightColor :
+                             unshadowedColor += cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
+                                                          * lightColor;
+
+            phongColor += unshadowedColor * shadowFactor;
         }
 
         else if (lightTypes[i] == 1) {  // Point light
@@ -51,10 +75,15 @@ void main(void)
             float d = length(vec4(position, 1.0f) - lightPoses[i]);
             float att = min(1.0f, 1.0f / (functions[i][0] + functions[i][1] * d + functions[i][2] * d * d));
 
-            phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-            shininess == 0 ? phongColor += att * cSpecular * lightColor :
-                             phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                               * lightColor;  // specular term
+            vec4 unshadowedColor = vec4(0, 0, 0, 0);
+            // Diffusion term
+            unshadowedColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
+            // specular term
+            shininess == 0 ? unshadowedColor += att * cSpecular * lightColor :
+                             unshadowedColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
+                                                    * lightColor;  // specular term
+
+            phongColor += unshadowedColor * shadowFactor;
         }
 
         else if (lightTypes[i] == 2){  // spot light
@@ -70,13 +99,20 @@ void main(void)
             }
             else if (theta > angles[i]) att = 0;
 
-            phongColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
-            shininess == 0 ? phongColor += att * cSpecular * lightColor :
-                             phongColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
-                                               * lightColor;  // specular term
+            vec4 unshadowedColor = vec4(0, 0, 0, 0);
+            // Diffusion term
+            unshadowedColor += att * cDiffuse * max(0.0, dot(realNormal, -vec3(lightDir))) * lightColor;
+            // specular term
+            shininess == 0 ? unshadowedColor += att * cSpecular * lightColor :
+                             unshadowedColor += att * cSpecular * pow(max(0, dot(vec3(r), normalize(vec3(cameraPos) - position))), shininess)
+                                                    * lightColor;  // specular term
+
+            phongColor += unshadowedColor * shadowFactor;
         }
     }
 
     fragColor = phongColor;
+//    fragColor = lightSpacePos;  // !!
+//    fragColor = vec4(shadowFactor, 0, 0, 0);
 //    fragColor = vec4(1, 0, 0, 0);
 }

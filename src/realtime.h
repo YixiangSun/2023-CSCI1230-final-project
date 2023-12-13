@@ -81,7 +81,7 @@ private:
     std::vector<std::vector<float>> vertsList;          // Store the vertices data (position + normal) of all the shapes
     bool sceneLoaded = false;                           // check if there's a scene loaded. Used to correctly draw the ball.
 
-    GLint m_defaultFBO = 2;
+    GLint m_defaultFBO = 3; // when no shadow, the defaultFBO is 2
 
     bool initialized = false;
 
@@ -147,5 +147,15 @@ private:
     // hit objects
     std::vector<RenderShapeData> hitObjs;
     void populateHitObjs();
+
+    // shadow
+    GLuint m_shadowMap;
+    GLuint m_shadowFBO;
+    GLuint m_shadow_shader;
+    void makeShadowFBO();
+    void ShadowMapPass();
+
+    glm::mat4 LightView;
+    glm::mat4 LightProjection;
 };
 

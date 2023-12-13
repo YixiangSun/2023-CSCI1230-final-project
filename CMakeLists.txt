@@ -58,7 +58,6 @@ add_executable(${PROJECT_NAME}
     src/utils/shaderloader.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
     src/utils/objparser.h
-
 )
 
 # GLM: this creates its library and allows you to `#include "glm/..."`
@@ -89,8 +88,8 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         resources/shaders/phong.vert
         resources/shaders/texture.frag
         resources/shaders/texture.vert
-	resources/shaders/fire.frag
-    	resources/shaders/fire.vert
+        resources/shaders/shadow.frag
+        resources/shaders/shadow.vert
         resources/shaders/object.frag
         resources/shaders/object.vert
         textures/kitten.png
@@ -100,14 +99,12 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         # replicate
         objects/greens.mtl
         objects/greens.obj
+        objects/campsite.mtl
+        objects/campsite.obj
 )
 
 target_sources(projects_realtime_other_files
   PRIVATE
-    resources/shaders/fire.frag
-    resources/shaders/fire.vert
-
-
 )
 
 # GLEW: this provides support for Windows (including 64-bit)
