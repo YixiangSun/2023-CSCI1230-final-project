@@ -14,6 +14,1062 @@
     },
     "groups": [
         {
+            "groups": [
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -12.95,
+                  0,
+                  11.45
+                ],
+                "scale": [
+                  1.8305,
+                  1.6605,
+                  1.5
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  16.54,
+                  0,
+                  -7.05
+                ],
+                "scale": [
+                  2.25,
+                  2.25,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -17.758,
+                  0,
+                  6.5815
+                ],
+                "scale": [
+                  2.25,
+                  2.4,
+                  2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -14.968,
+                  0,
+                  -1.88875
+                ],
+                "scale": [
+                  2.6605,
+                  2.6605,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -11.27,
+                  0,
+                  -7.73
+                ],
+                "scale": [
+                  2,
+                  2,
+                  2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -16.728,
+                  0,
+                  -14.2685
+                ],
+                "scale": [
+                  2.25,
+                  2.4,
+                  2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -12.98,
+                  0,
+                  -21.67
+                ],
+                "scale": [
+                  2,
+                  2,
+                  2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -7.13,
+                  0,
+                  -17.78
+                ],
+                "scale": [
+                  2.6605,
+                  2.6605,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  -2.73,
+                  0,
+                  -12.4
+                ],
+                "scale": [
+                  1.8305,
+                  1.6605,
+                  2.3505
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  0.23,
+                  0,
+                  -24.03
+                ],
+                "scale": [
+                  2.6605,
+                  2.6605,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  6.49,
+                  0,
+                  -16.99
+                ],
+                "scale": [
+                  2.25,
+                  2.25,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  15.77,
+                  0,
+                  -19.04
+                ],
+                "scale": [
+                  2.6605,
+                  2.6605,
+                  2.6605
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder"
+                  }
+                ],
+                "translate": [
+                  11.33,
+                  0,
+                  -11.31
+                ],
+                "scale": [
+                  2,
+                  2,
+                  2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "type": "sphere",
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "specular": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "shininess": 1
+                  }
+                ],
+                "translate": [
+                  10.205,
+                  0,
+                  15.1965
+                ],
+                "scale": [
+                  2.09,
+                  1.358,
+                  1.378
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "type": "cylinder",
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "specular": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "shininess": 1
+                  }
+                ],
+                "translate": [
+                  15.695,
+                  0,
+                  11.042
+                ],
+                "scale": [
+                  0.65,
+                  0.65,
+                  0.65
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "sphere",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "specular": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  15.375,
+                  0,
+                  15.2165
+                ],
+                "scale": [
+                  1.308,
+                  0.828,
+                  0.768
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "sphere",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "specular": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  12.855,
+                  0,
+                  15.2965
+                ],
+                "scale": [
+                  3.55,
+                  2.27,
+                  1.77
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "sphere",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  13.9465,
+                  0,
+                  3.9237
+                ],
+                "scale": [
+                  0.408,
+                  0.408,
+                  0.408
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "sphere",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  12.25,
+                  0,
+                  4.04585
+                ],
+                "scale": [
+                  0.408,
+                  0.408,
+                  0.408
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "sphere",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  10.7415,
+                  0,
+                  4.0861
+                ],
+                "scale": [
+                  0.408,
+                  0.408,
+                  0.408
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cylinder",
+                    "ambient": [
+                      0,
+                      0,
+                      0
+                    ]
+                  }
+                ],
+                "translate": [
+                  -17.4115,
+                  0,
+                  11.8015
+                ],
+                "scale": [
+                  0.6,
+                  0.6,
+                  0.62
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -2,
+                  0,
+                  8.76
+                ],
+                "scale": [
+                  0.5,
+                  0.5,
+                  0.94
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -2.025,
+                  0,
+                  7.8
+                ],
+                "scale": [
+                  0.5,
+                  0.5,
+                  0.99
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -2.225,
+                  0,
+                  6.86
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  21.2
+                ],
+                "scale": [
+                  0.45,
+                  0.5,
+                  1.14
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -2.355,
+                  0,
+                  6.14
+                ],
+                "scale": [
+                  0.5,
+                  0.5,
+                  0.9
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -2.335,
+                  0,
+                  5.12
+                ],
+                "scale": [
+                  0.6,
+                  0.5,
+                  1.31
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  4.38,
+                  0,
+                  8.84
+                ],
+                "scale": [
+                  0.6,
+                  0.5,
+                  1.2
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  4.48,
+                  0,
+                  7.87
+                ],
+                "scale": [
+                  0.5,
+                  0.5,
+                  1.07
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  4.34,
+                  0,
+                  6.98
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  25
+                ],
+                "scale": [
+                  0.45,
+                  0.5,
+                  1.13
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  4.03,
+                  0,
+                  6.07
+                ],
+                "scale": [
+                  0.45,
+                  0.5,
+                  1.05
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  4.03,
+                  0,
+                  5.07
+                ],
+                "scale": [
+                  0.4,
+                  0.5,
+                  1.18
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  3.3,
+                  0,
+                  0.28
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  31.2
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.15
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  2.96,
+                  0,
+                  -0.84
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.23
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  0
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  3.38,
+                  0,
+                  -2.06
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  -40.8
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.48
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  3.37,
+                  0,
+                  -3.21
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  31.2
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.41
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  3.46,
+                  0,
+                  -4.42
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  -40.8
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.38
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -1.2,
+                  0,
+                  -0.05
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  -31.2
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.12
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -0.85,
+                  0,
+                  -0.97
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  0.99
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -1.17,
+                  0,
+                  -1.9
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  25
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.17
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -1.02,
+                  0,
+                  -2.87
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  -33.4
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.05
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -0.64,
+                  0,
+                  -3.86
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  1.12
+                ]
+              },
+              {
+                "primitives": [
+                  {
+                    "diffuse": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "type": "cube"
+                  }
+                ],
+                "translate": [
+                  -0.91,
+                  0,
+                  -4.78
+                ],
+                "rotate": [
+                  0,
+                  1,
+                  0,
+                  23.8
+                ],
+                "scale": [
+                  0.15,
+                  0.5,
+                  0.91
+                ]
+              }
+            ]
+          },
+        {
             "translate": [0.0, -0.15, 0.0],
             "scale": [0.3, 0.3, 0.3],
             "primitives": [
@@ -81,52 +1137,6 @@
       },
       {
         "groups": [
-          {
-            "translate": [60.0, -10, 0.0],
-            "scale": [30.0, 20, 150.0],
-            "primitives": [
-              {
-                "type": "cube",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
-
-          {
-            "translate": [35.0, -10, -40.0],
-            "scale": [20.0, 20, 70.0],
-            "primitives": [
-              {
-                "type": "cube",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
-  
-          {
-            "translate": [35.0, -10, 45.0],
-            "scale": [20.0, 20, 60.0],
-            "primitives": [
-              {
-                "type": "cube",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
-          {
-            "translate": [-25.0, -10, 0.0],
-            "scale": [100.0, 20, 150.0],
-            "primitives": [
-              {
-                "type": "cube",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
 	  {
      	    "groups":[
       		{
