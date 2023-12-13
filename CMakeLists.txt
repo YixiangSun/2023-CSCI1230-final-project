@@ -101,6 +101,8 @@ qt6_add_resources(${PROJECT_NAME} "Resources"
         objects/greens.obj
         objects/campsite.mtl
         objects/campsite.obj
+        objects/campsite3.mtl
+        objects/campsite3.obj
 )
 
 target_sources(projects_realtime_other_files
