@@ -1138,7 +1138,7 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
                 return desiredDir;
             }
         }
-        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CYLINDER && dist <= ball.getRadius() + 0.5) {
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CYLINDER && dist <= ball.getRadius() + 0.5 && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
             n = glm::normalize(glm::vec3(ballPos.x - objPos.x, 0.0f, ballPos.z - objPos.z));
             desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
             return desiredDir;
