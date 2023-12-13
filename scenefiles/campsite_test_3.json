@@ -1,0 +1,492 @@
+{
+    "name": "root",
+    "globalData": {
+      "ambientCoeff": 0.5,
+      "diffuseCoeff": 0.5,
+      "specularCoeff": 0.5,
+      "transparentCoeff": 0
+    },
+    "cameraData": {
+      "position": [-6.0, 4.0, 4.0],
+      "up": [0.0, 1.0, 0.0],
+      "focus": [0, 0, 0],
+      "heightAngle": 30.0
+    },
+    "groups": [
+      {
+        "lights": [
+          {
+            "type": "directional",
+            "color": [1.0, 1.0, 1.0],
+            "direction": [0.0, -1.0, 0.0]
+          }
+        ]
+      },
+      {
+        "groups": [
+          {
+            "translate": [25.9, 0.0, -22.9],
+            "scale": [3.661, 3.321, 3.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [35.516, 0.0, -13.163],
+            "scale": [4.5, 4.8, 4.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [29.936, 0.0, 3.7775],
+            "scale": [5.321, 5.321, 5.321],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [22.54, 0.0, 15.46],
+            "scale": [4.0, 4.0, 4.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [33.456, 0.0, 28.537],
+            "scale": [4.5, 4.8, 4.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [25.96, 0.0, 43.34],
+            "scale": [4.0, 4.0, 4.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [14.26, 0.0, 35.56],
+            "scale": [5.321, 5.321, 5.321],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [5.46, 0.0, 24.8],
+            "scale": [3.661, 3.321, 4.701],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-0.46, 0.0, 48.06],
+            "scale": [5.321, 5.321, 5.321],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-12.98, 0.0, 33.98],
+            "scale": [4.5, 4.5, 5.321],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-31.54, 0.0, 38.08],
+            "scale": [5.321, 5.321, 5.321],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-22.66, 0.0, 22.62],
+            "scale": [4.0, 4.0, 4.0],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-31.39, 0.0, -22.084],
+            "scale": [1.3, 1.3, 1.3],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-30.75, 0.0, -30.433],
+            "scale": [0.816, 0.816, 0.816],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-24.75, 0.0, -30.593],
+            "scale": [2.0, 1.5, 1.0],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-20.41, 0.0, -30.393],
+            "scale": [2.0, 0.816, 0.816],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-27.893, 0.0, -7.8474],
+            "scale": [0.816, 0.816, 0.816],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-24.5, 0.0, -8.0917],
+            "scale": [0.816, 0.816, 0.816],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-21.483, 0.0, -8.1722],
+            "scale":  [0.816, 0.816, 0.816],
+            "primitives": [
+              {
+                "type": "sphere",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate":  [-34.823, 0.0, -23.603],
+            "scale": [1.2, 1.2, 1.2],
+            "primitives": [
+              {
+                "type": "cylinder",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [4, 0.0, -17.52],
+            "scale": [1.0,1.0,1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [4.05, 0.0, -15.6],
+            "scale": [1.0, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [4.45, 0.0, -13.72],
+            "scale": [0.9, 1.0, 0.8],
+            "rotate": [0.0, 1.0, 0.0, 21.2],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [4.71, 0.0, -12.28],
+            "scale": [1.0, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [4.67, 0.0, -10.24],
+            "scale": [1.2, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-8.76, 0.0, -17.68],
+            "scale": [1.2, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-8.96, 0.0, -15.74],
+            "scale": [1.0, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-8.68, 0.0, -13.96],
+            "scale": [0.9, 1.0, 1.3],
+            "rotate": [0.0, 1.0, 0.0, 25.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-8.06, 0.0, -12.14],
+            "scale": [0.9, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-8.06, 0.0, -10.14],
+            "scale": [0.8, 1.0, 1.3],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-6.6, 0.0, -0.56],
+            "scale": [0.3, 1.0, 1.0],
+            "rotate": [0.0, 1.0, 0.0, 31.2],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-5.92, 0.0, 1.36],
+            "scale": [0.3, 1.0, 1.5],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-6.76, 0.0, 4.12],
+            "scale": [0.3, 1.0, 1.5],
+            "rotate": [0.0, 1.0, 0.0, -40.8],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-6.74, 0.0, 6.42],
+            "scale": [0.3, 1.0, 1.3],
+            "rotate": [0.0, 1.0, 0.0, 31.2],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [-6.92, 0.0, 8.84],
+            "scale": [0.3, 1.0, 1.5],
+            "rotate": [0.0, 1.0, 0.0, -40.8],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [2.4, 0.0, 0.1],
+            "scale": [0.3, 1.0, 1.3],
+            "rotate": [0.0, 1.0, 0.0, -31.2],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [1.7, 0.0, 1.94],
+            "scale": [0.3, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [2.34, 0.0, 3.8],
+            "scale": [0.3, 1.0, 1.0],
+            "rotate": [0.0, 1.0, 0.0, 25.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [2.04, 0.0, 5.74],
+            "scale": [0.3, 1.0, 1.4],
+            "rotate": [0.0, 1.0, 0.0, -33.4],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [1.28, 0.0, 7.72],
+            "scale": [0.3, 1.0, 1.0],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          },
+          {
+            "translate": [1.82, 0.0, 9.56],
+            "scale": [0.3, 1.0, 1.3],
+            "rotate": [0.0, 1.0, 0.0, 23.8],
+            "primitives": [
+              {
+                "type": "cube",
+                "diffuse": [1.0, 0.0, 0.0],
+  		        "isFire": false
+              }
+            ]
+          }
+        ]
+       }
+    ]
+}
+      		

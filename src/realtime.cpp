@@ -295,7 +295,7 @@ void Realtime::extractInfo(std::string filepath) {
 void Realtime::updateWater(bool initialized) {
 
     // ================= PrimitiveType::PRIMITIVE_WATER ================= //
-    water.updateParams(20, 20, 0.f, m_accumulatedTime, initialized);
+    water.updateParams(20, 7, 0.f, m_accumulatedTime, initialized);
     m_waterData = water.generateShape();
 
     glBindBuffer(GL_ARRAY_BUFFER, m_water_vbo);
@@ -1054,16 +1054,16 @@ glm::vec3 Realtime::getWaterNormal() {
     glm::vec3 n = {0.0, 0.0, 0.0};
 
     if (ballPos.x <= m_topLeft.x + m_rim_width) {
-        n += glm::vec3{1, 1, 0};
+        n += glm::vec3{1, 1.5f, 0};
     }
     if (ballPos.z >= m_topLeft.z - m_rim_width) {
-        n += glm::vec3{0, 1, -1};
+        n += glm::vec3{0, 1.5f, -1};
     }
     if (ballPos.x >= m_bottomRight.x - m_rim_width) {
-        n += glm::vec3{-1, 1, 0};
+        n += glm::vec3{-1, 1.5f, 0};
     }
     if (ballPos.z <= m_bottomRight.z + m_rim_width) {
-        n += glm::vec3{0, 1, 1};
+        n += glm::vec3{0, 1.5f, 1};
     }
     if (n == glm::vec3{0.0, 0.0, 0.0}) return glm::vec3(0.0, 1.0, 0.0);
     return glm::normalize(n);

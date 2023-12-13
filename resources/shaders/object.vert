@@ -12,7 +12,7 @@ uniform mat4 projmatrix;
 uniform mat4 gLightWVP; // !!!!!!!!!!!!!!!!!!!!!!!
 
 void main() {
-    position = positionObj / 3;
+    position = positionObj / 2;
     normal = normalize(normalObj);
     gl_Position = projmatrix * viewmatrix * vec4(position, 1.0f);
 
