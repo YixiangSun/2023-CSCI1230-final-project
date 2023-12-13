@@ -561,11 +561,11 @@ void Realtime::paintObj() {
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
-    // don't render the collision blocks.
+//    // don't render the collision blocks.
 
-    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
-        return;
-    }
+//    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
+//        return;
+//    }
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
