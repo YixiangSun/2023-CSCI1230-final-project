@@ -30,6 +30,50 @@ glm::mat4 Camera::getViewMatrix()  {
     return r*t;
 }
 
+glm::mat4 InitTranslationTransform(float x, float y, float z)
+{
+    glm::mat4 m;
+    m[0][0] = 1.0f; m[0][1] = 0.0f; m[0][2] = 0.0f; m[0][3] = x;
+    m[1][0] = 0.0f; m[1][1] = 1.0f; m[1][2] = 0.0f; m[1][3] = y;
+    m[2][0] = 0.0f; m[2][1] = 0.0f; m[2][2] = 1.0f; m[2][3] = z;
+    m[3][0] = 0.0f; m[3][1] = 0.0f; m[3][2] = 0.0f; m[3][3] = 1.0f;
+    return m;
+}
+
+
+glm::mat4 InitTranslationTransform(glm::vec3 Pos)
+{
+    return InitTranslationTransform(Pos.x, Pos.y, Pos.z);
+}
+
+
+glm::mat4 InitRotateTrans(glm::vec3 Look, glm::vec3 Up)
+{
+    glm::vec3 N = normalize(Look);
+    glm::vec3 UpNorm = normalize(Up);
+    glm::vec3 U = normalize(cross(UpNorm, N));
+    glm::vec3 V = cross(N, U);
+
+    glm::mat4 m;
+    m[0][0] = U.x;   m[0][1] = U.y;   m[0][2] = U.z;   m[0][3] = 0.0f;
+    m[1][0] = V.x;   m[1][1] = V.y;   m[1][2] = V.z;   m[1][3] = 0.0f;
+    m[2][0] = N.x;   m[2][1] = N.y;   m[2][2] = N.z;   m[2][3] = 0.0f;
+    m[3][0] = 0.0f;  m[3][1] = 0.0f;  m[3][2] = 0.0f;  m[3][3] = 1.0f;
+
+    return m;
+}
+
+
+glm::mat4 Camera::InitCameraTransform(glm::vec3 Pos, glm::vec3 Look, glm::vec3 Up)
+{
+    glm::mat4 CameraTranslation = InitTranslationTransform(-Pos.x, -Pos.y, -Pos.z);
+
+    glm::mat4 CameraRotateTrans = InitRotateTrans(Look, Up);
+
+    return CameraRotateTrans * CameraTranslation;
+}
+
+
 glm::mat4 Camera::getProjMatrix()  {
     // Optional TODO: implement the getter or make your own design
     float c = -0.1f / 200.0f;
@@ -74,4 +118,16 @@ float Camera::getFocalLength() const {
 float Camera::getAperture() const {
     // Optional TODO: implement the getter or make your own design
     return cameraData.aperture;
+}
+
+glm::mat4 Camera::InitOrthoProjTransform(float l, float r, float b,
+                                         float t, float n, float f)
+{
+    glm::mat4 m;
+    m[0][0] = 2.0f/(r - l); m[0][1] = 0.0f;         m[0][2] = 0.0f;         m[0][3] = -(r + l)/(r - l);
+    m[1][0] = 0.0f;         m[1][1] = 2.0f/(t - b); m[1][2] = 0.0f;         m[1][3] = -(t + b)/(t - b);
+    m[2][0] = 0.0f;         m[2][1] = 0.0f;         m[2][2] = 2.0f/(f - n); m[2][3] = -(f + n)/(f - n);
+    m[3][0] = 0.0f;         m[3][1] = 0.0f;         m[3][2] = 0.0f;         m[3][3] = 1.0;
+
+    return m;
 }

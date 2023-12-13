@@ -3,9 +3,7 @@
 // Defined before including GLEW to suppress deprecation messages on macOS
 #include "ball/ball.h"
 #include "shapes/Water.h"
-#include "utils/hitObjects.h"
 #include "utils/objparser.h"
-#include "utils/rgba.h"
 #include "utils/sceneparser.h"
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -83,7 +81,7 @@ private:
     std::vector<std::vector<float>> vertsList;          // Store the vertices data (position + normal) of all the shapes
     bool sceneLoaded = false;                           // check if there's a scene loaded. Used to correctly draw the ball.
 
-    GLint m_defaultFBO = 2;
+    GLint m_defaultFBO = 3; // when no shadow, the defaultFBO is 2
 
     bool initialized = false;
 
@@ -115,7 +113,6 @@ private:
 
     // ball
     SceneMaterial m_ballMaterial;
-    Texture m_ballTexture;
     glm::vec3 getDir(bool w, bool s, bool a, bool d);
     float m_bound = 75.0;
     bool isInWater();
@@ -148,7 +145,17 @@ private:
     void paintObj();
 
     // hit objects
-    std::vector<hitObject> hitObjs;
+    std::vector<RenderShapeData> hitObjs;
     void populateHitObjs();
+
+    // shadow
+    GLuint m_shadowMap;
+    GLuint m_shadowFBO;
+    GLuint m_shadow_shader;
+    void makeShadowFBO();
+    void ShadowMapPass();
+
+    glm::mat4 LightView;
+    glm::mat4 LightProjection;
 };
 

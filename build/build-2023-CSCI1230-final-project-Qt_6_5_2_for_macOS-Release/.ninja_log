@@ -1,6 +1,0 @@
-# ninja log v5
-1	59	1702440235756556850	StaticGLEW_autogen/timestamp	81120ec209d2de5a
-1	59	1702440235756556850	StaticGLEW_autogen/mocs_compilation.cpp	81120ec209d2de5a
-1	59	1702440235756556850	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/timestamp	81120ec209d2de5a
-1	59	1702440235756556850	/Users/juliafu/06_Brown/fall_2023/cs_1230/final_project/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Qt_6_5_2_for_macOS-Release/StaticGLEW_autogen/mocs_compilation.cpp	81120ec209d2de5a
-59	91	1702440235792384617	CMakeFiles/StaticGLEW.dir/StaticGLEW_autogen/mocs_compilation.cpp.o	11ff05e44c813a98

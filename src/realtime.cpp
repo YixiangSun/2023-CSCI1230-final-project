@@ -84,6 +84,7 @@ std::set<std::string> objNames; // keys for accessing the map of objData
 std::vector<GLuint> objVaos(999); // objVao
 std::vector<GLuint> objVbos(999); // objVbo
 
+const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048; // ????????????????
 
 Realtime::Realtime(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -132,6 +133,9 @@ void Realtime::finish() {
         glDeleteBuffers(1, &objVbos[j]);
     }
 
+    glDeleteProgram(m_shadow_shader); // ?????
+    glDeleteFramebuffers(1, &m_shadowFBO); // ????
+
     this->doneCurrent();
 }
 
@@ -170,10 +174,15 @@ void Realtime::initializeGL() {
     m_object_shader = ShaderLoader::createShaderProgram(":/resources/shaders/object.vert", ":/resources/shaders/object.frag");
     objData.clear();
     objNames.clear();
-    objData = objparser.parseMtlFile(":/objects/greens.mtl"); // parse Mtl file and create objData
-    objNames = objparser.loadMesh(":/objects/greens.obj", objData); // load the mesh vertex data into corresponding objects
+    objData = objparser.parseMtlFile(":/objects/campsite.mtl"); // parse Mtl file and create objData
+    objNames = objparser.loadMesh(":/objects/campsite.obj", objData); // load the mesh vertex data into corresponding objects
     getObjVaos();
     // ?????????????????????????? //
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!s
+    m_shadow_shader = ShaderLoader::createShaderProgram(":/resources/shaders/shadow.vert", ":/resources/shaders/shadow.frag");
+    makeShadowFBO();
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     glGenBuffers(1, &m_water_vbo);
     glGenVertexArrays(1, &m_water_vao);
@@ -185,22 +194,6 @@ void Realtime::initializeGL() {
 
     initialized = true;
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
-}
-
-void Realtime::populateHitObjs() {
-    hitObject rock = {
-        .position = {0, 10},
-        .radius = 0.6,
-        .type = HitObjType::HitObj_Sphere
-    };
-
-    hitObject tree = {
-        .position = {10, 0},
-        .radius = 0.3,
-        .type = HitObjType::HitObj_Cylinder
-    };
-    hitObjs.push_back(rock);
-    hitObjs.push_back(tree);
 }
 
 void Realtime::readTexture() {
@@ -288,10 +281,11 @@ void Realtime::extractInfo(std::string filepath) {
             m_topRight = ctm * glm::vec4(1, 0.0, 1, 1.0);
             m_bottomRight = ctm * glm::vec4(1, 0.0, -1, 1.0);
             m_bottomLeft = ctm * glm::vec4(-1, 0.0, -1, 1.0);
-        }
-        else if (shape.isFire && shape.primitive.type != PrimitiveType::PRIMITIVE_CUBE) {
+        } else if (shape.isFire && shape.primitive.type != PrimitiveType::PRIMITIVE_CUBE) {
             m_fire_pos += glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0));
             c += 1;
+        } else if (!shape.isFire && !shape.isSmoke && !shape.isRedSmoke) {
+            hitObjs.push_back(shape);
         }
     }
     m_fire_pos = m_fire_pos * (1.0f/float(c));
@@ -389,6 +383,32 @@ void Realtime::makeFBO(){
 
 }
 
+// ???????????????????????????????????? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
+void Realtime::makeShadowFBO(){
+
+    glGenFramebuffers(1, &m_shadowFBO);
+
+    // Create the depth buffer
+    glGenTextures(1, &m_shadowMap);
+    //    glActiveTexture(m_shadowMap); // FOR SHADOW MAPPING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glBindTexture(GL_TEXTURE_2D, m_shadowMap);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_shadowFBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_shadowMap, 0);
+
+    // Disable writes to the color buffer
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
+}
+
 void Realtime::getVaos() {
 
     Cube cube{};
@@ -436,8 +456,6 @@ void Realtime::getVaos() {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
     int i = 50;
-    //    std::vector<GLuint> objVaos;
-    //    std::vector<GLuint> objVbos;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
         // '(*it)' is the current string in the set
         glDeleteVertexArrays(1, &objVaos[i]); // ??
@@ -509,6 +527,16 @@ void Realtime::paintObj() {
         glUniform1f(uniformLocation, penumbras[i]);
     }
 
+    uniformLocation = glGetUniformLocation(m_object_shader, "gLightWVP"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glm::mat4 LightWVP = LightProjection * LightView; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &LightWVP[0][0]); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    glActiveTexture(GL_TEXTURE1); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glBindTexture(GL_TEXTURE_2D, m_shadowMap); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    uniformLocation = glGetUniformLocation(m_object_shader, "gShadowMap"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glUniform1i(uniformLocation, 1); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    glBindTexture(GL_TEXTURE_2D, 0); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     int i = 50;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
         uniformLocation = glGetUniformLocation(m_object_shader, "cAmbient");
@@ -532,6 +560,12 @@ void Realtime::paintObj() {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
+
+    // don't render the collision blocks.
+
+    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
+        return;
+    }
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
@@ -663,11 +697,13 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     cSpecular *= m_ks;
 
     uniformLocation = glGetUniformLocation(m_shader, "cAmbient");
-    if (ifBall && settings.material == 1) cAmbient = fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cAmbient + fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.25, 0.23, 1.0);
+    if (ifBall && settings.material == 1) cAmbient = (float) fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cAmbient +
+                                                     (float) fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.25, 0.23, 1.0);
     glUniform4f(uniformLocation, cAmbient[0], cAmbient[1], cAmbient[2], cAmbient[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cDiffuse");
-    if (ifBall && settings.material == 1) cDiffuse = fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cDiffuse + fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.0, 0.25, 1.0);
+    if (ifBall && settings.material == 1) cDiffuse = (float) fmin(1.0f, (1.0f - time_on_fire/10.0f)) * cDiffuse +
+                                                     (float) fmax(0.0f, time_on_fire/10.0f) * glm::vec4(1.0, 0.0, 0.25, 1.0);
     glUniform4f(uniformLocation, cDiffuse[0], cDiffuse[1], cDiffuse[2], cDiffuse[3]);
 
     uniformLocation = glGetUniformLocation(m_shader, "cSpecular");
@@ -739,7 +775,97 @@ void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) 
     glUseProgram(0);
 }
 
+void Realtime::ShadowMapPass() {
+    ////    m_shadowMapFBO.BindForWriting();
+    //    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_shadowFBO);
+    //    glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+    ////     Bind for reading
+    ////    glActivateTexture(TextureUnit);
+    ////    glBindTexture(GL_TEXTURE_2D, m_shadowMap);
+    //    // Clear the depth buffer only
+    //    glClear(GL_DEPTH_BUFFER_BIT);
+
+    glUseProgram(m_shadow_shader);
+
+    GLuint uniformLocation;
+
+    glm::vec3 lightDir = normalize(glm::vec3(lightDirs[0]));
+
+//    //    glm::mat4 LightView;
+//    glm::vec3 Up(0.0f, 1.0f, 0.0f);
+//    glm::vec3 w = -glm::normalize(lightDir);
+//    glm::vec3 v = glm::normalize(Up - glm::dot(Up, w) * w);
+//    glm::vec3 u = glm::cross(v, w);
+//    glm::mat4 r = glm::mat4({u[0], v[0], w[0], 0.f}, {u[1], v[1], w[1], 0.f}, {u[2], v[2], w[2], 0.f}, {0, 0, 0, 1.f});
+//    glm::mat4 t = glm::translate(glm::mat4(1.0f), -glm::vec3(999, 999, 999));
+//    LightView = r*t;
+    LightView = camera.InitOrthoProjTransform(-20.0f, 20.0f, 20.0f, -20.0f, -20.0f, 20.0f);
+
+    // Initialize a perspective projection matrix for the spot light
+//    float FOV = 45.0f;
+//    float zNear = 1.0f;
+//    float zFar = 50.0f;
+
+//    float ar         = SHADOW_HEIGHT / SHADOW_WIDTH;
+//    float zRange     = zNear - zFar;
+//    float tanHalfFOV = tanf((M_PI / 180.0) * (FOV / 2.0f)); // transform to radian
+
+//    //    glm::mat4 Projection(0.f);
+//    LightProjection[0][0] = 1/tanHalfFOV; LightProjection[0][1] = 0.0f;                 LightProjection[0][2] = 0.0f;                        LightProjection[0][3] = 0.0;
+//    LightProjection[1][0] = 0.0f;         LightProjection[1][1] = 1.0f/(tanHalfFOV*ar); LightProjection[1][2] = 0.0f;                        LightProjection[1][3] = 0.0;
+//    LightProjection[2][0] = 0.0f;         LightProjection[2][1] = 0.0f;                 LightProjection[2][2] = (-zNear - zFar)/zRange ;     LightProjection[2][3] = 2.0f * zFar * zNear/zRange;
+//    LightProjection[3][0] = 0.0f;         LightProjection[3][1] = 0.0f;                 LightProjection[3][2] = 1.0f;                        LightProjection[3][3] = 0.0;
+    glm::vec3 origin(0.0f, 0.0f, 0.0f);
+    glm::vec3 Up(0.0f, 1.0f, 0.0f);
+    LightProjection = camera.InitCameraTransform(origin, lightDir, Up);
+
+    uniformLocation = glGetUniformLocation(m_shadow_shader, "lightview");
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &LightView[0][0]);
+
+    uniformLocation = glGetUniformLocation(m_shadow_shader, "lightprojection");
+    glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &LightProjection[0][0]);
+
+    glm::mat4 identitymatrix(1);
+
+    int i = 50;
+    for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
+
+        uniformLocation = glGetUniformLocation(m_shadow_shader, "model");
+        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identitymatrix[0][0]); // ??????????????????????
+
+        glBindVertexArray(objVaos[i]);
+        glDrawArrays(GL_TRIANGLES, 0, objData[*it].obj_vertexData.size() / 6);
+        glBindVertexArray(0);
+    }
+
+    glUseProgram(0);
+
+    //    LightView.InitCameraTransform(m_spotLight.WorldPosition, m_spotLight.WorldDirection, Up);
+
+    //    Matrix4f World = m_pMesh1->GetWorldMatrix();
+
+    //    Matrix4f LightView;
+    //    Vector3f Up(0.0f, 1.0f, 0.0f);
+    //    LightView.InitCameraTransform(m_spotLight.WorldPosition, m_spotLight.WorldDirection, Up);
+
+    //    Matrix4f WVP = m_lightPersProjMatrix * LightView * World;
+    //    m_shadowMapTech.SetWVP(WVP);
+
+    //    m_pMesh1->Render();
+}
+
 void Realtime::paintGL() {
+    //    m_shadowMapFBO.BindForWriting();
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_shadowFBO);
+    glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+    // Clear the depth buffer only
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    if (sceneLoaded) {
+        ShadowMapPass();
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, m_defaultFBO);
+
     //  Students: anything requiring OpenGL calls every frame should be done here
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
     glViewport(0, 0, m_width*  m_devicePixelRatio, m_height * m_devicePixelRatio);
@@ -854,7 +980,6 @@ void Realtime::settingsChanged() {
     }
     ball.changeMaterial(materialList[settings.material-1]);
     if (settings.material == 1) soaked = false;
-    populateHitObjs();
 }
 
 // ================== Action!
@@ -929,16 +1054,16 @@ glm::vec3 Realtime::getWaterNormal() {
     glm::vec3 n = {0.0, 0.0, 0.0};
 
     if (ballPos.x <= m_topLeft.x + m_rim_width) {
-        n += glm::vec3{1, 3, 0};
+        n += glm::vec3{1, 1, 0};
     }
     if (ballPos.z >= m_topLeft.z - m_rim_width) {
-        n += glm::vec3{0, 3, -1};
+        n += glm::vec3{0, 1, -1};
     }
     if (ballPos.x >= m_bottomRight.x - m_rim_width) {
-        n += glm::vec3{-1, 3, 0};
+        n += glm::vec3{-1, 1, 0};
     }
     if (ballPos.z <= m_bottomRight.z + m_rim_width) {
-        n += glm::vec3{0, 3, 1};
+        n += glm::vec3{0, 1, 1};
     }
     if (n == glm::vec3{0.0, 0.0, 0.0}) return glm::vec3(0.0, 1.0, 0.0);
     return glm::normalize(n);
@@ -958,12 +1083,22 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     left = left - glm::dot(left, n) * n;
     glm::vec3 desiredDir = glm::vec3(0.0f);
 
-    if (w) desiredDir += forward;
-    if (s) desiredDir += -forward;
-    if (a) desiredDir += left;
-    if (d) desiredDir += -left;
+    if (w) {
+        desiredDir += forward;
+    }
+    if (s) {
+        desiredDir += -forward;
+    }
+    if (a) {
+        desiredDir += left;
+    }
+    if (d) {
+        desiredDir += -left;
+    }
 
     if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
+
+    desiredDir = glm::normalize(desiredDir);
 
     if (isInWater()) {
         n = getWaterNormal();
@@ -990,23 +1125,51 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     }
 
     for (auto obj : hitObjs) {
-        auto type = obj.type;
-        glm::vec3 objPos = glm::vec3(obj.position[0], ballPos.y, obj.position[1]);
-        float dist = glm::distance(ballPos, objPos);
-        if (dist <= ball.getRadius() + obj.radius) {
-            if (type == HitObjType::HitObj_Cylinder && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
-                n = glm::normalize(glm::vec3(ballPos.x - obj.position[0], 0.0f, ballPos.z - obj.position[1]));
+        auto type = obj.primitive.type;
+        glm::vec3 objPos = obj.ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        objPos.y = 0;
+        float dist = glm::distance(ballPos, glm::vec3(objPos.x, 0.0, objPos.z));
+
+        if (obj.primitive.type == PrimitiveType::PRIMITIVE_SPHERE && dist <= ball.getRadius() + 0.5) {
+            onRock = true;
+            if ((glm::dot(desiredDir, objPos - ballPos) > 0.0f) || ballPos.y > ball.getRadius()) {
+                n = glm::normalize(ballPos - objPos);
                 desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
                 return desiredDir;
-            } else {
-                onRock = true;
-                if ((glm::dot(desiredDir, objPos - ballPos) > 0.0f) || ballPos.y > ball.getRadius()) {
-                    n = glm::normalize(ballPos - glm::vec3(obj.position[0], 0.0f, obj.position[1]));
-                    desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
-                    return desiredDir;
-                }
             }
         }
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CYLINDER && dist <= ball.getRadius() + 0.5) {
+            n = glm::normalize(glm::vec3(ballPos.x - objPos.x, 0.0f, ballPos.z - objPos.z));
+            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+            return desiredDir;
+        }
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CUBE) {
+            if (ballPos.x > objPos.x + 0.5 && ballPos.x < objPos.x + 0.5 + ball.getRadius() + 0.001 &&
+                ballPos.z >= objPos.z - 0.5 && ballPos.z <= objPos.z + 0.5) {
+                n = glm::vec3(1.0, 0.0, 0.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.x < objPos.x - 0.5 && ballPos.x > objPos.x - 0.5 - ball.getRadius() - 0.001 &&
+                ballPos.z >= objPos.z - 0.5 && ballPos.z <= objPos.z + 0.5) {
+                n = glm::vec3(-1.0, 0.0, 0.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.z > objPos.z + 0.5 && ballPos.z < objPos.z + 0.5 + ball.getRadius() + 0.001 &&
+                ballPos.x >= objPos.x - 0.5 && ballPos.x <= objPos.x + 0.5) {
+                n = glm::vec3(0.0, 0.0, 1.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.z < objPos.z - 0.5 && ballPos.z > objPos.z - 0.5 - ball.getRadius() - 0.001 &&
+                ballPos.x >= objPos.x - 0.5 && ballPos.x <= objPos.x + 0.5) {
+                n = glm::vec3(0.0, 0.0, -1.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+        }
+
     }
     return desiredDir;
 }

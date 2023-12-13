@@ -203,8 +203,8 @@ bool ScenefileReader::parseGlobalData(const QJsonObject &globalData) {
  * Parse a Light and add a new CS123SceneLightData to m_lights.
  */
 bool ScenefileReader::parseLightData(const QJsonObject &lightData, SceneNode *node) {
-    QStringList requiredFields = {"type", "isFire", "color"};
-    QStringList optionalFields = {"name", "attenuationCoeff", "direction", "penumbra", "angle"};
+    QStringList requiredFields = {"type", "color"};
+    QStringList optionalFields = {"name", "attenuationCoeff", "direction", "penumbra", "angle", "isFire"};
     QStringList allFields = requiredFields + optionalFields;
     for (auto &field : lightData.keys()) {
         if (!allFields.contains(field)) {

@@ -6,13 +6,15 @@ layout(location = 1) in vec3 normalObj;
 out vec3 position;
 out vec3 normal;
 out vec2 uv;
+//out vec4 lightSpacePos; // !!!!!!!!!!!!!!!!!!!!!!!
 uniform mat4 modelmatrix;
 uniform mat4 viewmatrix;
 uniform mat4 projmatrix;
+//uniform mat4 gLightWVP; // !!!!!!!!!!!!!!!!!!!!!!!
 
 const float epsilon = 0.0001f;
 const float PI = 3.1415926535897932384626433832795;
-uniform int primitive; // !!!
+uniform int primitive; // ??
 
 vec2 findUVCoordinate(int primitive, vec3 intersectPosObj) {
 
@@ -79,4 +81,7 @@ void main() {
     mat3 smallModelmatrix = mat3(vec3(modelmatrix[0]), vec3(modelmatrix[1]), vec3(modelmatrix[2]));
     normal = normalize(inverse(transpose(smallModelmatrix)) * normalObj);
     gl_Position = projmatrix * viewmatrix * modelmatrix * vec4(positionObj, 1.0f);
+
+    // ??????????????????????????????????????
+//    lightSpacePos = gLightWVP * vec4(positionObj, 1.0f); // required only for shadow mapping
 }
