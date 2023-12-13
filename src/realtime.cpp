@@ -929,16 +929,16 @@ glm::vec3 Realtime::getWaterNormal() {
     glm::vec3 n = {0.0, 0.0, 0.0};
 
     if (ballPos.x <= m_topLeft.x + m_rim_width) {
-        n += glm::vec3{1, 3, 0};
+        n += glm::vec3{1, 1, 0};
     }
     if (ballPos.z >= m_topLeft.z - m_rim_width) {
-        n += glm::vec3{0, 3, -1};
+        n += glm::vec3{0, 1, -1};
     }
     if (ballPos.x >= m_bottomRight.x - m_rim_width) {
-        n += glm::vec3{-1, 3, 0};
+        n += glm::vec3{-1, 1, 0};
     }
     if (ballPos.z <= m_bottomRight.z + m_rim_width) {
-        n += glm::vec3{0, 3, 1};
+        n += glm::vec3{0, 1, 1};
     }
     if (n == glm::vec3{0.0, 0.0, 0.0}) return glm::vec3(0.0, 1.0, 0.0);
     return glm::normalize(n);
@@ -958,12 +958,22 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     left = left - glm::dot(left, n) * n;
     glm::vec3 desiredDir = glm::vec3(0.0f);
 
-    if (w) desiredDir += forward;
-    if (s) desiredDir += -forward;
-    if (a) desiredDir += left;
-    if (d) desiredDir += -left;
+    if (w) {
+        desiredDir += forward;
+    }
+    if (s) {
+        desiredDir += -forward;
+    }
+    if (a) {
+        desiredDir += left;
+    }
+    if (d) {
+        desiredDir += -left;
+    }
 
     if (desiredDir == glm::vec3(0.0)) return glm::vec3(0.0f);
+
+    desiredDir = glm::normalize(desiredDir);
 
     if (isInWater()) {
         n = getWaterNormal();
