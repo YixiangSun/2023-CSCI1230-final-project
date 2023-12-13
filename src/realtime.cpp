@@ -73,7 +73,7 @@ ScenePrimitive redSmokePrimitive{
 RenderData sceneData;
 std::vector<RenderShapeData> smokeShapes;
 Camera camera(sceneData.cameraData, 0, 0);
-Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.3, bronzeBall);
+Ball ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.5, 0)), 0.5, bronzeBall);
 std::vector<GLuint> vaos(5);
 std::vector<GLuint> vbos(5);
 float m_accumulatedTime;
@@ -836,7 +836,7 @@ void Realtime::sceneChanged() {
     sceneLoaded = true;
     update(); // asks for a PaintGL() call to occur
     extractInfo(settings.sceneFilePath);
-    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.3, 0)), 0.5, m_ballMaterial);
+    ball = Ball(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0.5, 0)), 0.5, m_ballMaterial);
     SceneCameraData cData = sceneData.cameraData;
     cData.look = ball.getPos() - cData.pos;
     camera = Camera(cData, m_width, m_height);
@@ -929,16 +929,16 @@ glm::vec3 Realtime::getWaterNormal() {
     glm::vec3 n = {0.0, 0.0, 0.0};
 
     if (ballPos.x <= m_topLeft.x + m_rim_width) {
-        n += glm::vec3{1, 2, 0};
+        n += glm::vec3{1, 3, 0};
     }
     if (ballPos.z >= m_topLeft.z - m_rim_width) {
-        n += glm::vec3{0, 2, -1};
+        n += glm::vec3{0, 3, -1};
     }
     if (ballPos.x >= m_bottomRight.x - m_rim_width) {
-        n += glm::vec3{-1, 2, 0};
+        n += glm::vec3{-1, 3, 0};
     }
     if (ballPos.z <= m_bottomRight.z + m_rim_width) {
-        n += glm::vec3{0, 2, 1};
+        n += glm::vec3{0, 3, 1};
     }
     if (n == glm::vec3{0.0, 0.0, 0.0}) return glm::vec3(0.0, 1.0, 0.0);
     return glm::normalize(n);
@@ -1041,16 +1041,14 @@ void Realtime::updateBallAndFireStates(float deltaTime, glm::mat4 &ctm, SceneCam
     // jump or drop down to the ground
     float groundHeight = ball.getRadius();
     if (onFire) groundHeight += 0.5;
-    if (onRock) groundHeight += 0.3;
+    if (onRock) groundHeight += 0.5;
     if (m_keyMap[Qt::Key_J] && ballPos.y <= groundHeight + 0.5) {
         ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * ctm;
-        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.1, 0.0)) * cData.pos;
     }
     if (ballPos.x < m_bound && ballPos.z < m_bound &&
         ballPos.x > -m_bound && ballPos.z > -m_bound &&
         ballPos.y > groundHeight && !m_keyMap[Qt::Key_J]) {
         ctm = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * ctm;
-        cData.pos = glm::translate(glm::mat4(1.0), glm::vec3(0.0, -0.08, 0.0)) * cData.pos;
     }
 }
 
@@ -1084,7 +1082,7 @@ void Realtime::timerEvent(QTimerEvent *event) {
     glm::vec3 rotAxis = glm::normalize(glm::cross(up, dir));
 
     if (m_keyMap[Qt::Key_Control]) {
-        if (glm::length(ball.getPos()-cData.pos) >= 0.1) {
+        if (glm::length(ball.getPos()-cData.pos) >= 0.2) {
             glm::mat4 trans = glm::translate(glm::mat4(1.0), look * dist * 3.0f);
             cData.pos = trans * cData.pos;
         }

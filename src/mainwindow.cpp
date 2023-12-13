@@ -162,7 +162,7 @@ void MainWindow::initialize() {
     ec4->setChecked(false);
 
     vLayout->addWidget(uploadFile);
-    vLayout->addWidget(saveImage);
+//    vLayout->addWidget(saveImage);
     vLayout->addWidget(tesselation_label);
 //    vLayout->addWidget(param1_label);
     vLayout->addWidget(p1Layout);
@@ -203,7 +203,7 @@ void MainWindow::connectUIElements() {
 //    connectPerPixelFilter();
 //    connectKernelBasedFilter();
     connectUploadFile();
-    connectSaveImage();
+//    connectSaveImage();
     connectParam1();
 //    connectParam2();
 //    connectNear();
