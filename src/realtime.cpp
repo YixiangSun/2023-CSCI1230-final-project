@@ -193,7 +193,7 @@ void Realtime::initializeGL() {
     Realtime::makeFBO();
 
     initialized = true;
-    m_fire_center = glm::vec3(0.65, 0.1, 4.2);
+    m_fire_center = glm::vec3(0.85, 0.1, 7.2);
 }
 
 void Realtime::readTexture() {
