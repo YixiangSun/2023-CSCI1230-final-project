@@ -187,22 +187,6 @@ void Realtime::initializeGL() {
     m_fire_center = glm::vec3(2.1, 0.1, 1.2);
 }
 
-void Realtime::populateHitObjs() {
-    hitObject rock = {
-        .position = {0, 10},
-        .radius = 0.6,
-        .type = HitObjType::HitObj_Sphere
-    };
-
-    hitObject tree = {
-        .position = {10, 0},
-        .radius = 0.3,
-        .type = HitObjType::HitObj_Cylinder
-    };
-    hitObjs.push_back(rock);
-    hitObjs.push_back(tree);
-}
-
 void Realtime::readTexture() {
     // Prepare filepath
     QString kitten_filepath;
@@ -288,10 +272,11 @@ void Realtime::extractInfo(std::string filepath) {
             m_topRight = ctm * glm::vec4(1, 0.0, 1, 1.0);
             m_bottomRight = ctm * glm::vec4(1, 0.0, -1, 1.0);
             m_bottomLeft = ctm * glm::vec4(-1, 0.0, -1, 1.0);
-        }
-        else if (shape.isFire && shape.primitive.type != PrimitiveType::PRIMITIVE_CUBE) {
+        } else if (shape.isFire && shape.primitive.type != PrimitiveType::PRIMITIVE_CUBE) {
             m_fire_pos += glm::vec3(shape.ctm * glm::vec4(0.0, 0.0, 0.0, 1.0));
             c += 1;
+        } else if (!shape.isFire && !shape.isSmoke && !shape.isRedSmoke) {
+            hitObjs.push_back(shape);
         }
     }
     m_fire_pos = m_fire_pos * (1.0f/float(c));
@@ -436,8 +421,6 @@ void Realtime::getVaos() {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void Realtime::getObjVaos() { // !!!!!!!!!!!!!!!!!!!!!??????????????
     int i = 50;
-    //    std::vector<GLuint> objVaos;
-    //    std::vector<GLuint> objVbos;
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
         // '(*it)' is the current string in the set
         glDeleteVertexArrays(1, &objVaos[i]); // ??
@@ -532,6 +515,12 @@ void Realtime::paintObj() {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
+
+    // don't render the collision blocks.
+
+    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
+        return;
+    }
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
@@ -854,7 +843,6 @@ void Realtime::settingsChanged() {
     }
     ball.changeMaterial(materialList[settings.material-1]);
     if (settings.material == 1) soaked = false;
-    populateHitObjs();
 }
 
 // ================== Action!
@@ -1000,23 +988,51 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
     }
 
     for (auto obj : hitObjs) {
-        auto type = obj.type;
-        glm::vec3 objPos = glm::vec3(obj.position[0], ballPos.y, obj.position[1]);
-        float dist = glm::distance(ballPos, objPos);
-        if (dist <= ball.getRadius() + obj.radius) {
-            if (type == HitObjType::HitObj_Cylinder && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
-                n = glm::normalize(glm::vec3(ballPos.x - obj.position[0], 0.0f, ballPos.z - obj.position[1]));
+        auto type = obj.primitive.type;
+        glm::vec3 objPos = obj.ctm * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        objPos.y = 0;
+        float dist = glm::distance(ballPos, glm::vec3(objPos.x, 0.0, objPos.z));
+
+        if (obj.primitive.type == PrimitiveType::PRIMITIVE_SPHERE && dist <= ball.getRadius() + 0.5) {
+            onRock = true;
+            if ((glm::dot(desiredDir, objPos - ballPos) > 0.0f) || ballPos.y > ball.getRadius()) {
+                n = glm::normalize(ballPos - objPos);
                 desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
                 return desiredDir;
-            } else {
-                onRock = true;
-                if ((glm::dot(desiredDir, objPos - ballPos) > 0.0f) || ballPos.y > ball.getRadius()) {
-                    n = glm::normalize(ballPos - glm::vec3(obj.position[0], 0.0f, obj.position[1]));
-                    desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
-                    return desiredDir;
-                }
             }
         }
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CYLINDER && dist <= ball.getRadius() + 0.5) {
+            n = glm::normalize(glm::vec3(ballPos.x - objPos.x, 0.0f, ballPos.z - objPos.z));
+            desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+            return desiredDir;
+        }
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CUBE) {
+            if (ballPos.x > objPos.x + 0.5 && ballPos.x < objPos.x + 0.5 + ball.getRadius() + 0.001 &&
+                ballPos.z >= objPos.z - 0.5 && ballPos.z <= objPos.z + 0.5) {
+                n = glm::vec3(1.0, 0.0, 0.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.x < objPos.x - 0.5 && ballPos.x > objPos.x - 0.5 - ball.getRadius() - 0.001 &&
+                ballPos.z >= objPos.z - 0.5 && ballPos.z <= objPos.z + 0.5) {
+                n = glm::vec3(-1.0, 0.0, 0.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.z > objPos.z + 0.5 && ballPos.z < objPos.z + 0.5 + ball.getRadius() + 0.001 &&
+                ballPos.x >= objPos.x - 0.5 && ballPos.x <= objPos.x + 0.5) {
+                n = glm::vec3(0.0, 0.0, 1.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+            else if (ballPos.z < objPos.z - 0.5 && ballPos.z > objPos.z - 0.5 - ball.getRadius() - 0.001 &&
+                ballPos.x >= objPos.x - 0.5 && ballPos.x <= objPos.x + 0.5) {
+                n = glm::vec3(0.0, 0.0, -1.0);
+                desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
+                return desiredDir;
+            }
+        }
+
     }
     return desiredDir;
 }

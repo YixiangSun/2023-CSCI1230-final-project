@@ -3,9 +3,7 @@
 // Defined before including GLEW to suppress deprecation messages on macOS
 #include "ball/ball.h"
 #include "shapes/Water.h"
-#include "utils/hitObjects.h"
 #include "utils/objparser.h"
-#include "utils/rgba.h"
 #include "utils/sceneparser.h"
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -115,7 +113,6 @@ private:
 
     // ball
     SceneMaterial m_ballMaterial;
-    Texture m_ballTexture;
     glm::vec3 getDir(bool w, bool s, bool a, bool d);
     float m_bound = 75.0;
     bool isInWater();
@@ -148,7 +145,7 @@ private:
     void paintObj();
 
     // hit objects
-    std::vector<hitObject> hitObjs;
+    std::vector<RenderShapeData> hitObjs;
     void populateHitObjs();
 };
 

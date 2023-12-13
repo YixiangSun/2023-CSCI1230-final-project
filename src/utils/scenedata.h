@@ -46,7 +46,7 @@ struct SceneGlobalData {
 struct SceneLight {
     int id;
     LightType type;
-    bool isFire;
+    bool isFire = false;
 
     SceneColor color;
     glm::vec3 function; // Attenuation function
@@ -62,7 +62,7 @@ struct SceneLight {
 struct SceneLightData {
     int id;
     LightType type;
-    bool isFire;
+    bool isFire = false;
 
     SceneColor color;
     glm::vec3 function; // Attenuation function
@@ -149,9 +149,9 @@ struct SceneMaterial {
 struct ScenePrimitive {
     PrimitiveType type;
     SceneMaterial material;
-    bool isFire;
-    bool isSmoke;
-    bool isRedSmoke;
+    bool isFire = false;
+    bool isSmoke = false;
+    bool isRedSmoke = false;
     std::string meshfile; // Used for triangle meshes
 };
 

@@ -1,0 +1,170 @@
+{
+  
+  "name": "default",
+  "globalData": {
+    "ambientCoeff": 1,
+    "diffuseCoeff": 1,
+    "specularCoeff": 1,
+    "transparentCoeff": 0
+  },
+  "cameraData": {
+    "position": [
+      0,
+      0,
+      5
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "heightAngle": 45,
+    "look": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "groups": [
+    {
+      
+      "name": "sphere",
+      "translate": [
+        6,
+        0,
+        6
+      ],
+      "rotate": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "primitives": [
+        {
+          "type": "sphere",
+          "diffuse": [
+            0,
+            1,
+            0
+          ],
+          "specular": [
+            0,
+            1,
+            1
+          ],
+          "ambient": [
+            1,
+            0,
+            0
+          ],
+          "shininess": 1}
+      ]
+    },
+    {
+      
+      "name": "trees",
+      "translate": [
+        -5,
+        0,
+        6.8
+      ],
+      "rotate": [
+        -0.18,
+        -0.763,
+        153,
+        0
+      ],
+      "scale": [
+        4.5,
+        4,
+        4.8
+      ],
+      "primitives": [
+        {
+          "type": "cylinder",
+          "diffuse": [
+            1,
+            1,
+            1
+          ],
+          "specular": [
+            1,
+            1,
+            1
+          ],
+          "ambient": [
+            1,
+            1,
+            0
+          ],
+          "shininess": 1}
+      ]
+    },
+    {
+      "name": "Lights",
+      "lights": [
+        {
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "type": "point",
+          "attenuationCoeff": [
+            0,
+            0,
+            0
+          ],
+          
+          "penumbra": 0,
+          "angle": 0,
+          "direction": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "translate": [
+        1,
+        1,
+        2
+      ]},
+    {
+      "name": "A lonely cube",
+      "primitives": [
+        {
+          "diffuse": [
+            1,
+            0,
+            0
+          ],
+          "specular": [
+            1,
+            1,
+            1
+          ],
+          "shininess": 10,
+          "type": "cube"}
+      ],
+      "translate": [
+        6,
+        0,
+        0
+      ],
+      
+      "rotate": [
+        7,
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}

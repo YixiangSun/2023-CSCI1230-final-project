@@ -9,9 +9,9 @@ struct RenderShapeData {
     ScenePrimitive primitive;
     glm::mat4 ctm; // the cumulative transformation matrix
     glm::mat4 originalCTM;
-    bool isFire;
-    bool isSmoke;
-    bool isRedSmoke;
+    bool isFire = false;
+    bool isSmoke = false;
+    bool isRedSmoke = false;
     int riseCount = 0;
     float timeOffset;
 };

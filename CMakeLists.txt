@@ -32,7 +32,6 @@ add_executable(${PROJECT_NAME}
     src/settings.cpp
     src/camera/camera.cpp
     src/ball/ball.cpp
-    src/utils/textureMapping.cpp
     src/shapes/Cube.cpp
     src/shapes/Sphere.cpp
     src/shapes/Cylinder.cpp
@@ -41,14 +40,12 @@ add_executable(${PROJECT_NAME}
     src/utils/scenefilereader.cpp
     src/utils/sceneparser.cpp
     src/utils/objparser.cpp
-    src/hitObjects.cpp
 
     src/mainwindow.h
     src/realtime.h
     src/settings.h
     src/camera/camera.h
     src/ball/ball.h
-    src/utils/textureMapping.h
     src/shaderloader.h
     src/shapes/Cube.h
     src/shapes/Sphere.h
@@ -59,10 +56,8 @@ add_executable(${PROJECT_NAME}
     src/utils/scenefilereader.h
     src/utils/sceneparser.h
     src/utils/shaderloader.h
-    src/utils/rgba.h
     src/utils/aspectratiowidget/aspectratiowidget.hpp
     src/utils/objparser.h
-    src/utils/hitObjects.h
 
 )
 

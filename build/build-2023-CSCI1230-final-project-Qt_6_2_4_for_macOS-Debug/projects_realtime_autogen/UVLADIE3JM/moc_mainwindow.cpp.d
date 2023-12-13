@@ -907,9 +907,7 @@
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/realtime.h \
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/shapes/Water.h \
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/aspectratiowidget/aspectratiowidget.hpp \
-  /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/hitObjects.h \
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/objparser.h \
-  /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/rgba.h \
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/scenedata.h \
   /Users/yixiangsun/Brown/fall2023/CSCI1230/2023-CSCI1230-final-project/src/utils/sceneparser.h \
   /Users/yixiangsun/Qt/6.2.4/macos/lib/QtCore.framework/Versions/A/Headers/QElapsedTimer \
