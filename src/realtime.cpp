@@ -789,31 +789,35 @@ void Realtime::ShadowMapPass() {
 
     GLuint uniformLocation;
 
-    glm::vec3 lightDir = glm::vec3(lightDirs[0]);
+    glm::vec3 lightDir = normalize(glm::vec3(lightDirs[0]));
 
-    //    glm::mat4 LightView;
-    glm::vec3 Up(0.0f, 1.0f, 0.0f);
-    glm::vec3 w = -glm::normalize(lightDir);
-    glm::vec3 v = glm::normalize(Up - glm::dot(Up, w) * w);
-    glm::vec3 u = glm::cross(v, w);
-    glm::mat4 r = glm::mat4({u[0], v[0], w[0], 0.f}, {u[1], v[1], w[1], 0.f}, {u[2], v[2], w[2], 0.f}, {0, 0, 0, 1.f});
-    glm::mat4 t = glm::translate(glm::mat4(1.0f), -glm::vec3(999, 999, 999));
-    LightView = r*t;
+//    //    glm::mat4 LightView;
+//    glm::vec3 Up(0.0f, 1.0f, 0.0f);
+//    glm::vec3 w = -glm::normalize(lightDir);
+//    glm::vec3 v = glm::normalize(Up - glm::dot(Up, w) * w);
+//    glm::vec3 u = glm::cross(v, w);
+//    glm::mat4 r = glm::mat4({u[0], v[0], w[0], 0.f}, {u[1], v[1], w[1], 0.f}, {u[2], v[2], w[2], 0.f}, {0, 0, 0, 1.f});
+//    glm::mat4 t = glm::translate(glm::mat4(1.0f), -glm::vec3(999, 999, 999));
+//    LightView = r*t;
+    LightView = camera.InitOrthoProjTransform(-20.0f, 20.0f, 20.0f, -20.0f, -20.0f, 20.0f);
 
     // Initialize a perspective projection matrix for the spot light
-    float FOV = 45.0f;
-    float zNear = 1.0f;
-    float zFar = 50.0f;
+//    float FOV = 45.0f;
+//    float zNear = 1.0f;
+//    float zFar = 50.0f;
 
-    float ar         = SHADOW_HEIGHT / SHADOW_WIDTH;
-    float zRange     = zNear - zFar;
-    float tanHalfFOV = tanf((M_PI / 180.0) * (FOV / 2.0f)); // transform to radian
+//    float ar         = SHADOW_HEIGHT / SHADOW_WIDTH;
+//    float zRange     = zNear - zFar;
+//    float tanHalfFOV = tanf((M_PI / 180.0) * (FOV / 2.0f)); // transform to radian
 
-    //    glm::mat4 Projection(0.f);
-    LightProjection[0][0] = 1/tanHalfFOV; LightProjection[0][1] = 0.0f;                 LightProjection[0][2] = 0.0f;                        LightProjection[0][3] = 0.0;
-    LightProjection[1][0] = 0.0f;         LightProjection[1][1] = 1.0f/(tanHalfFOV*ar); LightProjection[1][2] = 0.0f;                        LightProjection[1][3] = 0.0;
-    LightProjection[2][0] = 0.0f;         LightProjection[2][1] = 0.0f;                 LightProjection[2][2] = (-zNear - zFar)/zRange ;     LightProjection[2][3] = 2.0f * zFar * zNear/zRange;
-    LightProjection[3][0] = 0.0f;         LightProjection[3][1] = 0.0f;                 LightProjection[3][2] = 1.0f;                        LightProjection[3][3] = 0.0;
+//    //    glm::mat4 Projection(0.f);
+//    LightProjection[0][0] = 1/tanHalfFOV; LightProjection[0][1] = 0.0f;                 LightProjection[0][2] = 0.0f;                        LightProjection[0][3] = 0.0;
+//    LightProjection[1][0] = 0.0f;         LightProjection[1][1] = 1.0f/(tanHalfFOV*ar); LightProjection[1][2] = 0.0f;                        LightProjection[1][3] = 0.0;
+//    LightProjection[2][0] = 0.0f;         LightProjection[2][1] = 0.0f;                 LightProjection[2][2] = (-zNear - zFar)/zRange ;     LightProjection[2][3] = 2.0f * zFar * zNear/zRange;
+//    LightProjection[3][0] = 0.0f;         LightProjection[3][1] = 0.0f;                 LightProjection[3][2] = 1.0f;                        LightProjection[3][3] = 0.0;
+    glm::vec3 origin(0.0f, 0.0f, 0.0f);
+    glm::vec3 Up(0.0f, 1.0f, 0.0f);
+    LightProjection = camera.InitCameraTransform(origin, lightDir, Up);
 
     uniformLocation = glGetUniformLocation(m_shadow_shader, "lightview");
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &LightView[0][0]);
@@ -827,7 +831,7 @@ void Realtime::ShadowMapPass() {
     for (auto it = objNames.begin(); it != objNames.end(); ++it, ++i) {
 
         uniformLocation = glGetUniformLocation(m_shadow_shader, "model");
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identitymatrix[0][0]);
+        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, &identitymatrix[0][0]); // ??????????????????????
 
         glBindVertexArray(objVaos[i]);
         glDrawArrays(GL_TRIANGLES, 0, objData[*it].obj_vertexData.size() / 6);

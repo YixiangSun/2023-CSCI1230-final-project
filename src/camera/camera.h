@@ -33,6 +33,9 @@ public:
     // Returns the projection matrix of the camera.
     glm::mat4 getProjMatrix();
 
+    glm::mat4 InitCameraTransform(glm::vec3 Pos, glm::vec3 Look, glm::vec3 Up);
+    glm::mat4 InitOrthoProjTransform(float l, float r, float b, float t, float n, float f);
+
     // Returns the aspect ratio of the camera.
     float getAspectRatio() const;
 

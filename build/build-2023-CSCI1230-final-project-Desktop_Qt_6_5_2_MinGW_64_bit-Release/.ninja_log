@@ -48,3 +48,10 @@
 17	848	7241573240559148	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/.rcc/qrc_Resources.cpp	607b1c0c848d15a9
 850	8085	7241573312925403	CMakeFiles/projects_realtime.dir/0a086cee16bbe3937ae110612e57c425/.rcc/qrc_Resources.cpp.obj	ef8e30952d7a7de0
 8087	9010	7241573321662783	projects_realtime.exe	2e120089b68c4794
+20	1594	7241594552024540	projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+20	1594	7241594552024540	projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+20	1594	7241594552024540	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/timestamp	a9c0f05d8c41fbbc
+20	1594	7241594552024540	C:/Users/18612/Desktop/CSCI 1230/2023-CSCI1230-final-project/build/build-2023-CSCI1230-final-project-Desktop_Qt_6_5_2_MinGW_64_bit-Release/projects_realtime_autogen/mocs_compilation.cpp	a9c0f05d8c41fbbc
+1645	2750	7241594563592665	CMakeFiles/projects_realtime.dir/src/camera/camera.cpp.obj	d985438ce2badea9
+1637	8608	7241594622152053	CMakeFiles/projects_realtime.dir/src/realtime.cpp.obj	14c3c036d241831f
+8609	9191	7241594627543630	projects_realtime.exe	2e120089b68c4794
