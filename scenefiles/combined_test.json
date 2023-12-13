@@ -1069,28 +1069,6 @@
               }
             ]
           },
-        {
-            "translate": [0.0, -0.15, 0.0],
-            "scale": [0.3, 0.3, 0.3],
-            "primitives": [
-              {
-                "type": "sphere",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
-          {
-            "translate": [10.0, -0.15, 0.0],
-            "scale": [0.7, 10, 0.7],
-            "primitives": [
-              {
-                "type": "cylinder",
-                "diffuse": [0.3, 0.8, 0.5],
-		"isFire": false
-              }
-            ]
-          },
       {
         "name": "water",
         "primitives": [

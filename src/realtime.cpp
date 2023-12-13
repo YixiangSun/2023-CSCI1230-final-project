@@ -166,7 +166,7 @@ void Realtime::initializeGL() {
 
     // Students: anything requiring OpenGL calls when the program starts should be done here
     extractInfo(settings.sceneFilePath);
-    glClearColor(0.12, 0.588, 0.9, 1);
+    glClearColor(0.08, 0.4, 0.8, 1);
 
     m_shader = ShaderLoader::createShaderProgram(":/resources/shaders/phong.vert", ":/resources/shaders/phong.frag");
     m_texture_shader = ShaderLoader::createShaderProgram(":/resources/shaders/texture.vert", ":/resources/shaders/texture.frag");
@@ -561,11 +561,11 @@ void Realtime::paintObj() {
 
 void Realtime::draw(RenderShapeData& shape, bool ifBall, glm::mat4 originalCTM) {
 
-//    // don't render the collision blocks.
+    // don't render the collision blocks.
 
-//    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
-//        return;
-//    }
+    if (!ifBall && shape.primitive.type != PrimitiveType::PRIMITIVE_WATER && !shape.isFire && !shape.isRedSmoke && !shape.isSmoke) {
+        return;
+    }
 
     glm::vec4 cameraPos = camera.getData().pos;
     int numLights = sceneData.lights.size();
@@ -1143,7 +1143,7 @@ glm::vec3 Realtime::getDir(bool w, bool s, bool a, bool d) {
             desiredDir = desiredDir - glm::dot(desiredDir, n) * n;
             return desiredDir;
         }
-        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CUBE) {
+        else if (obj.primitive.type == PrimitiveType::PRIMITIVE_CUBE && (glm::dot(desiredDir, objPos - ballPos) > 0.0f)) {
             if (ballPos.x > objPos.x + 0.5 && ballPos.x < objPos.x + 0.5 + ball.getRadius() + 0.001 &&
                 ballPos.z >= objPos.z - 0.5 && ballPos.z <= objPos.z + 0.5) {
                 n = glm::vec3(1.0, 0.0, 0.0);
