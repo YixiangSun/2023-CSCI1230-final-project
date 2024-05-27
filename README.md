@@ -1,6 +1,6 @@
 # CSCI1230 Final Project!
 
-[Watch the project video](https://www.youtube.com/watch?v=prmrjpensuo&t=10s) for a demo
+[Watch the project video](https://www.youtube.com/watch?v=prmrjpensuo&t=10s) for a demo (starting from 0:00 to 2:05)
 
 The ball goes ~~~~~~〇
 
